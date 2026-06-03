@@ -1,0 +1,1754 @@
+/* ============================================================
+   MacroFit — style.css
+   DA brief appliqué : chaleureux, minimaliste, system-ui.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   VARIABLES
+   ------------------------------------------------------------ */
+:root {
+  /* Accent principal */
+  --accent:       #F26C3A;
+  --accent-clair: #FEF0E8;
+
+  /* Aliases pour compatibilité avec les vars inline JS */
+  --violet:       #F26C3A;
+  --violet-clair: #FEF0E8;
+  --violet-texte: #B85C2A;
+
+  /* Conformité sémantique */
+  --vert:         #2D7A27;
+  --vert-clair:   #EEFAED;
+  --vert-texte:   #2D7A27;
+  --orange:       #B85C2A;
+  --orange-clair: #FFF0E8;
+  --orange-texte: #B85C2A;
+  --rouge:        #A32D2D;
+  --rouge-clair:  #FCEBEB;
+  --rouge-texte:  #791F1F;
+
+  /* Couleurs macros */
+  --couleur-proteines: #F26C3A;
+  --couleur-glucides:  #4A9EE8;
+  --couleur-lipides:   #4DBB48;
+  --couleur-fibres:    #C49A00;
+  --couleur-calories:  #D4850A;
+
+  /* Surfaces */
+  --fond:         #F7F4F0;
+  --fond-carte:   #FFFAF6;
+
+  /* Texte */
+  --texte:        #2C2B28;
+  --texte-muted:  #9A9590;
+  --texte-leger:  #C4BAB0;
+
+  /* Bordures */
+  --bordure:       #EDE6DE;
+  --bordure-fine:  #EDE6DE;
+  --bordure-hover: #D4C9BC;
+
+  /* Typographie */
+  --police: system-ui, -apple-system, sans-serif;
+
+  /* Espacements */
+  --espace-xs: 4px;
+  --espace-sm: 8px;
+  --espace-md: 16px;
+  --espace-lg: 24px;
+  --espace-xl: 32px;
+
+  /* Rayons */
+  --rayon-sm:   8px;
+  --rayon-md:   16px;
+  --rayon-lg:   20px;
+  --rayon-rond: 20px;
+
+  /* Navigation */
+  --nav-hauteur: 64px;
+}
+
+
+/* ------------------------------------------------------------
+   RESET & BASE
+   ------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--police);
+  background: var(--fond);
+  color: var(--texte);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: var(--fond);
+  position: relative;
+  padding-bottom: var(--nav-hauteur);
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bordure); border-radius: 2px; }
+
+
+/* ------------------------------------------------------------
+   TOPBAR
+   ------------------------------------------------------------ */
+.topbar {
+  background: var(--fond-carte);
+  border-bottom: 0.5px solid var(--bordure);
+  padding: 16px var(--espace-md) 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-titre {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--texte);
+}
+
+.topbar-sous-titre {
+  font-size: 12px;
+  color: var(--texte-muted);
+  margin-top: 2px;
+}
+
+.topbar-action {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--rayon-sm);
+  line-height: 1;
+  color: var(--texte-muted);
+  transition: background 0.15s, color 0.15s;
+}
+
+.topbar-action:hover {
+  background: var(--fond);
+  color: var(--texte);
+}
+
+
+/* ------------------------------------------------------------
+   NAVIGATION DU BAS
+   ------------------------------------------------------------ */
+.nav-bas {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  height: var(--nav-hauteur);
+  background: #fff;
+  border-top: 0.5px solid var(--bordure);
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--espace-sm) 0;
+  color: #B4AFA9;
+  font-size: 10px;
+  font-family: var(--police);
+  font-weight: 400;
+  transition: color 0.15s;
+}
+
+.nav-btn.actif {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.nav-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #C4BAB0;
+  transition: color 0.15s, background 0.15s;
+  border-radius: 6px;
+  padding: 0;
+}
+
+.nav-btn.actif svg {
+  color: var(--accent);
+  background: var(--accent-clair);
+  border-radius: 8px;
+  padding: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+
+/* ------------------------------------------------------------
+   PAGES & CONTENU
+   ------------------------------------------------------------ */
+.page {
+  display: none;
+  flex-direction: column;
+  min-height: calc(100vh - var(--nav-hauteur));
+}
+
+.page.active {
+  display: flex;
+}
+
+.contenu {
+  padding: var(--espace-md);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Accueil — tout tenir dans l'écran sans scroller, aucun scroll */
+#page-accueil {
+  height: calc(100vh - var(--nav-hauteur));
+  min-height: unset;
+  overflow: hidden;
+}
+
+.contenu-accueil {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-sm);
+  padding: var(--espace-sm) var(--espace-md);
+}
+
+/* liste-repas est le conteneur flex réel — il doit remplir contenu-accueil */
+.contenu-accueil #liste-repas {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Grignotage — taille naturelle, ne grandit pas */
+.contenu-accueil #section-grignotage {
+  flex-shrink: 0;
+}
+
+/* La carte-jour prend tout l'espace restant */
+.contenu-accueil .carte-jour {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+/* La grille de tuiles se répartit dans l'espace restant */
+.contenu-accueil .repas-tuiles {
+  flex: 1;
+  min-height: 0;
+  align-content: stretch;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+
+
+/* ------------------------------------------------------------
+   CARTES
+   ------------------------------------------------------------ */
+.carte {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  padding: 16px;
+  margin-bottom: var(--espace-sm);
+}
+
+.carte-titre {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texte-muted);
+  margin-bottom: var(--espace-sm);
+}
+
+
+/* ------------------------------------------------------------
+   CARTE JOUR (accueil) — grande carte unique
+   ------------------------------------------------------------ */
+.carte-jour {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  overflow: hidden;
+  margin-bottom: var(--espace-sm);
+}
+
+/* ── Part 1 : résumé macros ── */
+.carte-jour-macros {
+  padding: 14px 16px 10px;
+  border-bottom: 0.5px solid var(--bordure);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.carte-jour-macro-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carte-jour-macro-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 58px;
+  flex-shrink: 0;
+}
+.carte-jour-macro-label.proteines { color: var(--couleur-proteines); }
+.carte-jour-macro-label.glucides  { color: var(--couleur-glucides);  }
+.carte-jour-macro-label.lipides   { color: var(--couleur-lipides);   }
+.carte-jour-macro-label.fibres    { color: var(--couleur-fibres);    }
+.carte-jour-macro-label.calories  { color: var(--couleur-calories);  }
+
+.carte-jour-macro-barre {
+  flex: 1;
+  height: 4px;
+  background: var(--bordure);
+  border-radius: 99px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.carte-jour-macro-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.35s ease;
+}
+.carte-jour-macro-fill.proteines { background: var(--couleur-proteines); }
+.carte-jour-macro-fill.glucides  { background: var(--couleur-glucides);  }
+.carte-jour-macro-fill.lipides   { background: var(--couleur-lipides);   }
+.carte-jour-macro-fill.fibres    { background: var(--couleur-fibres);    }
+.carte-jour-macro-fill.calories  { background: var(--couleur-calories);  }
+
+.carte-jour-macro-val {
+  font-size: 10px;
+  color: var(--texte-muted);
+  width: 72px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Pills summary row */
+.carte-jour-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+/* ── Part 2 : grille 2×2 repas — même style que les cartes recette ── */
+.repas-tuiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+/* Each tile = recipe card clone */
+.meal-col {
+  background: var(--fond-carte);
+  border-radius: 16px;
+  border: 0.5px solid var(--bordure);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  min-width: 0;
+  min-height: 0;
+}
+.meal-col:hover { border-color: var(--bordure-hover); }
+
+/* Photo area — mirrors recipe card: aspect-ratio 4/3, rounded top */
+.meal-photo-wrap {
+  height: 100px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meal-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meal-photo-emoji {
+  font-size: 36px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Text body */
+.meal-body {
+  padding: 10px 12px 10px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meal-type {
+  font-size: 11px;
+  color: var(--texte-muted);
+}
+
+.meal-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texte);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meal-name.vide {
+  color: var(--texte-leger);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.meal-macros {
+  font-size: 11px;
+  color: var(--texte-muted);
+}
+
+.meal-footer {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.meal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 99px;
+  line-height: 1.4;
+}
+
+.meal-btn-ajouter {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-clair);
+  border: none;
+  border-radius: 99px;
+  padding: 4px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Carte grignotage — conserve l'ancien style */
+.carte-repas {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  padding: 16px;
+  margin-bottom: var(--espace-sm);
+}
+
+.repas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.repas-moment {
+  font-size: 11px;
+  color: var(--texte-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ------------------------------------------------------------
+   BADGES CONFORMITÉ
+   ------------------------------------------------------------ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--rayon-rond);
+}
+
+.badge-vert   { background: var(--vert-clair);   color: var(--vert-texte); }
+.badge-orange { background: var(--orange-clair); color: var(--orange-texte); }
+.badge-rouge  { background: var(--rouge-clair);  color: var(--rouge-texte); }
+.badge-violet { background: var(--accent-clair); color: var(--violet-texte); }
+.badge-gris   { background: var(--fond); color: var(--texte-muted); border: 0.5px solid var(--bordure); }
+
+
+/* ------------------------------------------------------------
+   BOUTONS
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--rayon-sm);
+  border: 0.5px solid var(--bordure-hover);
+  background: transparent;
+  color: var(--texte);
+  font-size: 13px;
+  font-weight: 400;
+  font-family: var(--police);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--fond);
+  border-color: var(--bordure-hover);
+}
+
+.btn-principal {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+.btn-principal:hover {
+  background: #D45E32;
+  border-color: #D45E32;
+}
+
+.btn-succes {
+  background: var(--vert-clair);
+  color: var(--vert-texte);
+  border-color: var(--vert-clair);
+}
+
+.btn-plein {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* ------------------------------------------------------------
+   BARRES DE PROGRESSION MACROS
+   ------------------------------------------------------------ */
+.macros-section {
+  margin-top: 4px;
+}
+
+.macro-ligne {
+  margin-bottom: 10px;
+}
+
+.macro-etiquette {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--texte-muted);
+  margin-bottom: 4px;
+}
+
+.macro-etiquette span:last-child {
+  font-weight: 500;
+  color: var(--texte);
+}
+
+.macro-barre {
+  height: 5px;
+  background: var(--bordure);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.macro-remplissage {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+.macro-remplissage.proteines { background: var(--couleur-proteines); }
+.macro-remplissage.glucides  { background: var(--couleur-glucides); }
+.macro-remplissage.lipides   { background: var(--couleur-lipides); }
+.macro-remplissage.calories  { background: var(--texte-muted); }
+
+
+/* ------------------------------------------------------------
+   GRILLE DE TOTAUX (4 cases)
+   ------------------------------------------------------------ */
+.totaux-grille {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espace-sm);
+  margin-top: var(--espace-sm);
+}
+
+.total-case {
+  background: var(--fond);
+  border-radius: var(--rayon-sm);
+  padding: 10px var(--espace-sm);
+  text-align: center;
+}
+
+.total-valeur {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.total-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--texte-muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------
+   LIGNES GÉNÉRIQUES (ingrédients, détail)
+   ------------------------------------------------------------ */
+.ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  font-size: 14px;
+  border-bottom: 0.5px solid var(--bordure-fine);
+}
+
+.ligne:last-child { border-bottom: none; }
+
+.ligne-nom { color: var(--texte); flex: 1; }
+.ligne-val { color: var(--texte-muted); font-size: 12px; }
+
+
+/* ------------------------------------------------------------
+   SECTION TITRE
+   ------------------------------------------------------------ */
+.section-titre {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--texte-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: var(--espace-lg) 0 var(--espace-sm);
+}
+
+.section-titre:first-child { margin-top: 0; }
+
+
+/* ------------------------------------------------------------
+   CHIPS / FILTRES
+   ------------------------------------------------------------ */
+.filtres {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  margin-bottom: var(--espace-md);
+  scrollbar-width: none;
+}
+.filtres::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 5px 12px;
+  border-radius: var(--rayon-rond);
+  border: 0.5px solid var(--bordure);
+  background: var(--fond-carte);
+  color: var(--texte-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--police);
+  transition: all 0.15s;
+}
+
+.chip.actif {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+.chip:not(.actif):hover {
+  border-color: var(--bordure-hover);
+  color: var(--texte);
+}
+
+
+/* ------------------------------------------------------------
+   BARRE DE RECHERCHE
+   ------------------------------------------------------------ */
+.recherche {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  background: var(--fond-carte);
+  font-size: 14px;
+  font-family: var(--police);
+  color: var(--texte);
+  margin-bottom: var(--espace-md);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.recherche:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-clair);
+}
+
+.recherche::placeholder { color: var(--texte-leger); }
+
+
+/* ------------------------------------------------------------
+   ÉTATS VIDES
+   ------------------------------------------------------------ */
+.etat-vide {
+  text-align: center;
+  padding: var(--espace-xl) var(--espace-md);
+  color: var(--texte-muted);
+}
+
+.etat-vide-icone {
+  font-size: 36px;
+  margin-bottom: var(--espace-md);
+  opacity: 0.6;
+}
+
+.etat-vide-titre {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--texte);
+}
+
+.etat-vide-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--texte-muted);
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+
+/* ------------------------------------------------------------
+   CARTES DE RECETTES
+   ------------------------------------------------------------ */
+.carte-recette {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  padding: 16px;
+  margin-bottom: var(--espace-sm);
+  transition: border-color 0.15s;
+}
+
+.carte-recette:hover {
+  border-color: var(--bordure-hover);
+}
+
+.recette-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.recette-nom {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--texte);
+  margin-bottom: 3px;
+}
+
+.recette-meta {
+  font-size: 12px;
+  color: var(--texte-muted);
+}
+
+.recette-macros-ligne {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* Badges macros selon la DA */
+.macro-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: var(--rayon-rond);
+}
+
+.macro-pill.proteines { background: #FFF0E8; color: #B85C2A; }
+.macro-pill.glucides  { background: #E8F4FF; color: #1A6BB5; }
+.macro-pill.lipides   { background: #EEFAED; color: #2D7A27; }
+.macro-pill.fibres    { background: #FFF8E8; color: #8A6200; }
+.macro-pill.calories  { background: var(--fond); color: var(--texte-muted); }
+
+.recette-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.btn-favori {
+  padding: 5px 10px;
+  border-radius: var(--rayon-sm);
+  border: 0.5px solid var(--bordure);
+  background: none;
+  cursor: pointer;
+  color: var(--texte-muted);
+  font-size: 16px;
+  line-height: 1;
+  transition: all 0.15s;
+}
+
+.btn-favori:hover {
+  background: var(--accent-clair);
+  color: var(--accent);
+  border-color: var(--accent-clair);
+}
+
+
+/* ------------------------------------------------------------
+   DÉTAIL RECETTE — étapes
+   ------------------------------------------------------------ */
+.etapes-liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-sm);
+}
+
+.etape {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.etape-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.etape-texte {
+  font-size: 14px;
+  color: var(--texte);
+  line-height: 1.6;
+  flex: 1;
+}
+
+
+/* ------------------------------------------------------------
+   PLANNING
+   ------------------------------------------------------------ */
+.planning-jour {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-md);
+  border: 0.5px solid var(--bordure);
+  padding: 14px 16px;
+  margin-bottom: var(--espace-sm);
+}
+
+.planning-jour-today {
+  border-color: var(--accent);
+  border-width: 1px;
+}
+
+.planning-jour-valide {
+  background: #EDE7DF;
+}
+
+.planning-jour-valide .planning-totaux {
+  border-top-color: #D9D0C6;
+}
+
+.planning-jour-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.planning-jour-nom {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texte);
+  text-transform: capitalize;
+}
+
+.planning-repas-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.planning-repas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+}
+
+.planning-repas-label {
+  font-size: 13px;
+  color: var(--texte-muted);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.planning-repas-nom {
+  flex: 1;
+  font-size: 13px;
+  color: var(--texte);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.planning-totaux {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--bordure-fine);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.planning-btn-ajouter {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--fond);
+  border-color: var(--bordure);
+  color: var(--texte-muted);
+}
+
+.planning-btn-suppr {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--texte-leger);
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  margin-left: auto;
+  transition: color 0.15s;
+}
+
+.planning-btn-suppr:hover {
+  color: var(--rouge);
+}
+
+
+/* ------------------------------------------------------------
+   MODAL
+   ------------------------------------------------------------ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 43, 40, 0.35);
+  z-index: 100;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--fond-carte);
+  border-radius: var(--rayon-lg) var(--rayon-lg) 0 0;
+  width: 100%;
+  max-width: 430px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 0;
+}
+
+.modal-titre {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--texte);
+}
+
+.modal-liste {
+  overflow-y: auto;
+  flex: 1;
+  padding: 0 12px 16px;
+}
+
+.modal-item {
+  padding: 12px 4px;
+  border-bottom: 0.5px solid var(--bordure-fine);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 8px;
+}
+
+.modal-item:hover {
+  background: var(--fond);
+}
+
+.modal-item:last-child {
+  border-bottom: none;
+}
+
+.modal-item-nom {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texte);
+  margin-bottom: 2px;
+}
+
+.modal-item-macros {
+  font-size: 12px;
+  color: var(--texte-muted);
+}
+
+
+/* ------------------------------------------------------------
+   LISTE DE COURSES
+   ------------------------------------------------------------ */
+.courses-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--bordure-fine);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border-radius: 4px;
+}
+
+.courses-item:last-child { border-bottom: none; }
+
+.courses-item:hover { opacity: 0.75; }
+
+.courses-item-coche { opacity: 0.4; }
+
+.courses-item-coche .courses-nom {
+  text-decoration: line-through;
+}
+
+.courses-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--bordure-hover);
+  flex-shrink: 0;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courses-checkbox.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.courses-checkbox.checked::after {
+  content: '✓';
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.courses-nom {
+  flex: 1;
+  font-size: 14px;
+  color: var(--texte);
+}
+
+.courses-quantite {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texte-muted);
+}
+
+
+/* ------------------------------------------------------------
+   FORMULAIRE RECETTE
+   ------------------------------------------------------------ */
+.form-champ {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0.5px solid var(--bordure);
+  border-radius: var(--rayon-sm);
+  font-size: 14px;
+  font-family: var(--police);
+  color: var(--texte);
+  background: var(--fond);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-champ:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-clair);
+}
+
+.form-champ::placeholder { color: var(--texte-leger); }
+
+.form-ing-entry {
+  border-bottom: 0.5px solid var(--bordure-fine);
+}
+
+.form-ing-entry:last-child { border-bottom: none; }
+
+.form-ing-ligne {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 0 5px;
+}
+
+/* Rétrocompatibilité si form-ing-ligne utilisé sans wrapper */
+.form-ing-ligne:last-child { border-bottom: none; }
+
+.form-ing-hint {
+  font-size: 10.5px;
+  color: var(--texte-muted);
+  padding: 0 0 6px 0;
+  letter-spacing: 0.02em;
+}
+
+.form-ing-select {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: var(--police);
+  font-size: 13px;
+  color: var(--texte);
+  outline: none;
+  min-width: 0;
+}
+
+/* Autocomplete ingrédient */
+.form-ing-search-wrapper {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+
+.form-ing-search {
+  width: 100%;
+  border: none;
+  background: none;
+  font-family: var(--police);
+  font-size: 13px;
+  color: var(--texte);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-ing-search::placeholder { color: var(--texte-leger); }
+
+.form-ing-search.non-trouve { color: var(--rouge); }
+
+.form-ing-suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -8px;
+  right: -8px;
+  background: var(--fond-carte);
+  border: 0.5px solid var(--bordure);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  z-index: 200;
+  max-height: 220px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.form-ing-suggestion {
+  padding: 9px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  border-bottom: 0.5px solid var(--bordure-fine);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.form-ing-suggestion:last-child { border-bottom: none; }
+
+.form-ing-suggestion:hover,
+.form-ing-suggestion.actif { background: var(--fond); }
+
+.form-ing-suggestion-nom { color: var(--texte); font-weight: 500; }
+
+.form-ing-suggestion-cat {
+  font-size: 11px;
+  color: var(--texte-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-ing-qty {
+  width: 58px;
+  border: 0.5px solid var(--bordure);
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 13px;
+  font-family: var(--police);
+  text-align: right;
+  outline: none;
+  flex-shrink: 0;
+  background: var(--fond);
+  color: var(--texte);
+  transition: border-color 0.15s;
+}
+
+.form-ing-qty:focus { border-color: var(--accent); }
+
+.form-ing-unite {
+  font-size: 12px;
+  color: var(--texte-muted);
+  flex-shrink: 0;
+}
+
+.form-ing-suppr,
+.form-etape-suppr {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--texte-leger);
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.form-ing-suppr { margin-top: 0; }
+.form-etape-suppr { margin-top: 6px; }
+
+.form-ing-suppr:hover,
+.form-etape-suppr:hover { color: var(--rouge); }
+
+/* Toggle cru / cuit dans la liste d'ingrédients d'une recette */
+.form-ing-toggle {
+  background: var(--fond);
+  border: 0.5px solid var(--bordure);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--police);
+  color: var(--texte-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  line-height: 18px;
+}
+
+.form-ing-toggle.cuit {
+  background: var(--accent-clair);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.form-ing-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.form-etape-ligne {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: var(--espace-sm);
+}
+
+.form-etape-ligne:last-child { margin-bottom: 0; }
+
+.form-etape-text {
+  flex: 1;
+  border: 0.5px solid var(--bordure);
+  border-radius: var(--rayon-sm);
+  padding: 7px 10px;
+  font-size: 13px;
+  font-family: var(--police);
+  color: var(--texte);
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+  background: var(--fond);
+  transition: border-color 0.15s;
+}
+
+.form-etape-text:focus { border-color: var(--accent); }
+
+
+/* ------------------------------------------------------------
+   PARAMÈTRES — grille macro 2 colonnes
+   ------------------------------------------------------------ */
+.params-macros-grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espace-sm);
+}
+
+.params-macro-champ label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texte-muted);
+  margin-bottom: 5px;
+}
+
+.params-macro-champ .form-champ {
+  width: 100%;
+}
+
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 360px) {
+  .totaux-grille { grid-template-columns: repeat(2, 1fr); }
+  .total-valeur  { font-size: 14px; }
+}
+
+/* ------------------------------------------------------------
+   IMPRESSION — accueil
+   ------------------------------------------------------------ */
+@keyframes opt-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.opt-refresh-icon.spinning {
+  display: inline-block;
+  animation: opt-spin 0.5s linear;
+}
+
+@media print {
+  .meal-photo {
+    display: none !important;
+  }
+  .meal-photo-wrap {
+    height: 32px !important;
+    aspect-ratio: unset !important;
+  }
+  .carte-jour {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   BOUTON OPTIONS SUR LES TUILES REPAS (accueil)
+   ------------------------------------------------------------ */
+.meal-btn-opts {
+  background: rgba(255,255,255,0.88);
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texte-muted);
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.meal-btn-opts:hover {
+  background: var(--fond);
+  color: var(--texte);
+}
+
+/* Badge "Libre" pour les repas sans recette */
+.badge-libre {
+  background: #EEF4FF;
+  color: #1A6BB5;
+}
+
+
+/* ------------------------------------------------------------
+   BOTTOM SHEET — REMPLACEMENT REPAS
+   ------------------------------------------------------------ */
+.remplacement-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.remplacement-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44,43,40,0.40);
+}
+
+.remplacement-sheet {
+  position: relative;
+  z-index: 1;
+  background: var(--fond-carte);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 430px;
+  padding: 20px 16px 36px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.remplacement-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--bordure);
+  border-radius: 99px;
+  margin: 0 auto 16px;
+  flex-shrink: 0;
+}
+
+.remplacement-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.remplacement-titre {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--texte);
+}
+
+/* Boutons d'action principaux du sheet */
+.btn-action-sheet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0.5px solid var(--bordure);
+  border-radius: 12px;
+  background: var(--fond-carte);
+  color: var(--texte);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--police);
+  cursor: pointer;
+  margin-bottom: 8px;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-action-sheet:hover {
+  background: var(--fond);
+  border-color: var(--bordure-hover);
+}
+.btn-action-sheet.danger {
+  color: var(--rouge);
+  border-color: var(--rouge-clair);
+}
+.btn-action-sheet.danger:hover {
+  background: var(--rouge-clair);
+}
+
+/* Onglets mode IA / Recherche */
+.libre-tabs-bar {
+  display: flex;
+  background: var(--fond);
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 14px;
+}
+
+.libre-tab-btn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 7px;
+  font-size: 13px;
+  font-family: var(--police);
+  cursor: pointer;
+  background: none;
+  color: var(--texte-muted);
+  transition: background 0.15s, color 0.15s;
+}
+.libre-tab-btn.actif {
+  background: var(--fond-carte);
+  color: var(--texte);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Aperçu macros dans le sheet */
+.libre-macros-box {
+  background: var(--fond);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  display: none;
+}
+
+.libre-macros-grille {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.libre-macro-case {
+  text-align: center;
+  background: var(--fond-carte);
+  border-radius: 8px;
+  padding: 8px 4px;
+}
+
+.libre-macro-val {
+  font-size: 15px;
+  font-weight: 600;
+}
+.libre-macro-val.proteines { color: var(--couleur-proteines); }
+.libre-macro-val.glucides  { color: var(--couleur-glucides); }
+.libre-macro-val.lipides   { color: var(--couleur-lipides); }
+
+.libre-macro-lbl {
+  font-size: 10px;
+  color: var(--texte-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* Ligne d'ingrédient dans le mode picker */
+.libre-ing-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 0.5px solid var(--bordure-fine);
+  font-size: 13px;
+}
+.libre-ing-row:last-child { border-bottom: none; }
+.libre-ing-row-nom { flex: 1; color: var(--texte); }
+.libre-ing-row-qty { color: var(--texte-muted); font-size: 12px; min-width: 36px; text-align: right; }
+.libre-ing-row-suppr {
+  background: none;
+  border: none;
+  color: var(--texte-leger);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.libre-ing-row-suppr:hover { color: var(--rouge); }
+
+
+/* ------------------------------------------------------------
+   ONGLETS PAGE DÉTAIL RECETTE
+   ------------------------------------------------------------ */
+.detail-onglets-bar {
+  background: var(--fond-carte);
+  border-bottom: 0.5px solid var(--bordure);
+  padding: 0 16px;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.detail-onglet-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texte-muted);
+  cursor: pointer;
+  font-family: var(--police);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.detail-onglet-btn.actif {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+
+/* ------------------------------------------------------------
+   BATCH COOKING — multiplicateurs et composants
+   ------------------------------------------------------------ */
+.batch-mult-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.batch-mult-btn {
+  flex: 1;
+  border: 0.5px solid var(--bordure);
+  background: var(--fond);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--police);
+  color: var(--texte-muted);
+  transition: all 0.15s;
+}
+
+.batch-mult-btn.actif {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.batch-comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.batch-facteur-input {
+  width: 80px !important;
+  font-size: 13px !important;
+  text-align: center !important;
+}
+
+
+/* ------------------------------------------------------------
+   COMPOSANTS — formulaire recette
+   ------------------------------------------------------------ */
+.form-composant-card {
+  background: var(--fond);
+  border-radius: 12px;
+  border: 0.5px solid var(--bordure);
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.form-composant-card:last-child { margin-bottom: 0; }
+
+.form-composant-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.form-composant-cuisson {
+  font-size: 12px;
+  border: 0.5px solid var(--bordure);
+  border-radius: 6px;
+  padding: 5px 8px;
+  background: var(--fond-carte);
+  font-family: var(--police);
+  color: var(--texte);
+  outline: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.form-composant-cuisson:focus { border-color: var(--accent); }
+
+.form-composant-suppr {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 4px 8px;
+  color: var(--rouge);
+  border-color: var(--rouge-clair);
+}
+
+.form-composant-suppr:hover { background: var(--rouge-clair); }

@@ -1,0 +1,6387 @@
+{
+  "ingredients": [
+    {
+      "id": 1,
+      "nom": "Bière blanche",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 60.9,
+        "proteines": 0.5,
+        "glucides": 7.6,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 2,
+      "nom": "Bière brune",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 40.5,
+        "proteines": 0.4,
+        "glucides": 4.1,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 3,
+      "nom": "Bière faiblement alcoolisée",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 35.3,
+        "proteines": 0.3,
+        "glucides": 4.6,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 4,
+      "nom": "Bière forte",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 62.5,
+        "proteines": 0.5,
+        "glucides": 4.6,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 5,
+      "nom": "Café, moulu",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 341.0,
+        "proteines": 13.9,
+        "glucides": 20.3,
+        "lipides": 13.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 6,
+      "nom": "Café, poudre soluble",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 2,
+        "proteines": 0.2,
+        "glucides": 0.1,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 7,
+      "nom": "Champagne",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 76.1,
+        "proteines": 0.3,
+        "glucides": 1.4,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 8,
+      "nom": "Eau de source gazeuse ou plate",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 9,
+      "nom": "Eau du robinet",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 10,
+      "nom": "Eau minérale",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 11,
+      "nom": "Jus d'orange",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 44.8,
+        "proteines": 0.7,
+        "glucides": 9.2,
+        "lipides": 0.2,
+        "fibres": 0.2
+      }
+    },
+    {
+      "id": 12,
+      "nom": "Jus d'orange, pur jus",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 45.4,
+        "proteines": 0.6,
+        "glucides": 9.6,
+        "lipides": 0.1,
+        "fibres": 0.2
+      }
+    },
+    {
+      "id": 13,
+      "nom": "Jus de pomme, pur jus",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 48.9,
+        "proteines": 0.2,
+        "glucides": 11.4,
+        "lipides": 0.1,
+        "fibres": 0.1
+      }
+    },
+    {
+      "id": 14,
+      "nom": "Jus de raisin, pur jus",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 69.2,
+        "proteines": 0.2,
+        "glucides": 16.3,
+        "lipides": 0.1,
+        "fibres": 0.3
+      }
+    },
+    {
+      "id": 15,
+      "nom": "Jus de tomate, pur jus",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 21.7,
+        "proteines": 0.9,
+        "glucides": 3.7,
+        "lipides": 0.1,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 16,
+      "nom": "Thé",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 232.0,
+        "proteines": 19.4,
+        "glucides": 6.3,
+        "lipides": 2.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 17,
+      "nom": "Thé infusé, sans sucres ajoutés",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 0.4,
+        "proteines": 0.1,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 18,
+      "nom": "Tisane infusée ou infusion, sans sucres ajoutés",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 0.8,
+        "proteines": 0,
+        "glucides": 0.2,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 19,
+      "nom": "Vin blanc mousseux",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 72.3,
+        "proteines": 0.1,
+        "glucides": 1.8,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 20,
+      "nom": "Vin blanc sec",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 55.3,
+        "proteines": 0.2,
+        "glucides": 0.2,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 21,
+      "nom": "Vin rosé",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 69.2,
+        "proteines": 0.2,
+        "glucides": 1.4,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 22,
+      "nom": "Vin rouge",
+      "categorie": "Boissons",
+      "macros_pour_100g": {
+        "kcal": 75.7,
+        "proteines": 0.2,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 23,
+      "nom": "Basilic",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 35.2,
+        "proteines": 3.2,
+        "glucides": 3.4,
+        "lipides": 0.6,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 24,
+      "nom": "Basilic, séché",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 244.0,
+        "proteines": 23.0,
+        "glucides": 10.1,
+        "lipides": 4.1,
+        "fibres": 4.9
+      }
+    },
+    {
+      "id": 25,
+      "nom": "Coriandre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 22.3,
+        "proteines": 2.1,
+        "glucides": 0.9,
+        "lipides": 0.5,
+        "fibres": 2.8
+      }
+    },
+    {
+      "id": 26,
+      "nom": "Coriandre, graine",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 345.0,
+        "proteines": 12.4,
+        "glucides": 13.0,
+        "lipides": 17.8,
+        "fibres": 41.9
+      }
+    },
+    {
+      "id": 27,
+      "nom": "Cornichon, au vinaigre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 16.0,
+        "proteines": 1.1,
+        "glucides": 0.8,
+        "lipides": 0,
+        "fibres": 1.2
+      }
+    },
+    {
+      "id": 28,
+      "nom": "Curcuma",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 291.0,
+        "proteines": 9.7,
+        "glucides": 44.4,
+        "lipides": 3.2,
+        "fibres": 21.1
+      }
+    },
+    {
+      "id": 29,
+      "nom": "Curry",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 301.0,
+        "proteines": 14.5,
+        "glucides": 2.6,
+        "lipides": 14.0,
+        "fibres": 33.2
+      }
+    },
+    {
+      "id": 30,
+      "nom": "Câpres, au vinaigre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 2.2,
+        "glucides": 3.5,
+        "lipides": 0.9,
+        "fibres": 3.2
+      }
+    },
+    {
+      "id": 31,
+      "nom": "Herbes aromatiques fraîches",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 51.2,
+        "proteines": 3.3,
+        "glucides": 4.7,
+        "lipides": 0.9,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 32,
+      "nom": "Herbes de provence, séchées",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 283.0,
+        "proteines": 11.5,
+        "glucides": 23.1,
+        "lipides": 7.2,
+        "fibres": 43.3
+      }
+    },
+    {
+      "id": 33,
+      "nom": "Ketchup",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 108.0,
+        "proteines": 1.2,
+        "glucides": 23.7,
+        "lipides": 0.2,
+        "fibres": 1.2
+      }
+    },
+    {
+      "id": 34,
+      "nom": "Ketchup allégé en sucres",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 68.6,
+        "proteines": 1.3,
+        "glucides": 13.8,
+        "lipides": 0.1,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 35,
+      "nom": "Mayonnaise",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 692.0,
+        "proteines": 1.3,
+        "glucides": 3.4,
+        "lipides": 74.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 36,
+      "nom": "Mayonnaise à teneur réduite en matière grasse ou mayonnaise allégée",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 297.0,
+        "proteines": 1.1,
+        "glucides": 8.8,
+        "lipides": 28.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 37,
+      "nom": "Moutarde",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 151.0,
+        "proteines": 6.9,
+        "glucides": 4.3,
+        "lipides": 11.2,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 38,
+      "nom": "Moutarde à l'ancienne",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 142.0,
+        "proteines": 6.6,
+        "glucides": 2.2,
+        "lipides": 9.9,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 39,
+      "nom": "Oignon au vinaigre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.6,
+        "glucides": 2.5,
+        "lipides": 0.2,
+        "fibres": 0.8
+      }
+    },
+    {
+      "id": 40,
+      "nom": "Olive noire, à l'huile",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 349.0,
+        "proteines": 2.2,
+        "glucides": 4.3,
+        "lipides": 33.3,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 41,
+      "nom": "Origan, séché",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 265.0,
+        "proteines": 9.0,
+        "glucides": 26.4,
+        "lipides": 4.3,
+        "fibres": 42.5
+      }
+    },
+    {
+      "id": 42,
+      "nom": "Paprika",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 318.0,
+        "proteines": 14.1,
+        "glucides": 18.8,
+        "lipides": 12.9,
+        "fibres": 34.9
+      }
+    },
+    {
+      "id": 43,
+      "nom": "Persil",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 42.5,
+        "proteines": 3.0,
+        "glucides": 4.1,
+        "lipides": 0.6,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 44,
+      "nom": "Persil, séché",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 291.0,
+        "proteines": 29.0,
+        "glucides": 16.8,
+        "lipides": 5.3,
+        "fibres": 26.5
+      }
+    },
+    {
+      "id": 45,
+      "nom": "Poivre blanc",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 313.0,
+        "proteines": 12.1,
+        "glucides": 48.3,
+        "lipides": 2.1,
+        "fibres": 26.5
+      }
+    },
+    {
+      "id": 46,
+      "nom": "Poivre de cayenne ou piment de cayenne",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 376.0,
+        "proteines": 12.0,
+        "glucides": 29.4,
+        "lipides": 17.3,
+        "fibres": 27.2
+      }
+    },
+    {
+      "id": 47,
+      "nom": "Poivre noir",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 331.0,
+        "proteines": 13.3,
+        "glucides": 39.9,
+        "lipides": 7.5,
+        "fibres": 26.5
+      }
+    },
+    {
+      "id": 48,
+      "nom": "Sauce au curry, chaude",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 77.4,
+        "proteines": 1.0,
+        "glucides": 10.6,
+        "lipides": 3.2,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 49,
+      "nom": "Sauce au curry, froide",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 367.0,
+        "proteines": 0.9,
+        "glucides": 8.5,
+        "lipides": 36.5,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 50,
+      "nom": "Sauce au poivre vert",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 88.9,
+        "proteines": 1.3,
+        "glucides": 5.3,
+        "lipides": 6.6,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 51,
+      "nom": "Sauce au poivre, chaude",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 160.0,
+        "proteines": 1.0,
+        "glucides": 4.8,
+        "lipides": 14.8,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 52,
+      "nom": "Sauce au poivre, froide",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 472.0,
+        "proteines": 0.7,
+        "glucides": 5.8,
+        "lipides": 49.3,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 53,
+      "nom": "Sauce barbecue",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 136.0,
+        "proteines": 0.6,
+        "glucides": 30.3,
+        "lipides": 0.6,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 54,
+      "nom": "Sauce moutarde",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 233.0,
+        "proteines": 1.7,
+        "glucides": 4.7,
+        "lipides": 22.8,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 55,
+      "nom": "Sauce soja",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 39.9,
+        "proteines": 7.2,
+        "glucides": 1.7,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 56,
+      "nom": "Sauce soja sucrée",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 171.0,
+        "proteines": 2.9,
+        "glucides": 39.5,
+        "lipides": 0,
+        "fibres": 0.3
+      }
+    },
+    {
+      "id": 57,
+      "nom": "Sauce vinaigrette",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 475.0,
+        "proteines": 0.6,
+        "glucides": 2.9,
+        "lipides": 51.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 58,
+      "nom": "Sauce vinaigrette allégée en matière grasse",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 251.0,
+        "proteines": 0.2,
+        "glucides": 2.4,
+        "lipides": 26.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 59,
+      "nom": "Sauce vinaigrette à l'huile d'olive",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 471.0,
+        "proteines": 0.7,
+        "glucides": 3.0,
+        "lipides": 50.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 60,
+      "nom": "Sauce à la crème aux herbes",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 76.6,
+        "proteines": 1.1,
+        "glucides": 5.5,
+        "lipides": 5.5,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 61,
+      "nom": "Sel au céleri",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 49.0,
+        "proteines": 1.8,
+        "glucides": 4.1,
+        "lipides": 2.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 62,
+      "nom": "Thym",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 107.0,
+        "proteines": 5.6,
+        "glucides": 10.5,
+        "lipides": 1.7,
+        "fibres": 19.0
+      }
+    },
+    {
+      "id": 63,
+      "nom": "Thym, séché",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 285.0,
+        "proteines": 9.1,
+        "glucides": 26.9,
+        "lipides": 7.4,
+        "fibres": 45.7
+      }
+    },
+    {
+      "id": 64,
+      "nom": "Vinaigre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 22.5,
+        "proteines": 0,
+        "glucides": 1.0,
+        "lipides": 0.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 65,
+      "nom": "Vinaigre balsamique",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 91.7,
+        "proteines": 0.7,
+        "glucides": 18.0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 66,
+      "nom": "Vinaigre de cidre",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 0.9,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 67,
+      "nom": "Vinaigre de vin rouge",
+      "categorie": "Condiments & Épices",
+      "macros_pour_100g": {
+        "kcal": 20.6,
+        "proteines": 0.2,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 68,
+      "nom": "Avoine",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 378.0,
+        "proteines": 16.9,
+        "glucides": 55.7,
+        "lipides": 6.9,
+        "fibres": 10.6
+      }
+    },
+    {
+      "id": 69,
+      "nom": "Blé dur complet",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 342.0,
+        "proteines": 13.7,
+        "glucides": 59.3,
+        "lipides": 2.5,
+        "fibres": 9.8
+      }
+    },
+    {
+      "id": 70,
+      "nom": "Boulgour de blé",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 347.0,
+        "proteines": 11.7,
+        "glucides": 65.8,
+        "lipides": 1.4,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 71,
+      "nom": "Farine d'orge",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 337.0,
+        "proteines": 10.5,
+        "glucides": 64.4,
+        "lipides": 1.6,
+        "fibres": 6.2
+      }
+    },
+    {
+      "id": 72,
+      "nom": "Farine d'épeautre",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 352.0,
+        "proteines": 11.4,
+        "glucides": 64.0,
+        "lipides": 3.0,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 73,
+      "nom": "Farine de blé tendre ou froment avec levure incorporée",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 9.1,
+        "glucides": 74.0,
+        "lipides": 1.0,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 74,
+      "nom": "Farine de blé tendre ou froment t110",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 343.0,
+        "proteines": 9.6,
+        "glucides": 68.6,
+        "lipides": 1.5,
+        "fibres": 5.8
+      }
+    },
+    {
+      "id": 75,
+      "nom": "Farine de blé tendre ou froment t150",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 342.0,
+        "proteines": 11.4,
+        "glucides": 64.9,
+        "lipides": 1.5,
+        "fibres": 11.2
+      }
+    },
+    {
+      "id": 76,
+      "nom": "Farine de blé tendre ou froment t45",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 355.0,
+        "proteines": 8.4,
+        "glucides": 76.5,
+        "lipides": 0.8,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 77,
+      "nom": "Farine de blé tendre ou froment t55",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 9.0,
+        "glucides": 73.7,
+        "lipides": 1.0,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 78,
+      "nom": "Farine de blé tendre ou froment t65",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 346.0,
+        "proteines": 10.0,
+        "glucides": 71.5,
+        "lipides": 1.0,
+        "fibres": 4.5
+      }
+    },
+    {
+      "id": 79,
+      "nom": "Farine de blé tendre ou froment t80",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 355.0,
+        "proteines": 10.0,
+        "glucides": 73.2,
+        "lipides": 1.2,
+        "fibres": 6.5
+      }
+    },
+    {
+      "id": 80,
+      "nom": "Farine de châtaigne",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 362.0,
+        "proteines": 5.7,
+        "glucides": 70.4,
+        "lipides": 3.4,
+        "fibres": 12.0
+      }
+    },
+    {
+      "id": 81,
+      "nom": "Farine de maïs",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 362.0,
+        "proteines": 5.6,
+        "glucides": 80.9,
+        "lipides": 1.4,
+        "fibres": 4.6
+      }
+    },
+    {
+      "id": 82,
+      "nom": "Farine de millet",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 10.2,
+        "glucides": 63.2,
+        "lipides": 4.1,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 83,
+      "nom": "Farine de pois chiche",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 359.0,
+        "proteines": 22.4,
+        "glucides": 47.0,
+        "lipides": 6.7,
+        "fibres": 11.0
+      }
+    },
+    {
+      "id": 84,
+      "nom": "Farine de riz",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 357.0,
+        "proteines": 7.6,
+        "glucides": 73.9,
+        "lipides": 2.5,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 85,
+      "nom": "Farine de sarrasin",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 348.0,
+        "proteines": 11.5,
+        "glucides": 68.4,
+        "lipides": 2.2,
+        "fibres": 10.0
+      }
+    },
+    {
+      "id": 86,
+      "nom": "Farine de seigle t130",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 344.0,
+        "proteines": 7.2,
+        "glucides": 70.9,
+        "lipides": 1.1,
+        "fibres": 11.0
+      }
+    },
+    {
+      "id": 87,
+      "nom": "Farine de seigle t170",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 315.0,
+        "proteines": 15.9,
+        "glucides": 44.8,
+        "lipides": 2.2,
+        "fibres": 15.0
+      }
+    },
+    {
+      "id": 88,
+      "nom": "Farine de seigle t85",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 345.0,
+        "proteines": 9.8,
+        "glucides": 68.7,
+        "lipides": 1.3,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 89,
+      "nom": "Farine de soja complète",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 457.0,
+        "proteines": 34.5,
+        "glucides": 25.7,
+        "lipides": 20.7,
+        "fibres": 14.0
+      }
+    },
+    {
+      "id": 90,
+      "nom": "Graine de couscous, à cuire",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 366.0,
+        "proteines": 12.3,
+        "glucides": 72.7,
+        "lipides": 1.3,
+        "fibres": 5.5
+      }
+    },
+    {
+      "id": 91,
+      "nom": "Pain",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 276.0,
+        "proteines": 8.2,
+        "glucides": 55.0,
+        "lipides": 1.4,
+        "fibres": 3.0
+      }
+    },
+    {
+      "id": 92,
+      "nom": "Pain au levain",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 261.0,
+        "proteines": 7.4,
+        "glucides": 53.1,
+        "lipides": 1.3,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 93,
+      "nom": "Pain au son",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 244.0,
+        "proteines": 8.3,
+        "glucides": 44.4,
+        "lipides": 1.9,
+        "fibres": 7.5
+      }
+    },
+    {
+      "id": 94,
+      "nom": "Pain aux céréales et/ou aux graines",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 282.0,
+        "proteines": 8.3,
+        "glucides": 39.7,
+        "lipides": 7.6,
+        "fibres": 5.0
+      }
+    },
+    {
+      "id": 95,
+      "nom": "Pain aux céréales et/ou graines",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 269.0,
+        "proteines": 9.6,
+        "glucides": 46.9,
+        "lipides": 3.2,
+        "fibres": 5.0
+      }
+    },
+    {
+      "id": 96,
+      "nom": "Pain aux graines sans gluten",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 266.0,
+        "proteines": 4.7,
+        "glucides": 38.8,
+        "lipides": 8.6,
+        "fibres": 5.0
+      }
+    },
+    {
+      "id": 97,
+      "nom": "Pain azyme",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 372.0,
+        "proteines": 10.7,
+        "glucides": 74.9,
+        "lipides": 1.7,
+        "fibres": 3.0
+      }
+    },
+    {
+      "id": 98,
+      "nom": "Pain bagel",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 301.0,
+        "proteines": 9.8,
+        "glucides": 53.0,
+        "lipides": 4.6,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 99,
+      "nom": "Pain bis",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 265.0,
+        "proteines": 8.6,
+        "glucides": 54.0,
+        "lipides": 0.3,
+        "fibres": 5.0
+      }
+    },
+    {
+      "id": 100,
+      "nom": "Pain blanc",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 256.0,
+        "proteines": 7.8,
+        "glucides": 52.1,
+        "lipides": 0.9,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 101,
+      "nom": "Pain blanc, passé au grille-pain",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 317.0,
+        "proteines": 9.5,
+        "glucides": 64.0,
+        "lipides": 1.3,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 102,
+      "nom": "Pain complet au seigle",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 213.0,
+        "proteines": 5.7,
+        "glucides": 39.5,
+        "lipides": 0.9,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 103,
+      "nom": "Pain complet ou intégral",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 234.0,
+        "proteines": 8.7,
+        "glucides": 41.2,
+        "lipides": 1.7,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 104,
+      "nom": "Pain de campagne",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 257.0,
+        "proteines": 6.7,
+        "glucides": 48.7,
+        "lipides": 2.8,
+        "fibres": 3.0
+      }
+    },
+    {
+      "id": 105,
+      "nom": "Pain de mie aux céréales et/ou graines",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 290.0,
+        "proteines": 8.8,
+        "glucides": 43.5,
+        "lipides": 6.6,
+        "fibres": 5.0
+      }
+    },
+    {
+      "id": 106,
+      "nom": "Pain de mie blanc",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 279.0,
+        "proteines": 7.1,
+        "glucides": 50.4,
+        "lipides": 4.4,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 107,
+      "nom": "Pain de mie blanc sans gluten",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 242.0,
+        "proteines": 3.4,
+        "glucides": 41.2,
+        "lipides": 5.1,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 108,
+      "nom": "Pain de mie blanc, sans croûte",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 266.0,
+        "proteines": 6.9,
+        "glucides": 50.2,
+        "lipides": 3.2,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 109,
+      "nom": "Pain de mie blanc, sans sucres ajoutés",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 290.0,
+        "proteines": 7.0,
+        "glucides": 48.1,
+        "lipides": 5.9,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 110,
+      "nom": "Pain de mie brioché",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 312.0,
+        "proteines": 7.8,
+        "glucides": 51.4,
+        "lipides": 7.3,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 111,
+      "nom": "Pain de mie complet",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 257.0,
+        "proteines": 7.3,
+        "glucides": 41.8,
+        "lipides": 4.1,
+        "fibres": 6.5
+      }
+    },
+    {
+      "id": 112,
+      "nom": "Pain de mie complet, sans croûte",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 245.0,
+        "proteines": 7.1,
+        "glucides": 42.8,
+        "lipides": 3.2,
+        "fibres": 6.5
+      }
+    },
+    {
+      "id": 113,
+      "nom": "Pain de seigle et froment",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 260.0,
+        "proteines": 8.3,
+        "glucides": 51.5,
+        "lipides": 1.0,
+        "fibres": 6.0
+      }
+    },
+    {
+      "id": 114,
+      "nom": "Pain de tradition française",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 279.0,
+        "proteines": 8.2,
+        "glucides": 56.7,
+        "lipides": 1.0,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 115,
+      "nom": "Pain panini",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 254.0,
+        "proteines": 7.5,
+        "glucides": 50.6,
+        "lipides": 1.1,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 116,
+      "nom": "Pain pita",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 249.0,
+        "proteines": 7.5,
+        "glucides": 48.8,
+        "lipides": 1.5,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 117,
+      "nom": "Pain sans gluten",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 249.0,
+        "proteines": 4.6,
+        "glucides": 37.1,
+        "lipides": 6.6,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 118,
+      "nom": "Quinoa",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 358.0,
+        "proteines": 13.2,
+        "glucides": 58.1,
+        "lipides": 6.1,
+        "fibres": 5.9
+      }
+    },
+    {
+      "id": 119,
+      "nom": "Riz complet",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 7.0,
+        "glucides": 71.4,
+        "lipides": 2.8,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 120,
+      "nom": "Riz thaï ou basmati",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 351.0,
+        "proteines": 7.1,
+        "glucides": 78.4,
+        "lipides": 0.6,
+        "fibres": 1.4
+      }
+    },
+    {
+      "id": 121,
+      "nom": "Semoule de blé dur",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 11.8,
+        "glucides": 69.8,
+        "lipides": 1.3,
+        "fibres": 5.5
+      }
+    },
+    {
+      "id": 122,
+      "nom": "Tortilla souple, à base de blé",
+      "categorie": "Céréales & Féculents",
+      "macros_pour_100g": {
+        "kcal": 320.0,
+        "proteines": 8.0,
+        "glucides": 53.0,
+        "lipides": 7.5,
+        "fibres": 4.0
+      }
+    },
+    {
+      "id": 123,
+      "nom": "Abricot",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 44.1,
+        "proteines": 0.8,
+        "glucides": 9.0,
+        "lipides": 0,
+        "fibres": 2.1
+      }
+    },
+    {
+      "id": 124,
+      "nom": "Amande",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 615.0,
+        "proteines": 18.8,
+        "glucides": 9.5,
+        "lipides": 51.3,
+        "fibres": 12.5
+      }
+    },
+    {
+      "id": 125,
+      "nom": "Ananas",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.6,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 1.8
+      }
+    },
+    {
+      "id": 126,
+      "nom": "Ananas victoria ou queen victoria",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 69.8,
+        "proteines": 0.9,
+        "glucides": 15.1,
+        "lipides": 0,
+        "fibres": 1.8
+      }
+    },
+    {
+      "id": 127,
+      "nom": "Artichaut",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 33.2,
+        "proteines": 2.5,
+        "glucides": 1.0,
+        "lipides": 0.3,
+        "fibres": 8.6
+      }
+    },
+    {
+      "id": 128,
+      "nom": "Asperge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 24.7,
+        "proteines": 2.5,
+        "glucides": 2.0,
+        "lipides": 0.3,
+        "fibres": 2.1
+      }
+    },
+    {
+      "id": 129,
+      "nom": "Aubergine",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 22.9,
+        "proteines": 1.0,
+        "glucides": 2.7,
+        "lipides": 0.2,
+        "fibres": 3.4
+      }
+    },
+    {
+      "id": 130,
+      "nom": "Avocat",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 160,
+        "proteines": 2.0,
+        "glucides": 1.8,
+        "lipides": 20.6,
+        "fibres": 6.7
+      }
+    },
+    {
+      "id": 131,
+      "nom": "Banane",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 365.0,
+        "proteines": 3.9,
+        "glucides": 78.4,
+        "lipides": 1.8,
+        "fibres": 2.3
+      }
+    },
+    {
+      "id": 132,
+      "nom": "Banane jaune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.1,
+        "glucides": 0,
+        "lipides": 0.1,
+        "fibres": 2.3
+      }
+    },
+    {
+      "id": 133,
+      "nom": "Banane plantain",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 125.0,
+        "proteines": 0.8,
+        "glucides": 28.9,
+        "lipides": 0.2,
+        "fibres": 2.3
+      }
+    },
+    {
+      "id": 134,
+      "nom": "Betterave rouge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 40.2,
+        "proteines": 1.6,
+        "glucides": 6.3,
+        "lipides": 0.2,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 135,
+      "nom": "Brocoli",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 31.9,
+        "proteines": 2.9,
+        "glucides": 2.2,
+        "lipides": 0.4,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 136,
+      "nom": "Cacahuète",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 567,
+        "proteines": 25.8,
+        "glucides": 9.9,
+        "lipides": 49.9,
+        "fibres": 8.5
+      }
+    },
+    {
+      "id": 137,
+      "nom": "Carotte",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 30.2,
+        "proteines": 0.8,
+        "glucides": 5.2,
+        "lipides": 0,
+        "fibres": 2.9
+      }
+    },
+    {
+      "id": 138,
+      "nom": "Champignon de paris ou champignon de couche",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 21.0,
+        "proteines": 2.1,
+        "glucides": 1.8,
+        "lipides": 0.4,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 139,
+      "nom": "Champignon, chanterelle ou girolle",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 24.7,
+        "proteines": 1.5,
+        "glucides": 1.8,
+        "lipides": 0.5,
+        "fibres": 3.8
+      }
+    },
+    {
+      "id": 140,
+      "nom": "Champignon, cèpe",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 28.8,
+        "proteines": 3.2,
+        "glucides": 2.0,
+        "lipides": 0.5,
+        "fibres": 3.8
+      }
+    },
+    {
+      "id": 141,
+      "nom": "Champignon, lentin comestible ou shiitaké",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 60.9,
+        "proteines": 1.6,
+        "glucides": 12.3,
+        "lipides": 0.2,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 142,
+      "nom": "Champignon, morille",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 23.5,
+        "proteines": 3.1,
+        "glucides": 0.1,
+        "lipides": 0.6,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 143,
+      "nom": "Champignon, oronge vraie",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 2.0,
+        "glucides": 0,
+        "lipides": 0.3,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 144,
+      "nom": "Champignon, pleurote",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 26.8,
+        "proteines": 3.3,
+        "glucides": 1.5,
+        "lipides": 0.4,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 145,
+      "nom": "Champignon, rosé des prés",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 2.3,
+        "glucides": 0,
+        "lipides": 0.4,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 146,
+      "nom": "Champignon, truffe noire",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 5.8,
+        "glucides": 0,
+        "lipides": 0.5,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 147,
+      "nom": "Chou romanesco ou brocoli à pomme",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 34.5,
+        "proteines": 3.0,
+        "glucides": 2.0,
+        "lipides": 0.8,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 148,
+      "nom": "Chou-fleur",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 24.9,
+        "proteines": 1.8,
+        "glucides": 2.1,
+        "lipides": 0.7,
+        "fibres": 3.0
+      }
+    },
+    {
+      "id": 149,
+      "nom": "Citron",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 24.3,
+        "proteines": 0.2,
+        "glucides": 1.6,
+        "lipides": 0,
+        "fibres": 4.7
+      }
+    },
+    {
+      "id": 150,
+      "nom": "Citron vert ou lime",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 39.3,
+        "proteines": 1.1,
+        "glucides": 3.1,
+        "lipides": 0,
+        "fibres": 2.9
+      }
+    },
+    {
+      "id": 151,
+      "nom": "Citron, zeste",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.5,
+        "glucides": 5.4,
+        "lipides": 0.3,
+        "fibres": 10.6
+      }
+    },
+    {
+      "id": 152,
+      "nom": "Clémentine ou mandarine",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 45.5,
+        "proteines": 0.8,
+        "glucides": 9.2,
+        "lipides": 0,
+        "fibres": 1.9
+      }
+    },
+    {
+      "id": 153,
+      "nom": "Concombre",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.7,
+        "glucides": 0,
+        "lipides": 0.6,
+        "fibres": 0.7
+      }
+    },
+    {
+      "id": 154,
+      "nom": "Courge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 14.4,
+        "proteines": 1.0,
+        "glucides": 1.6,
+        "lipides": 0.1,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 155,
+      "nom": "Courge butternut",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 28.2,
+        "proteines": 0.7,
+        "glucides": 4.6,
+        "lipides": 0.2,
+        "fibres": 3.2
+      }
+    },
+    {
+      "id": 156,
+      "nom": "Courge hokkaïdo",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 56.1,
+        "proteines": 1.4,
+        "glucides": 10.0,
+        "lipides": 0.6,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 157,
+      "nom": "Courge melonnette",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 30.8,
+        "proteines": 0.8,
+        "glucides": 6.0,
+        "lipides": 0.1,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 158,
+      "nom": "Courge musquée",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 23.5,
+        "proteines": 0.6,
+        "glucides": 4.6,
+        "lipides": 0.1,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 159,
+      "nom": "Courge spaghetti",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 28.0,
+        "proteines": 0.7,
+        "glucides": 5.1,
+        "lipides": 0.3,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 160,
+      "nom": "Céleri branche",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 15.4,
+        "proteines": 0.6,
+        "glucides": 2.4,
+        "lipides": 0,
+        "fibres": 1.8
+      }
+    },
+    {
+      "id": 161,
+      "nom": "Céleri-rave",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 36.5,
+        "proteines": 1.3,
+        "glucides": 4.6,
+        "lipides": 0.9,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 162,
+      "nom": "Endive",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 16.6,
+        "proteines": 1.2,
+        "glucides": 2.8,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 163,
+      "nom": "Fenouil",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 18.2,
+        "proteines": 1.0,
+        "glucides": 2.6,
+        "lipides": 0,
+        "fibres": 3.1
+      }
+    },
+    {
+      "id": 164,
+      "nom": "Figue",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 67.6,
+        "proteines": 1.2,
+        "glucides": 13.5,
+        "lipides": 0,
+        "fibres": 2.9
+      }
+    },
+    {
+      "id": 165,
+      "nom": "Fraise",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 35.1,
+        "proteines": 0.6,
+        "glucides": 6.0,
+        "lipides": 0,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 166,
+      "nom": "Framboise",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 47.9,
+        "proteines": 1.2,
+        "glucides": 5.8,
+        "lipides": 0.8,
+        "fibres": 6.5
+      }
+    },
+    {
+      "id": 167,
+      "nom": "Fruits rouges, crus",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.0,
+        "glucides": 7.0,
+        "lipides": 0.5,
+        "fibres": 4.0
+      }
+    },
+    {
+      "id": 168,
+      "nom": "Fruits à coques et cacahuète",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 630.0,
+        "proteines": 20.4,
+        "glucides": 17.6,
+        "lipides": 50.1,
+        "fibres": 8.5
+      }
+    },
+    {
+      "id": 169,
+      "nom": "Fève",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 301.0,
+        "proteines": 26.1,
+        "glucides": 33.3,
+        "lipides": 1.5,
+        "fibres": 8.3
+      }
+    },
+    {
+      "id": 170,
+      "nom": "Fève à écosser",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 61.5,
+        "proteines": 6.8,
+        "glucides": 4.2,
+        "lipides": 0.7,
+        "fibres": 8.3
+      }
+    },
+    {
+      "id": 171,
+      "nom": "Grenade",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 81.0,
+        "proteines": 1.4,
+        "glucides": 14.3,
+        "lipides": 1.2,
+        "fibres": 2.3
+      }
+    },
+    {
+      "id": 172,
+      "nom": "Haricot blanc",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 118,
+        "proteines": 8.7,
+        "glucides": 22.0,
+        "lipides": 0.8,
+        "fibres": 17.0
+      }
+    },
+    {
+      "id": 173,
+      "nom": "Haricot rouge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 127,
+        "proteines": 8.9,
+        "glucides": 22.8,
+        "lipides": 0.6,
+        "fibres": 15.2
+      }
+    },
+    {
+      "id": 174,
+      "nom": "Haricot vert",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 31.9,
+        "proteines": 1.8,
+        "glucides": 4.1,
+        "lipides": 0.2,
+        "fibres": 3.4
+      }
+    },
+    {
+      "id": 175,
+      "nom": "Kiwi",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 60.9,
+        "proteines": 0.9,
+        "glucides": 11.0,
+        "lipides": 0.6,
+        "fibres": 3.0
+      }
+    },
+    {
+      "id": 176,
+      "nom": "Laitue",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 14.7,
+        "proteines": 1.4,
+        "glucides": 1.2,
+        "lipides": 0.2,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 177,
+      "nom": "Laitue iceberg",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 17.3,
+        "proteines": 1.0,
+        "glucides": 2.5,
+        "lipides": 0.1,
+        "fibres": 1.2
+      }
+    },
+    {
+      "id": 178,
+      "nom": "Laitue romaine",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 17.2,
+        "proteines": 1.2,
+        "glucides": 1.4,
+        "lipides": 0.3,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 179,
+      "nom": "Lentille",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 327.0,
+        "proteines": 25.1,
+        "glucides": 44.5,
+        "lipides": 1.8,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 180,
+      "nom": "Lentille blonde",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 339.0,
+        "proteines": 26.1,
+        "glucides": 48.3,
+        "lipides": 1.9,
+        "fibres": 7.5
+      }
+    },
+    {
+      "id": 181,
+      "nom": "Lentille corail",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 328.0,
+        "proteines": 27.7,
+        "glucides": 44.9,
+        "lipides": 0.8,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 182,
+      "nom": "Lentille verte",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 327.0,
+        "proteines": 25.1,
+        "glucides": 44.5,
+        "lipides": 1.8,
+        "fibres": 7.5
+      }
+    },
+    {
+      "id": 183,
+      "nom": "Mandarine commune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 17.4,
+        "lipides": 0,
+        "fibres": 1.9
+      }
+    },
+    {
+      "id": 184,
+      "nom": "Mangue",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 71.1,
+        "proteines": 0.6,
+        "glucides": 14.3,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 185,
+      "nom": "Mangue josé",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 88.8,
+        "proteines": 0.8,
+        "glucides": 19.3,
+        "lipides": 0.5,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 186,
+      "nom": "Mangue julie",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.7,
+        "glucides": 18.3,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 187,
+      "nom": "Mangue moussache",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.3,
+        "glucides": 20.9,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 188,
+      "nom": "Mangue verte",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.3,
+        "glucides": 12.2,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 189,
+      "nom": "Maïs doux, en épis",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 106.0,
+        "proteines": 3.4,
+        "glucides": 18.6,
+        "lipides": 1.5,
+        "fibres": 2.9
+      }
+    },
+    {
+      "id": 190,
+      "nom": "Melon",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.1,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 191,
+      "nom": "Melon cantaloup",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 59.8,
+        "proteines": 1.1,
+        "glucides": 14.8,
+        "lipides": 0,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 192,
+      "nom": "Melon miel ou melon honeydew",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 22.2,
+        "proteines": 0.5,
+        "glucides": 4.3,
+        "lipides": 0.1,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 193,
+      "nom": "Mesclun ou salade, mélange de jeunes pousses",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 22.0,
+        "proteines": 2.0,
+        "glucides": 2.5,
+        "lipides": 0,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 194,
+      "nom": "Myrtille",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 57.7,
+        "proteines": 0.9,
+        "glucides": 10.6,
+        "lipides": 0.3,
+        "fibres": 6.0
+      }
+    },
+    {
+      "id": 195,
+      "nom": "Navet",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 25.0,
+        "proteines": 0.9,
+        "glucides": 3.8,
+        "lipides": 0.2,
+        "fibres": 1.7
+      }
+    },
+    {
+      "id": 196,
+      "nom": "Noisette",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 632.0,
+        "proteines": 14.4,
+        "glucides": 7.2,
+        "lipides": 56.9,
+        "fibres": 9.7
+      }
+    },
+    {
+      "id": 197,
+      "nom": "Noix de cajou",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 618.0,
+        "proteines": 17.4,
+        "glucides": 21.3,
+        "lipides": 48.1,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 198,
+      "nom": "Noix de coco, amande immature",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 360.0,
+        "proteines": 3.3,
+        "glucides": 6.2,
+        "lipides": 33.5,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 199,
+      "nom": "Noix de coco, chair",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 369.0,
+        "proteines": 3.5,
+        "glucides": 4.7,
+        "lipides": 34.7,
+        "fibres": 13.6
+      }
+    },
+    {
+      "id": 200,
+      "nom": "Noix de macadamia",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 757.0,
+        "proteines": 7.9,
+        "glucides": 5.2,
+        "lipides": 75.8,
+        "fibres": 8.6
+      }
+    },
+    {
+      "id": 201,
+      "nom": "Noix de pécan",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 727.0,
+        "proteines": 9.2,
+        "glucides": 4.2,
+        "lipides": 72.0,
+        "fibres": 9.4
+      }
+    },
+    {
+      "id": 202,
+      "nom": "Noix de pécan, salées",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 731.0,
+        "proteines": 10.2,
+        "glucides": 5.0,
+        "lipides": 73.0,
+        "fibres": 9.4
+      }
+    },
+    {
+      "id": 203,
+      "nom": "Noix du brésil ou noix d'amazonie",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 701.0,
+        "proteines": 14.3,
+        "glucides": 4.2,
+        "lipides": 67.1,
+        "fibres": 6.0
+      }
+    },
+    {
+      "id": 204,
+      "nom": "Oignon",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 39.0,
+        "proteines": 1.1,
+        "glucides": 6.2,
+        "lipides": 0.6,
+        "fibres": 1.7
+      }
+    },
+    {
+      "id": 205,
+      "nom": "Oignon jaune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 35.9,
+        "proteines": 1.2,
+        "glucides": 6.4,
+        "lipides": 0,
+        "fibres": 1.7
+      }
+    },
+    {
+      "id": 206,
+      "nom": "Oignon rouge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 35.0,
+        "proteines": 1.3,
+        "glucides": 5.6,
+        "lipides": 0.4,
+        "fibres": 1.7
+      }
+    },
+    {
+      "id": 207,
+      "nom": "Orange",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.6,
+        "glucides": 0,
+        "lipides": 0.7,
+        "fibres": 2.2
+      }
+    },
+    {
+      "id": 208,
+      "nom": "Orange amère",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.7,
+        "glucides": 0,
+        "lipides": 0.4,
+        "fibres": 2.2
+      }
+    },
+    {
+      "id": 209,
+      "nom": "Pamplemousse chinois",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 38.4,
+        "proteines": 0.8,
+        "glucides": 7.1,
+        "lipides": 0,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 210,
+      "nom": "Pastèque",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 35.4,
+        "proteines": 0.7,
+        "glucides": 8.3,
+        "lipides": 0,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 211,
+      "nom": "Patate douce",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 81.2,
+        "proteines": 1.6,
+        "glucides": 17.1,
+        "lipides": 0,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 212,
+      "nom": "Pistache",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 631.0,
+        "proteines": 18.4,
+        "glucides": 14.9,
+        "lipides": 51.6,
+        "fibres": 10.3
+      }
+    },
+    {
+      "id": 213,
+      "nom": "Poire conférence",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 49.1,
+        "proteines": 0.2,
+        "glucides": 11.4,
+        "lipides": 0,
+        "fibres": 3.1
+      }
+    },
+    {
+      "id": 214,
+      "nom": "Poire williams",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 50.2,
+        "proteines": 0.2,
+        "glucides": 11.5,
+        "lipides": 0,
+        "fibres": 3.1
+      }
+    },
+    {
+      "id": 215,
+      "nom": "Poireau",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 30.4,
+        "proteines": 1.5,
+        "glucides": 4.6,
+        "lipides": 0.3,
+        "fibres": 1.8
+      }
+    },
+    {
+      "id": 216,
+      "nom": "Pois chiche",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 149,
+        "proteines": 8.9,
+        "glucides": 20.5,
+        "lipides": 3.0,
+        "fibres": 5.7
+      }
+    },
+    {
+      "id": 217,
+      "nom": "Poivron jaune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 29.4,
+        "proteines": 0.9,
+        "glucides": 4.7,
+        "lipides": 0.3,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 218,
+      "nom": "Poivron rouge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 33.6,
+        "proteines": 1.1,
+        "glucides": 6.0,
+        "lipides": 0,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 219,
+      "nom": "Poivron vert",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 22.5,
+        "proteines": 0.8,
+        "glucides": 3.4,
+        "lipides": 0,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 220,
+      "nom": "Pomelo",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 33.5,
+        "proteines": 0.8,
+        "glucides": 5.9,
+        "lipides": 0,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 221,
+      "nom": "Pomelo jaune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.7,
+        "glucides": 7.3,
+        "lipides": 0.1,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 222,
+      "nom": "Pomelo rose",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.8,
+        "glucides": 6.2,
+        "lipides": 0.1,
+        "fibres": 0.9
+      }
+    },
+    {
+      "id": 223,
+      "nom": "Pomme",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 51.3,
+        "proteines": 0.3,
+        "glucides": 11.9,
+        "lipides": 0.2,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 224,
+      "nom": "Pomme canada",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 51.1,
+        "proteines": 0.4,
+        "glucides": 11.6,
+        "lipides": 0.1,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 225,
+      "nom": "Pomme cannelle",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.5,
+        "glucides": 0,
+        "lipides": 0.6,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 226,
+      "nom": "Pomme chantecler",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 47.2,
+        "proteines": 0.2,
+        "glucides": 11.2,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 227,
+      "nom": "Pomme d'eau ou pomme malaca",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.4,
+        "glucides": 0,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 228,
+      "nom": "Pomme de terre",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 80.0,
+        "proteines": 2.0,
+        "glucides": 16.2,
+        "lipides": 0.1,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 229,
+      "nom": "Pomme de terre nouvelle ou primeur",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 76.4,
+        "proteines": 1.9,
+        "glucides": 15.8,
+        "lipides": 0.3,
+        "fibres": 1.6
+      }
+    },
+    {
+      "id": 230,
+      "nom": "Pomme gala",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 51.6,
+        "proteines": 0.2,
+        "glucides": 11.9,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 231,
+      "nom": "Pomme golden",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 50.4,
+        "proteines": 0.2,
+        "glucides": 11.7,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 232,
+      "nom": "Pomme granny smith",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 51.0,
+        "proteines": 0.2,
+        "glucides": 11.4,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 233,
+      "nom": "Pomme liane",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.9,
+        "glucides": 0,
+        "lipides": 0.2,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 234,
+      "nom": "Pomme pink lady",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 57.3,
+        "proteines": 0.2,
+        "glucides": 12.8,
+        "lipides": 0,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 235,
+      "nom": "Potiron",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 26.1,
+        "proteines": 0.8,
+        "glucides": 4.5,
+        "lipides": 0.1,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 236,
+      "nom": "Prune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 51.6,
+        "proteines": 0.7,
+        "glucides": 9.9,
+        "lipides": 0.3,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 237,
+      "nom": "Prune mirabelle",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 74.6,
+        "proteines": 0.6,
+        "glucides": 18.0,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 238,
+      "nom": "Prune reine-claude",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 69.0,
+        "proteines": 0.9,
+        "glucides": 16.4,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 239,
+      "nom": "Prune violette",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 46.4,
+        "proteines": 0.8,
+        "glucides": 9.6,
+        "lipides": 0.1,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 240,
+      "nom": "Pruneau",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 1.2,
+        "glucides": 0,
+        "lipides": 0.2,
+        "fibres": 7.1
+      }
+    },
+    {
+      "id": 241,
+      "nom": "Pêche",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 44.4,
+        "proteines": 0.7,
+        "glucides": 9.7,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 242,
+      "nom": "Pêche blanche",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 44.3,
+        "proteines": 0.6,
+        "glucides": 9.6,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 243,
+      "nom": "Pêche jaune",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 44.5,
+        "proteines": 0.7,
+        "glucides": 9.8,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 244,
+      "nom": "Radis noir",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 28.2,
+        "proteines": 0.9,
+        "glucides": 5.5,
+        "lipides": 0,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 245,
+      "nom": "Radis rouge",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 11.0,
+        "proteines": 0.9,
+        "glucides": 1.5,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 246,
+      "nom": "Raisin blanc, à gros grain",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 71.6,
+        "proteines": 0.8,
+        "glucides": 16.6,
+        "lipides": 0,
+        "fibres": 0.6
+      }
+    },
+    {
+      "id": 247,
+      "nom": "Raisin chasselas",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 77.8,
+        "proteines": 0.8,
+        "glucides": 16.9,
+        "lipides": 0.5,
+        "fibres": 0.6
+      }
+    },
+    {
+      "id": 248,
+      "nom": "Raisin cru",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 71.0,
+        "proteines": 0.7,
+        "glucides": 16.3,
+        "lipides": 0.2,
+        "fibres": 0.6
+      }
+    },
+    {
+      "id": 249,
+      "nom": "Raisin noir",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 69.5,
+        "proteines": 0.6,
+        "glucides": 15.6,
+        "lipides": 0.2,
+        "fibres": 0.6
+      }
+    },
+    {
+      "id": 250,
+      "nom": "Raisin noir muscat",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 86.6,
+        "proteines": 0.7,
+        "glucides": 20.0,
+        "lipides": 0,
+        "fibres": 0.6
+      }
+    },
+    {
+      "id": 251,
+      "nom": "Raisin sec",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 322.0,
+        "proteines": 3.0,
+        "glucides": 73.2,
+        "lipides": 0.9,
+        "fibres": 3.3
+      }
+    },
+    {
+      "id": 252,
+      "nom": "Salade feuille de chêne",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 10.7,
+        "proteines": 1.1,
+        "glucides": 1.0,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 253,
+      "nom": "Salade ou chicorée frisée",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 26.0,
+        "proteines": 1.7,
+        "glucides": 2.1,
+        "lipides": 0.3,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 254,
+      "nom": "Salade sucrine",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 16.6,
+        "proteines": 1.1,
+        "glucides": 2.6,
+        "lipides": 0,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 255,
+      "nom": "Soja, graine entière",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 441.0,
+        "proteines": 36.5,
+        "glucides": 20.9,
+        "lipides": 19.9,
+        "fibres": 9.3
+      }
+    },
+    {
+      "id": 256,
+      "nom": "Tomate allongée",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 18.8,
+        "proteines": 0,
+        "glucides": 3.3,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 257,
+      "nom": "Tomate cerise",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 31.8,
+        "proteines": 1.3,
+        "glucides": 5.6,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 258,
+      "nom": "Tomate côtelée ou coeur de boeuf",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 17.4,
+        "proteines": 0.5,
+        "glucides": 3.4,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 259,
+      "nom": "Tomate grappe",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 19.8,
+        "proteines": 0.5,
+        "glucides": 3.7,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 260,
+      "nom": "Tomate marmande",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 2.8,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 261,
+      "nom": "Tomate noire de crimée",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0,
+        "glucides": 3.1,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 262,
+      "nom": "Tomate ronde",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 17.5,
+        "proteines": 0.5,
+        "glucides": 3.4,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 263,
+      "nom": "Tomate sans précision",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 19.2,
+        "proteines": 0.6,
+        "glucides": 3.7,
+        "lipides": 0,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 264,
+      "nom": "Tomate verte",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 24.8,
+        "proteines": 1.2,
+        "glucides": 4.0,
+        "lipides": 0.2,
+        "fibres": 1.1
+      }
+    },
+    {
+      "id": 265,
+      "nom": "Tomate, chair",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 22.6,
+        "proteines": 1.2,
+        "glucides": 3.6,
+        "lipides": 0,
+        "fibres": 1.2
+      }
+    },
+    {
+      "id": 266,
+      "nom": "Tomate, concentré",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 99.2,
+        "proteines": 4.4,
+        "glucides": 17.1,
+        "lipides": 0.5,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 267,
+      "nom": "Tomate, double concentré",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 99.5,
+        "proteines": 3.8,
+        "glucides": 19.3,
+        "lipides": 0.5,
+        "fibres": 3.5
+      }
+    },
+    {
+      "id": 268,
+      "nom": "Échalote",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 61.7,
+        "proteines": 1.8,
+        "glucides": 12.2,
+        "lipides": 0,
+        "fibres": 1.7
+      }
+    },
+    {
+      "id": 269,
+      "nom": "Épinard",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 33.3,
+        "proteines": 2.7,
+        "glucides": 3.1,
+        "lipides": 0.4,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 270,
+      "nom": "Épinard, jeunes pousses pour salades",
+      "categorie": "Fruits & Légumes",
+      "macros_pour_100g": {
+        "kcal": 17.0,
+        "proteines": 2.1,
+        "glucides": 0,
+        "lipides": 0.4,
+        "fibres": 2.4
+      }
+    },
+    {
+      "id": 271,
+      "nom": "Beurre ou assimilé allégé",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 367.0,
+        "proteines": 0.3,
+        "glucides": 3.7,
+        "lipides": 39.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 272,
+      "nom": "Beurre ou assimilé sans précision sur la teneur en matière grasse",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 731.0,
+        "proteines": 0.6,
+        "glucides": 0.9,
+        "lipides": 80.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 273,
+      "nom": "Beurre sans précision sur la teneur en matière grasse",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 712.0,
+        "proteines": 0.8,
+        "glucides": 0.5,
+        "lipides": 78.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 274,
+      "nom": "Beurre à 39-41% mg, léger",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 390.0,
+        "proteines": 0.3,
+        "glucides": 3.6,
+        "lipides": 41.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 275,
+      "nom": "Beurre à 60-62% mg, à teneur réduite en matière grasse",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 550.0,
+        "proteines": 0.6,
+        "glucides": 0.7,
+        "lipides": 60.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 276,
+      "nom": "Beurre à 80% mg",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 732.0,
+        "proteines": 0.5,
+        "glucides": 0.7,
+        "lipides": 80.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 277,
+      "nom": "Beurre à 80% mg minimum",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 753.0,
+        "proteines": 0.6,
+        "glucides": 0.7,
+        "lipides": 83.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 278,
+      "nom": "Huile d'olive vierge extra",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 899.0,
+        "proteines": 0.2,
+        "glucides": 0,
+        "lipides": 99.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 279,
+      "nom": "Huile de beurre ou beurre concentré",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 900.0,
+        "proteines": 0.3,
+        "glucides": 0,
+        "lipides": 99.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 280,
+      "nom": "Huile de colza",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 900.0,
+        "proteines": 0,
+        "glucides": 0,
+        "lipides": 100.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 281,
+      "nom": "Huile de tournesol",
+      "categorie": "Matières Grasses",
+      "macros_pour_100g": {
+        "kcal": 900.0,
+        "proteines": 0.2,
+        "glucides": 0,
+        "lipides": 100.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 282,
+      "nom": "Brie",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 345.0,
+        "proteines": 17.6,
+        "glucides": 0.7,
+        "lipides": 30.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 283,
+      "nom": "Brie de meaux",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 276.0,
+        "proteines": 21.4,
+        "glucides": 1.2,
+        "lipides": 20.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 284,
+      "nom": "Brie de melun",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 288.0,
+        "proteines": 22.0,
+        "glucides": 0,
+        "lipides": 22.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 285,
+      "nom": "Camembert",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 280.0,
+        "proteines": 19.5,
+        "glucides": 0,
+        "lipides": 22.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 286,
+      "nom": "Camembert au lait cru ou thermisé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 267.0,
+        "proteines": 20.7,
+        "glucides": 0,
+        "lipides": 20.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 287,
+      "nom": "Camembert au lait pasteurisé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 275.0,
+        "proteines": 19.2,
+        "glucides": 1.3,
+        "lipides": 21.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 288,
+      "nom": "Chabichou",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 305.0,
+        "proteines": 19.4,
+        "glucides": 1.5,
+        "lipides": 24.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 289,
+      "nom": "Cheddar",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 399.0,
+        "proteines": 24.7,
+        "glucides": 1.2,
+        "lipides": 32.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 290,
+      "nom": "Chevrot",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 263.0,
+        "proteines": 17.2,
+        "glucides": 1.4,
+        "lipides": 21.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 291,
+      "nom": "Comté",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 413.0,
+        "proteines": 27.8,
+        "glucides": 0,
+        "lipides": 33.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 292,
+      "nom": "Crottin de chavignol",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 318.0,
+        "proteines": 20.7,
+        "glucides": 1.3,
+        "lipides": 25.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 293,
+      "nom": "Crottin de chèvre",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 344.0,
+        "proteines": 22.4,
+        "glucides": 1.0,
+        "lipides": 28.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 294,
+      "nom": "Crottin de chèvre, au lait cru",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 384.0,
+        "proteines": 23.2,
+        "glucides": 0,
+        "lipides": 32.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 295,
+      "nom": "Emmental de savoie ou emmenthal de savoie",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 396.0,
+        "proteines": 29.7,
+        "glucides": 0,
+        "lipides": 30.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 296,
+      "nom": "Emmental ou emmenthal",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 373.0,
+        "proteines": 27.9,
+        "glucides": 0,
+        "lipides": 28.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 297,
+      "nom": "Emmental ou emmenthal, râpé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 368.0,
+        "proteines": 27.6,
+        "glucides": 0.6,
+        "lipides": 28.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 298,
+      "nom": "Faisselle",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 36.8,
+        "proteines": 4.5,
+        "glucides": 4.6,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 299,
+      "nom": "Feta, au lait de brebis 70% minimum et lait de chèvre 30% maximum",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 284.0,
+        "proteines": 15.1,
+        "glucides": 0.4,
+        "lipides": 24.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 300,
+      "nom": "Fromage blanc",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 48.4,
+        "proteines": 7.3,
+        "glucides": 4.2,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 301,
+      "nom": "Fromage de chèvre bûche",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 285.0,
+        "proteines": 18.8,
+        "glucides": 0,
+        "lipides": 23.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 302,
+      "nom": "Fromage de chèvre bûche, allégé en matière grasse",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 183.0,
+        "proteines": 22.6,
+        "glucides": 1.0,
+        "lipides": 10.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 303,
+      "nom": "Fromage de chèvre demi-sec",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 353.0,
+        "proteines": 21.6,
+        "glucides": 0,
+        "lipides": 29.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 304,
+      "nom": "Fromage de chèvre sec",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 440.0,
+        "proteines": 30.5,
+        "glucides": 0,
+        "lipides": 35.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 305,
+      "nom": "Fromage de chèvre à pâte molle et croûte fleurie",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 288.0,
+        "proteines": 19.0,
+        "glucides": 0,
+        "lipides": 23.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 306,
+      "nom": "Fromage de chèvre à pâte molle non pressée non cuite et croûte naturelle",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 286.0,
+        "proteines": 19.5,
+        "glucides": 0.7,
+        "lipides": 23.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 307,
+      "nom": "Fromage de chèvre à pâte pressée non cuite, type tomme ou tome ou gouda de chèvre",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 344.0,
+        "proteines": 22.1,
+        "glucides": 0.9,
+        "lipides": 28.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 308,
+      "nom": "Fromage de chèvre à tartiner",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 161.0,
+        "proteines": 10.8,
+        "glucides": 2.4,
+        "lipides": 12.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 309,
+      "nom": "Fromage type feta, au lait de brebis 100%",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 16.3,
+        "glucides": 0.8,
+        "lipides": 21.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 310,
+      "nom": "Fromage type feta, au lait de vache 100%",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 273.0,
+        "proteines": 15.4,
+        "glucides": 1.2,
+        "lipides": 22.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 311,
+      "nom": "Fromage à pâte molle et croûte fleurie, allégé en matière grasse",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 178.0,
+        "proteines": 22.6,
+        "glucides": 1.1,
+        "lipides": 9.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 312,
+      "nom": "Fromage à pâte molle et croûte fleurie, non allégé en matière grasse",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 271.0,
+        "proteines": 19.7,
+        "glucides": 0,
+        "lipides": 21.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 313,
+      "nom": "Fromage à pâte pressée cuite type emmental ou emmenthal, allégé en matière grasse",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 258.0,
+        "proteines": 29.2,
+        "glucides": 1.2,
+        "lipides": 15.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 314,
+      "nom": "Gouda",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 369.0,
+        "proteines": 24.7,
+        "glucides": 0,
+        "lipides": 30.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 315,
+      "nom": "Gouda au cumin",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 378.0,
+        "proteines": 24.1,
+        "glucides": 0.6,
+        "lipides": 31.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 316,
+      "nom": "Gruyère",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 408.0,
+        "proteines": 26.3,
+        "glucides": 0.8,
+        "lipides": 33.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 317,
+      "nom": "Gruyère igp france",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 415.0,
+        "proteines": 28.2,
+        "glucides": 0.7,
+        "lipides": 33.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 318,
+      "nom": "Lait de chèvre, demi-écrémé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 45.8,
+        "proteines": 3.8,
+        "glucides": 4.1,
+        "lipides": 1.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 319,
+      "nom": "Lait de chèvre, entier",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 57.4,
+        "proteines": 3.2,
+        "glucides": 4.0,
+        "lipides": 3.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 320,
+      "nom": "Lait demi-écrémé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 44.4,
+        "proteines": 3.4,
+        "glucides": 4.7,
+        "lipides": 1.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 321,
+      "nom": "Lait entier",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 61.8,
+        "proteines": 3.3,
+        "glucides": 4.8,
+        "lipides": 3.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 322,
+      "nom": "Lait fermenté type yaourt au bifidus",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 42.9,
+        "proteines": 4.4,
+        "glucides": 5.8,
+        "lipides": 0.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 323,
+      "nom": "Lait fermenté type yaourt au bifidus, aux fruits",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 48.1,
+        "proteines": 4.7,
+        "glucides": 6.7,
+        "lipides": 0.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 324,
+      "nom": "Lait écrémé",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 32.7,
+        "proteines": 3.4,
+        "glucides": 4.7,
+        "lipides": 0.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 325,
+      "nom": "Mozzarella au lait de bufflonne ou buflesse",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 260.0,
+        "proteines": 14.5,
+        "glucides": 0.2,
+        "lipides": 22.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 326,
+      "nom": "Mozzarella au lait de vache",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 227.0,
+        "proteines": 16.5,
+        "glucides": 0.7,
+        "lipides": 17.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 327,
+      "nom": "Munster",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 324.0,
+        "proteines": 20.4,
+        "glucides": 0.7,
+        "lipides": 26.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 328,
+      "nom": "Parmesan",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 431,
+        "proteines": 35.7,
+        "glucides": 0.2,
+        "lipides": 31.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 329,
+      "nom": "Picodon",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 313.0,
+        "proteines": 19.9,
+        "glucides": 1.0,
+        "lipides": 25.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 330,
+      "nom": "Pouligny saint-pierre",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 286.0,
+        "proteines": 17.6,
+        "glucides": 1.4,
+        "lipides": 23.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 331,
+      "nom": "Pélardon",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 343.0,
+        "proteines": 23.8,
+        "glucides": 0,
+        "lipides": 27.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 332,
+      "nom": "Raclette",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 342.0,
+        "proteines": 23.4,
+        "glucides": 0,
+        "lipides": 27.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 333,
+      "nom": "Raclette de savoie",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 357.0,
+        "proteines": 24.1,
+        "glucides": 0,
+        "lipides": 29.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 334,
+      "nom": "Raclette, au poivre",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 350.0,
+        "proteines": 24.5,
+        "glucides": 0.5,
+        "lipides": 28.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 335,
+      "nom": "Reblochon",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 322.0,
+        "proteines": 20.3,
+        "glucides": 0,
+        "lipides": 26.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 336,
+      "nom": "Rocamadour",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 274.0,
+        "proteines": 18.1,
+        "glucides": 0.9,
+        "lipides": 22.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 337,
+      "nom": "Roquefort",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 384.0,
+        "proteines": 19.5,
+        "glucides": 0,
+        "lipides": 33.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 338,
+      "nom": "Saint-nectaire",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 342.0,
+        "proteines": 23.5,
+        "glucides": 0.5,
+        "lipides": 27.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 339,
+      "nom": "Saint-nectaire, fermier",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 360.0,
+        "proteines": 22.3,
+        "glucides": 1.2,
+        "lipides": 29.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 340,
+      "nom": "Saint-nectaire, laitier",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 333.0,
+        "proteines": 21.7,
+        "glucides": 0.9,
+        "lipides": 27.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 341,
+      "nom": "Sainte-maure",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 298.0,
+        "proteines": 20.0,
+        "glucides": 0.9,
+        "lipides": 24.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 342,
+      "nom": "Sainte-maure de touraine",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 286.0,
+        "proteines": 18.5,
+        "glucides": 1.1,
+        "lipides": 23.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 343,
+      "nom": "Selles-sur-cher",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 289.0,
+        "proteines": 18.8,
+        "glucides": 1.2,
+        "lipides": 23.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 344,
+      "nom": "Valençay",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 295.0,
+        "proteines": 18.9,
+        "glucides": 0.6,
+        "lipides": 24.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 345,
+      "nom": "Yaourt aux fruits",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 113.0,
+        "proteines": 2.7,
+        "glucides": 13.4,
+        "lipides": 5.1,
+        "fibres": 0.3
+      }
+    },
+    {
+      "id": 346,
+      "nom": "Yaourt nature",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 50.1,
+        "proteines": 3.8,
+        "glucides": 4.3,
+        "lipides": 1.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 347,
+      "nom": "Yaourt ou lait fermenté",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 52.3,
+        "proteines": 4.6,
+        "glucides": 7.8,
+        "lipides": 0.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 348,
+      "nom": "Yaourt à la grecque sur lit de fruits, sucré",
+      "categorie": "Produits Laitiers",
+      "macros_pour_100g": {
+        "kcal": 126.0,
+        "proteines": 2.3,
+        "glucides": 14.4,
+        "lipides": 6.5,
+        "fibres": 0.3
+      }
+    },
+    {
+      "id": 349,
+      "nom": "Chocolat au lait aux céréales croustillantes, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 515.0,
+        "proteines": 7.2,
+        "glucides": 60.6,
+        "lipides": 26.6,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 350,
+      "nom": "Chocolat au lait aux fruits secs, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 559.0,
+        "proteines": 8.4,
+        "glucides": 48.7,
+        "lipides": 35.9,
+        "fibres": 2.5
+      }
+    },
+    {
+      "id": 351,
+      "nom": "Chocolat au lait fourré au praliné, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 559.0,
+        "proteines": 7.3,
+        "glucides": 52.9,
+        "lipides": 34.9,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 352,
+      "nom": "Chocolat au lait, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 550.0,
+        "proteines": 7.5,
+        "glucides": 58.9,
+        "lipides": 30.8,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 353,
+      "nom": "Chocolat blanc aux fruits secs , tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 579.0,
+        "proteines": 7.6,
+        "glucides": 48.0,
+        "lipides": 39.1,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 354,
+      "nom": "Chocolat blanc, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 563.0,
+        "proteines": 6.2,
+        "glucides": 57.1,
+        "lipides": 34.2,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 355,
+      "nom": "Chocolat noir 50 % de cacao environ, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 521.0,
+        "proteines": 6.0,
+        "glucides": 53.0,
+        "lipides": 29.6,
+        "fibres": 9.7
+      }
+    },
+    {
+      "id": 356,
+      "nom": "Chocolat noir aux fruits secs, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 567.0,
+        "proteines": 8.7,
+        "glucides": 40.7,
+        "lipides": 39.0,
+        "fibres": 8.5
+      }
+    },
+    {
+      "id": 357,
+      "nom": "Chocolat noir aux fruits, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 539.0,
+        "proteines": 6.8,
+        "glucides": 45.3,
+        "lipides": 34.4,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 358,
+      "nom": "Chocolat noir fourrage confiseur à la menthe",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 445.0,
+        "proteines": 2.9,
+        "glucides": 70.2,
+        "lipides": 16.0,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 359,
+      "nom": "Chocolat noir fourré praliné, tablette",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 559.0,
+        "proteines": 6.4,
+        "glucides": 52.4,
+        "lipides": 34.8,
+        "fibres": 8.0
+      }
+    },
+    {
+      "id": 360,
+      "nom": "Confiture d'abricot",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 246.0,
+        "proteines": 0.2,
+        "glucides": 59.7,
+        "lipides": 0.3,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 361,
+      "nom": "Confiture d'abricot, allégée en sucres",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 167.0,
+        "proteines": 0.4,
+        "glucides": 40.5,
+        "lipides": 0.1,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 362,
+      "nom": "Confiture de cerise",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 238.0,
+        "proteines": 0.5,
+        "glucides": 58.1,
+        "lipides": 0.2,
+        "fibres": 0.8
+      }
+    },
+    {
+      "id": 363,
+      "nom": "Confiture de figue",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 243.0,
+        "proteines": 0.6,
+        "glucides": 59.1,
+        "lipides": 0.2,
+        "fibres": 1.2
+      }
+    },
+    {
+      "id": 364,
+      "nom": "Confiture de fraise",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 248.0,
+        "proteines": 0.2,
+        "glucides": 60.5,
+        "lipides": 0.5,
+        "fibres": 0.8
+      }
+    },
+    {
+      "id": 365,
+      "nom": "Confiture de fraise, allégée en sucres",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 166.0,
+        "proteines": 0.3,
+        "glucides": 40.3,
+        "lipides": 0.1,
+        "fibres": 0.8
+      }
+    },
+    {
+      "id": 366,
+      "nom": "Confiture de framboise",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 232.0,
+        "proteines": 0.6,
+        "glucides": 55.2,
+        "lipides": 0.2,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 367,
+      "nom": "Confiture de framboise, allégée en sucres",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 167.0,
+        "proteines": 0.7,
+        "glucides": 39.2,
+        "lipides": 0.1,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 368,
+      "nom": "Confiture de lait",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 340.0,
+        "proteines": 6.8,
+        "glucides": 61.7,
+        "lipides": 7.4,
+        "fibres": 0.5
+      }
+    },
+    {
+      "id": 369,
+      "nom": "Confiture de myrtille",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 245.0,
+        "proteines": 0.2,
+        "glucides": 58.9,
+        "lipides": 0.4,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 370,
+      "nom": "Confiture de mûre",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 245.0,
+        "proteines": 0.4,
+        "glucides": 58.3,
+        "lipides": 0.6,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 371,
+      "nom": "Confiture de pêche",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 242.0,
+        "proteines": 0.3,
+        "glucides": 59.5,
+        "lipides": 0.1,
+        "fibres": 0.7
+      }
+    },
+    {
+      "id": 372,
+      "nom": "Confiture de rhubarbe",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 239.0,
+        "proteines": 0.3,
+        "glucides": 58.6,
+        "lipides": 0.1,
+        "fibres": 1.5
+      }
+    },
+    {
+      "id": 373,
+      "nom": "Confiture, autres fruits ou mélange de fruits",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 244.0,
+        "proteines": 0.4,
+        "glucides": 59.8,
+        "lipides": 0.2,
+        "fibres": 0.8
+      }
+    },
+    {
+      "id": 374,
+      "nom": "Crème de marron ou confiture de châtaigne",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 278.0,
+        "proteines": 1.0,
+        "glucides": 65.9,
+        "lipides": 0.7,
+        "fibres": 2.0
+      }
+    },
+    {
+      "id": 375,
+      "nom": "Marmelade d'orange ou confiture d'orange",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 245.0,
+        "proteines": 0.2,
+        "glucides": 59.3,
+        "lipides": 0.4,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 376,
+      "nom": "Marmelade ou confiture d'autres agrumes ou mélange d'agrumes",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.3,
+        "glucides": 59.5,
+        "lipides": 0.2,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 377,
+      "nom": "Marmelade ou confiture d'orange, allégée en sucres",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 0,
+        "proteines": 0.2,
+        "glucides": 40.6,
+        "lipides": 0.1,
+        "fibres": 1.0
+      }
+    },
+    {
+      "id": 378,
+      "nom": "Miel",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 331.0,
+        "proteines": 0.6,
+        "glucides": 82.1,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 379,
+      "nom": "Sirop d'érable",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 269.0,
+        "proteines": 0,
+        "glucides": 67.2,
+        "lipides": 0.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 380,
+      "nom": "Sucre blanc",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 399.0,
+        "proteines": 0,
+        "glucides": 99.7,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 381,
+      "nom": "Sucre roux",
+      "categorie": "Produits Sucrés",
+      "macros_pour_100g": {
+        "kcal": 393.0,
+        "proteines": 0.1,
+        "glucides": 98.1,
+        "lipides": 0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 382,
+      "nom": "Agneau, collier cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 195.0,
+        "proteines": 18.0,
+        "glucides": 0,
+        "lipides": 13.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 383,
+      "nom": "Agneau, côte découverte crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 205.0,
+        "proteines": 16.3,
+        "glucides": 1.4,
+        "lipides": 15.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 384,
+      "nom": "Agneau, côte filet crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 232.0,
+        "proteines": 17.6,
+        "glucides": 0,
+        "lipides": 18.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 385,
+      "nom": "Agneau, côte première crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 276.0,
+        "proteines": 16.9,
+        "glucides": 0,
+        "lipides": 23.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 386,
+      "nom": "Agneau, côtelette crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 333.0,
+        "proteines": 15.4,
+        "glucides": 0,
+        "lipides": 30.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 387,
+      "nom": "Agneau, gigot cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 128.0,
+        "proteines": 20.0,
+        "glucides": 0.5,
+        "lipides": 5.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 388,
+      "nom": "Agneau, épaule crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 170.0,
+        "proteines": 18.3,
+        "glucides": 0.4,
+        "lipides": 10.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 389,
+      "nom": "Agneau, épaule maigre crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 139.0,
+        "proteines": 19.6,
+        "glucides": 0,
+        "lipides": 6.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 390,
+      "nom": "Bar commun ou loup",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 86.1,
+        "proteines": 19.1,
+        "glucides": 0.9,
+        "lipides": 0.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 391,
+      "nom": "Bar rayé ou bar d'amérique",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 113.0,
+        "proteines": 20.3,
+        "glucides": 0,
+        "lipides": 3.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 392,
+      "nom": "Boeuf",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 132.0,
+        "proteines": 21.6,
+        "glucides": 0.2,
+        "lipides": 5.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 393,
+      "nom": "Boeuf - entrecôte",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 198.0,
+        "proteines": 25.5,
+        "glucides": 0,
+        "lipides": 10.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 394,
+      "nom": "Boeuf haché",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 170.0,
+        "proteines": 20.0,
+        "glucides": 0,
+        "lipides": 10.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 395,
+      "nom": "Cabillaud",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 77.4,
+        "proteines": 18.1,
+        "glucides": 0,
+        "lipides": 0.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 396,
+      "nom": "Cabillaud ou morue du pacifique",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 64.8,
+        "proteines": 15.3,
+        "glucides": 0,
+        "lipides": 0.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 397,
+      "nom": "Calmar ou calamar ou encornet",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 77.0,
+        "proteines": 14.4,
+        "glucides": 2.2,
+        "lipides": 1.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 398,
+      "nom": "Chorizo",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 425.0,
+        "proteines": 23.5,
+        "glucides": 1.2,
+        "lipides": 36.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 399,
+      "nom": "Crevette",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 99.0,
+        "proteines": 19.7,
+        "glucides": 3.2,
+        "lipides": 0.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 400,
+      "nom": "Crevette blanche ou crevette tropicale",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 97.5,
+        "proteines": 22.1,
+        "glucides": 0.1,
+        "lipides": 0.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 401,
+      "nom": "Crevette bouquet",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 103.0,
+        "proteines": 22.8,
+        "glucides": 0,
+        "lipides": 1.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 402,
+      "nom": "Crevette grise",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 89.4,
+        "proteines": 19.4,
+        "glucides": 0.5,
+        "lipides": 1.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 403,
+      "nom": "Crevette sauvage",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 97.3,
+        "proteines": 22.0,
+        "glucides": 0,
+        "lipides": 1.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 404,
+      "nom": "Crevette tropicale",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 101.0,
+        "proteines": 22.6,
+        "glucides": 0.8,
+        "lipides": 0.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 405,
+      "nom": "Crevette, surgelée",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 105.0,
+        "proteines": 23.4,
+        "glucides": 0.7,
+        "lipides": 0.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 406,
+      "nom": "Dinde",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 192.0,
+        "proteines": 20.2,
+        "glucides": 0,
+        "lipides": 12.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 407,
+      "nom": "Dorade grise ou daurade grise, ou griset",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 129.0,
+        "proteines": 20.5,
+        "glucides": 0,
+        "lipides": 5.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 408,
+      "nom": "Dorade rose ou daurade rose ou pageot rose",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 102.0,
+        "proteines": 21.0,
+        "glucides": 0,
+        "lipides": 2.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 409,
+      "nom": "Dorade royale ou daurade ou vraie daurade",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 95.6,
+        "proteines": 18.1,
+        "glucides": 0.6,
+        "lipides": 2.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 410,
+      "nom": "Filet de bacon",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 118.0,
+        "proteines": 23.1,
+        "glucides": 0.7,
+        "lipides": 2.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 411,
+      "nom": "Flétan de l'atlantique ou flétan",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 96.5,
+        "proteines": 21.2,
+        "glucides": 0,
+        "lipides": 1.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 412,
+      "nom": "Flétan du groënland ou flétan noir ou flétan commun",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 168.0,
+        "proteines": 13.5,
+        "glucides": 0,
+        "lipides": 12.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 413,
+      "nom": "Foie, poulet",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 114.0,
+        "proteines": 16.9,
+        "glucides": 0.7,
+        "lipides": 4.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 414,
+      "nom": "Foie, veau",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 140.0,
+        "proteines": 19.0,
+        "glucides": 9.2,
+        "lipides": 3.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 415,
+      "nom": "Hoki",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 92.3,
+        "proteines": 17.8,
+        "glucides": 0,
+        "lipides": 2.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 416,
+      "nom": "Huître",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 67.2,
+        "proteines": 8.6,
+        "glucides": 3.9,
+        "lipides": 1.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 417,
+      "nom": "Huître creuse",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 67.2,
+        "proteines": 8.6,
+        "glucides": 3.9,
+        "lipides": 1.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 418,
+      "nom": "Huître plate",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 53.5,
+        "proteines": 10.2,
+        "glucides": 1.2,
+        "lipides": 0.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 419,
+      "nom": "Jambon cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 239.0,
+        "proteines": 25.9,
+        "glucides": 4.3,
+        "lipides": 13.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 420,
+      "nom": "Jambon cuit, choix",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 125.0,
+        "proteines": 19.5,
+        "glucides": 1.7,
+        "lipides": 4.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 421,
+      "nom": "Jambon cuit, fumé",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 135.0,
+        "proteines": 20.0,
+        "glucides": 0.8,
+        "lipides": 5.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 422,
+      "nom": "Jambon cuit, supérieur",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 113.0,
+        "proteines": 21.0,
+        "glucides": 0.8,
+        "lipides": 2.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 423,
+      "nom": "Jambon de bayonne",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 243.0,
+        "proteines": 28.0,
+        "glucides": 4.5,
+        "lipides": 12.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 424,
+      "nom": "Jambon de dinde ou blanc de dinde en tranche",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 99.3,
+        "proteines": 20.9,
+        "glucides": 0,
+        "lipides": 1.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 425,
+      "nom": "Jambon de poulet ou blanc de poulet en tranche",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 105.0,
+        "proteines": 20.7,
+        "glucides": 1.4,
+        "lipides": 1.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 426,
+      "nom": "Jambon sec",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 230.0,
+        "proteines": 28.7,
+        "glucides": 0.5,
+        "lipides": 12.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 427,
+      "nom": "Jambon sec de parme",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 248.0,
+        "proteines": 27.2,
+        "glucides": 0.3,
+        "lipides": 15.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 428,
+      "nom": "Jambon sec serrano",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 235.0,
+        "proteines": 30.4,
+        "glucides": 0.8,
+        "lipides": 12.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 429,
+      "nom": "Lapin de garenne, viande crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 108.0,
+        "proteines": 21.8,
+        "glucides": 0,
+        "lipides": 2.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 430,
+      "nom": "Lapin, viande crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 188.0,
+        "proteines": 20.4,
+        "glucides": 0.6,
+        "lipides": 11.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 431,
+      "nom": "Lieu jaune ou colin",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 75.5,
+        "proteines": 17.7,
+        "glucides": 0,
+        "lipides": 0.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 432,
+      "nom": "Lieu noir",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 99.7,
+        "proteines": 23.1,
+        "glucides": 0,
+        "lipides": 0.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 433,
+      "nom": "Lieu noir, surgelé",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 82.4,
+        "proteines": 19.8,
+        "glucides": 0,
+        "lipides": 0.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 434,
+      "nom": "Lieu ou colin d'alaska",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 72.6,
+        "proteines": 16.3,
+        "glucides": 0.5,
+        "lipides": 0.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 435,
+      "nom": "Limande-sole",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 80.6,
+        "proteines": 17.0,
+        "glucides": 0,
+        "lipides": 1.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 436,
+      "nom": "Maquereau",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 218.0,
+        "proteines": 20.8,
+        "glucides": 1.5,
+        "lipides": 14.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 437,
+      "nom": "Maquereau espagnol ou maquereau blanc ou billard",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 135.0,
+        "proteines": 22.1,
+        "glucides": 0,
+        "lipides": 5.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 438,
+      "nom": "Merguez crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 280,
+        "proteines": 14.0,
+        "glucides": 1.5,
+        "lipides": 24.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 439,
+      "nom": "Merguez, boeuf et mouton",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 315.0,
+        "proteines": 14.0,
+        "glucides": 2.8,
+        "lipides": 27.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 440,
+      "nom": "Merguez, boeuf et porc",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 415.0,
+        "proteines": 11.5,
+        "glucides": 0,
+        "lipides": 41.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 441,
+      "nom": "Merguez, pur boeuf",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 436.0,
+        "proteines": 11.0,
+        "glucides": 0,
+        "lipides": 43.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 442,
+      "nom": "Merlu",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 82.6,
+        "proteines": 17.6,
+        "glucides": 0,
+        "lipides": 1.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 443,
+      "nom": "Merlu blanc du cap, surgelé",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 78.0,
+        "proteines": 16.1,
+        "glucides": 0,
+        "lipides": 1.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 444,
+      "nom": "Moule commune",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 71.8,
+        "proteines": 11.2,
+        "glucides": 2.7,
+        "lipides": 1.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 445,
+      "nom": "Moule de méditerranée",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 68.7,
+        "proteines": 10.7,
+        "glucides": 2.8,
+        "lipides": 1.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 446,
+      "nom": "Oeuf",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 48.1,
+        "proteines": 10.9,
+        "glucides": 0.7,
+        "lipides": 0.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 447,
+      "nom": "Oeuf cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 140.0,
+        "proteines": 12.8,
+        "glucides": 0.1,
+        "lipides": 9.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 448,
+      "nom": "Oeuf d'oie",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 180.0,
+        "proteines": 13.9,
+        "glucides": 1.4,
+        "lipides": 13.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 449,
+      "nom": "Oeuf de caille",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 154.0,
+        "proteines": 13.1,
+        "glucides": 0.4,
+        "lipides": 11.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 450,
+      "nom": "Oeufs de lompe ou oeufs de lump, semi-conserve",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 77.8,
+        "proteines": 10.4,
+        "glucides": 1.0,
+        "lipides": 3.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 451,
+      "nom": "Oeufs de saumon du pacifique, semi-conserve",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 240.0,
+        "proteines": 30.8,
+        "glucides": 5.2,
+        "lipides": 10.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 452,
+      "nom": "Oeufs de truite, semi-conserve",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 209.0,
+        "proteines": 26.3,
+        "glucides": 4.0,
+        "lipides": 9.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 453,
+      "nom": "Porc",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 198.0,
+        "proteines": 28.3,
+        "glucides": 0,
+        "lipides": 9.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 454,
+      "nom": "Porc, bardière découennée crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 744.0,
+        "proteines": 4.5,
+        "glucides": 0.1,
+        "lipides": 80.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 455,
+      "nom": "Porc, carré cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 146.0,
+        "proteines": 22.7,
+        "glucides": 0.4,
+        "lipides": 5.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 456,
+      "nom": "Porc, côte crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 164.0,
+        "proteines": 19.8,
+        "glucides": 0.4,
+        "lipides": 9.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 457,
+      "nom": "Porc, escalope de jambon crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 129.0,
+        "proteines": 21.5,
+        "glucides": 0,
+        "lipides": 4.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 458,
+      "nom": "Porc, gorge découennée crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 475.0,
+        "proteines": 11.6,
+        "glucides": 0.1,
+        "lipides": 47.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 459,
+      "nom": "Porc, maigre 80/20 cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 293.0,
+        "proteines": 17.3,
+        "glucides": 0.3,
+        "lipides": 24.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 460,
+      "nom": "Porc, maigre 90/10 cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 212.0,
+        "proteines": 18.8,
+        "glucides": 0.2,
+        "lipides": 15.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 461,
+      "nom": "Porc, palette crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 208.0,
+        "proteines": 24.8,
+        "glucides": 0,
+        "lipides": 12.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 462,
+      "nom": "Porc, poitrine crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 253.0,
+        "proteines": 17.0,
+        "glucides": 0,
+        "lipides": 20.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 463,
+      "nom": "Porc, rouelle de jambon crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 149.0,
+        "proteines": 20.2,
+        "glucides": 0,
+        "lipides": 7.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 464,
+      "nom": "Porc, travers cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 237.0,
+        "proteines": 18.0,
+        "glucides": 0.6,
+        "lipides": 18.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 465,
+      "nom": "Porc, échine crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 238.0,
+        "proteines": 17.1,
+        "glucides": 0.1,
+        "lipides": 18.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 466,
+      "nom": "Porc, épaule crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 178.0,
+        "proteines": 18.9,
+        "glucides": 0.4,
+        "lipides": 11.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 467,
+      "nom": "Poulet",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 113.0,
+        "proteines": 25.2,
+        "glucides": 0,
+        "lipides": 1.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 468,
+      "nom": "Poulet - blanc",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 122.0,
+        "proteines": 20.8,
+        "glucides": 0,
+        "lipides": 4.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 469,
+      "nom": "Poulet - cuisse",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 163,
+        "proteines": 18.0,
+        "glucides": 0,
+        "lipides": 9.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 470,
+      "nom": "Poulet fermier, viande et peau crues",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 120.0,
+        "proteines": 22.0,
+        "glucides": 0,
+        "lipides": 3.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 471,
+      "nom": "Poulet éviscéré sans abats",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 210.0,
+        "proteines": 18.6,
+        "glucides": 0,
+        "lipides": 15.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 472,
+      "nom": "Poulet, pilon cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 155.0,
+        "proteines": 18.1,
+        "glucides": 0,
+        "lipides": 9.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 473,
+      "nom": "Poulet, viande crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 109.0,
+        "proteines": 20.9,
+        "glucides": 0,
+        "lipides": 2.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 474,
+      "nom": "Poulet, viande et peau crues",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 173.0,
+        "proteines": 21.5,
+        "glucides": 0.3,
+        "lipides": 9.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 475,
+      "nom": "Rond de jambon cuit",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 182.0,
+        "proteines": 20.3,
+        "glucides": 1.4,
+        "lipides": 10.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 476,
+      "nom": "Rouget-barbet",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 96.7,
+        "proteines": 16.3,
+        "glucides": 0,
+        "lipides": 3.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 477,
+      "nom": "Rouget-barbet de roche",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 158.0,
+        "proteines": 18.4,
+        "glucides": 0,
+        "lipides": 9.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 478,
+      "nom": "Roussette ou petite roussette ou saumonette",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 104.0,
+        "proteines": 25.4,
+        "glucides": 0,
+        "lipides": 0.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 479,
+      "nom": "Sardine",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 160.0,
+        "proteines": 19.5,
+        "glucides": 0,
+        "lipides": 9.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 480,
+      "nom": "Saucisse",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 286.0,
+        "proteines": 17.4,
+        "glucides": 1.2,
+        "lipides": 23.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 481,
+      "nom": "Saucisse de francfort",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 279.0,
+        "proteines": 13.7,
+        "glucides": 3.4,
+        "lipides": 23.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 482,
+      "nom": "Saucisse de montbéliard, à cuire",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 322.0,
+        "proteines": 17.3,
+        "glucides": 1.7,
+        "lipides": 27.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 483,
+      "nom": "Saucisse de morteau",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 398.0,
+        "proteines": 16.0,
+        "glucides": 1.2,
+        "lipides": 36.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 484,
+      "nom": "Saucisse de toulouse crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 321.0,
+        "proteines": 13.3,
+        "glucides": 0.6,
+        "lipides": 29.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 485,
+      "nom": "Saucisse de volaille façon charcutière",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 239.0,
+        "proteines": 15.6,
+        "glucides": 1.1,
+        "lipides": 19.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 486,
+      "nom": "Saucisse sèche",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 460.0,
+        "proteines": 27.3,
+        "glucides": 4.0,
+        "lipides": 37.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 487,
+      "nom": "Saucisson sec",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 418.0,
+        "proteines": 24.2,
+        "glucides": 5.5,
+        "lipides": 33.1,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 488,
+      "nom": "Saucisson sec allégé en matière grasse",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 286.0,
+        "proteines": 34.6,
+        "glucides": 1.6,
+        "lipides": 15.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 489,
+      "nom": "Saucisson sec aux noix et/ou noisettes",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 477.0,
+        "proteines": 27.7,
+        "glucides": 1.8,
+        "lipides": 39.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 490,
+      "nom": "Saucisson sec de lyon pur porc",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 255.0,
+        "proteines": 12.8,
+        "glucides": 0.8,
+        "lipides": 22.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 491,
+      "nom": "Saucisson sec pur porc",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 417.0,
+        "proteines": 28.7,
+        "glucides": 1.8,
+        "lipides": 32.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 492,
+      "nom": "Saucisson sec pur porc, qualité supérieure",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 368.0,
+        "proteines": 27.7,
+        "glucides": 2.1,
+        "lipides": 27.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 493,
+      "nom": "Saucisson à l'ail",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 276.0,
+        "proteines": 15.0,
+        "glucides": 0.6,
+        "lipides": 23.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 494,
+      "nom": "Saumon",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 193.0,
+        "proteines": 20.5,
+        "glucides": 0,
+        "lipides": 12.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 495,
+      "nom": "Sole",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 77.3,
+        "proteines": 18.0,
+        "glucides": 0,
+        "lipides": 0.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 496,
+      "nom": "Sole tropicale ou sole-langue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 70.3,
+        "proteines": 15.7,
+        "glucides": 0.5,
+        "lipides": 0.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 497,
+      "nom": "Thon",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 157.0,
+        "proteines": 23.3,
+        "glucides": 0.6,
+        "lipides": 6.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 498,
+      "nom": "Truite arc en ciel",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 132.0,
+        "proteines": 19.0,
+        "glucides": 0,
+        "lipides": 6.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 499,
+      "nom": "Truite de mer",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 114.0,
+        "proteines": 19.6,
+        "glucides": 0.8,
+        "lipides": 3.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 500,
+      "nom": "Truite ou truite fario",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 133.0,
+        "proteines": 19.3,
+        "glucides": 0,
+        "lipides": 6.2,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 501,
+      "nom": "Truite saumonée",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 143.0,
+        "proteines": 19.2,
+        "glucides": 0,
+        "lipides": 7.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 502,
+      "nom": "Veau",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 95.0,
+        "proteines": 20.6,
+        "glucides": 0,
+        "lipides": 1.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 503,
+      "nom": "Veau, carré cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 128.0,
+        "proteines": 19.3,
+        "glucides": 0.4,
+        "lipides": 5.4,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 504,
+      "nom": "Veau, collier cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 133.0,
+        "proteines": 19.8,
+        "glucides": 0,
+        "lipides": 5.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 505,
+      "nom": "Veau, côte crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 189.0,
+        "proteines": 18.3,
+        "glucides": 0,
+        "lipides": 12.9,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 506,
+      "nom": "Veau, escalope crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 114.0,
+        "proteines": 20.5,
+        "glucides": 0.6,
+        "lipides": 3.3,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 507,
+      "nom": "Veau, jarret cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 118.0,
+        "proteines": 21.3,
+        "glucides": 0,
+        "lipides": 3.7,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 508,
+      "nom": "Veau, noix",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 111.0,
+        "proteines": 21.8,
+        "glucides": 0,
+        "lipides": 2.6,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 509,
+      "nom": "Veau, pied cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 184.0,
+        "proteines": 19.1,
+        "glucides": 0,
+        "lipides": 12.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 510,
+      "nom": "Veau, poitrine crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 203.0,
+        "proteines": 17.5,
+        "glucides": 0,
+        "lipides": 14.8,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 511,
+      "nom": "Veau, steak haché 15% mg cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 208.0,
+        "proteines": 18.2,
+        "glucides": 0,
+        "lipides": 15.0,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 512,
+      "nom": "Veau, steak haché 20% mg cru",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 243.0,
+        "proteines": 16.7,
+        "glucides": 0.4,
+        "lipides": 19.5,
+        "fibres": 0
+      }
+    },
+    {
+      "id": 513,
+      "nom": "Veau, épaule crue",
+      "categorie": "Viandes, Oeufs & Poissons",
+      "macros_pour_100g": {
+        "kcal": 124.0,
+        "proteines": 20.7,
+        "glucides": 0,
+        "lipides": 4.6,
+        "fibres": 0
+      }
+    }
+  ],
+  "recettes": [
+    {
+      "id": 1,
+      "nom": "Wrap œuf-dinde",
+      "icone": "🌯",
+      "duree": 10,
+      "categorie": "Déjeuner",
+      "ingredients": [
+        {
+          "ingredientId": 447,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 406,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 100,
+          "quantite": 60
+        },
+        {
+          "ingredientId": 269,
+          "quantite": 50
+        },
+        {
+          "ingredientId": 291,
+          "quantite": 20
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Bol mexicain poulet",
+      "icone": "🍲",
+      "duree": 20,
+      "categorie": "Déjeuner",
+      "ingredients": [
+        {
+          "ingredientId": 469,
+          "quantite": 150
+        },
+        {
+          "ingredientId": 120,
+          "quantite": 80
+        },
+        {
+          "ingredientId": 218,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 189,
+          "quantite": 80
+        },
+        {
+          "ingredientId": 173,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 130,
+          "quantite": 50
+        },
+        {
+          "ingredientId": 263,
+          "quantite": 100
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Curry lentilles",
+      "icone": "🍛",
+      "duree": 30,
+      "categorie": "Dîner",
+      "ingredients": [
+        {
+          "ingredientId": 179,
+          "quantite": 150
+        },
+        {
+          "ingredientId": 263,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 154,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 269,
+          "quantite": 50
+        },
+        {
+          "ingredientId": 278,
+          "quantite": 10
+        },
+        {
+          "ingredientId": 300,
+          "quantite": 50
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Bolo bœuf",
+      "icone": "🍝",
+      "duree": 30,
+      "categorie": "Dîner",
+      "ingredients": [
+        {
+          "ingredientId": 394,
+          "quantite": 150
+        },
+        {
+          "ingredientId": 118,
+          "quantite": 80
+        },
+        {
+          "ingredientId": 263,
+          "quantite": 120
+        },
+        {
+          "ingredientId": 154,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 278,
+          "quantite": 10
+        },
+        {
+          "ingredientId": 291,
+          "quantite": 20
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Pancakes banane-fromage blanc",
+      "icone": "🥞",
+      "duree": 15,
+      "categorie": "Petit-déjeuner",
+      "ingredients": [
+        {
+          "ingredientId": 447,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 300,
+          "quantite": 100
+        },
+        {
+          "ingredientId": 131,
+          "quantite": 80
+        },
+        {
+          "ingredientId": 84,
+          "quantite": 50
+        }
+      ]
+    }
+  ],
+  "objectifsUtilisateurs": {
+    "moi": {
+      "nom": "Moi",
+      "parRepas": {
+        "Petit-déjeuner": {
+          "proteines": 30,
+          "glucides": 40,
+          "lipides": 15,
+          "calories": 410,
+          "fibres": 7
+        },
+        "Déjeuner": {
+          "proteines": 40,
+          "glucides": 50,
+          "lipides": 20,
+          "calories": 540,
+          "fibres": 10
+        },
+        "Collation": {
+          "proteines": 15,
+          "glucides": 20,
+          "lipides": 8,
+          "calories": 210,
+          "fibres": 5
+        },
+        "Dîner": {
+          "proteines": 40,
+          "glucides": 50,
+          "lipides": 20,
+          "calories": 540,
+          "fibres": 10
+        }
+      }
+    },
+    "copain": {
+      "nom": "Copain",
+      "parRepas": {
+        "Petit-déjeuner": {
+          "proteines": 35,
+          "glucides": 50,
+          "lipides": 18,
+          "calories": 490,
+          "fibres": 8
+        },
+        "Déjeuner": {
+          "proteines": 50,
+          "glucides": 65,
+          "lipides": 25,
+          "calories": 665,
+          "fibres": 12
+        },
+        "Collation": {
+          "proteines": 20,
+          "glucides": 25,
+          "lipides": 10,
+          "calories": 270,
+          "fibres": 5
+        },
+        "Dîner": {
+          "proteines": 50,
+          "glucides": 65,
+          "lipides": 25,
+          "calories": 665,
+          "fibres": 12
+        }
+      }
+    }
+  }
+}

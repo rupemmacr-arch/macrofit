@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MacroFit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ── PAGE ACCUEIL ───────────────────────────────────────── -->
+  <div id="page-accueil" class="page active">
+    <div class="topbar">
+      <div>
+        <div class="topbar-titre">🍽️ MacroFit</div>
+        <div class="topbar-sous-titre" id="date-du-jour"></div>
+      </div>
+    </div>
+    <div class="contenu">
+      <div class="section-titre">Mes repas</div>
+      <div id="liste-repas"></div>
+      <div class="section-titre">Mes macros aujourd'hui</div>
+      <div class="carte">
+        <div class="macros-section" id="macros-jour"></div>
+        <div class="totaux-grille" id="totaux-jour"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE RECETTES ──────────────────────────────────────── -->
+  <div id="page-recettes" class="page">
+    <div class="topbar">
+      <div class="topbar-titre">📖 Mes recettes</div>
+      <button class="topbar-action" id="btn-nouvelle-recette">+</button>
+    </div>
+    <div class="contenu">
+      <input class="recherche" id="recherche-recette" placeholder="🔍  Rechercher une recette..." type="text">
+      <div class="filtres" id="filtres-repas">
+        <button class="chip actif" data-filtre="">Toutes</button>
+        <button class="chip" data-filtre="Petit-déjeuner">☀️ Petit-déj</button>
+        <button class="chip" data-filtre="Déjeuner">🌤️ Déjeuner</button>
+        <button class="chip" data-filtre="Dîner">🌙 Dîner</button>
+        <button class="chip" data-filtre="favori">⭐ Favoris</button>
+      </div>
+      <div class="filtres" id="filtres-proteine">
+        <button class="chip actif" data-prot="">Toutes protéines</button>
+        <button class="chip" data-prot="Poulet">🍗 Poulet</button>
+        <button class="chip" data-prot="Œuf">🥚 Œuf</button>
+        <button class="chip" data-prot="Bœuf">🥩 Bœuf</button>
+        <button class="chip" data-prot="Légumineuses">🫘 Légumineuses</button>
+      </div>
+      <div id="liste-recettes"></div>
+    </div>
+  </div>
+
+  <!-- ── PAGE DÉTAIL RECETTE ────────────────────────────────── -->
+  <div id="page-detail" class="page">
+    <div class="topbar">
+      <button class="topbar-action" id="btn-retour-detail">←</button>
+      <div class="topbar-titre" id="detail-titre">Recette</div>
+      <button class="topbar-action" id="btn-favori-detail">☆</button>
+    </div>
+    <div class="contenu" id="detail-contenu"></div>
+  </div>
+
+  <!-- ── PAGE OPTIMISEUR ────────────────────────────────────── -->
+  <div id="page-optimiseur" class="page">
+    <div class="topbar">
+      <button class="topbar-action" id="btn-retour-optimiseur">←</button>
+      <div class="topbar-titre" id="optimiseur-titre">Ajuster</div>
+      <div></div>
+    </div>
+    <div class="contenu" id="optimiseur-contenu"></div>
+  </div>
+
+  <!-- ── PAGE PLANNING ──────────────────────────────────────── -->
+  <div id="page-planning" class="page">
+    <div class="topbar"><div class="topbar-titre">📅 Planning</div></div>
+    <div class="contenu">
+      <div class="etat-vide">
+        <div class="etat-vide-icone">📅</div>
+        <div class="etat-vide-titre">Page en construction</div>
+        <div class="etat-vide-desc">On la construit à la prochaine session !</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div id="page-courses" class="page">
+    <div class="topbar">
+      <div class="topbar-titre">🛒 Courses</div>
+      <button class="topbar-action" id="btn-courses-semaine">📅</button>
+    </div>
+    <div class="contenu">
+      <div style="display:flex;gap:8px;margin-bottom:var(--espace-md)">
+        <button class="chip actif" id="chip-cette-semaine">Cette semaine</button>
+        <button class="chip" id="chip-semaine-prochaine">Semaine prochaine</button>
+      </div>
+      <div id="courses-contenu"></div>
+    </div>
+  </div>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────── -->
+  <nav class="nav-bas">
+    <button class="nav-btn actif" data-page="accueil">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L4 9v12h5v-6h6v6h5V9z"/></svg>
+      Accueil
+    </button>
+    <button class="nav-btn" data-page="recettes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      Recettes
+    </button>
+    <button class="nav-btn" data-page="planning">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Planning
+    </button>
+    <button class="nav-btn" data-page="courses">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+      Courses
+    </button>
+  </nav>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/macros.js"></script>
+<script>
+
+// ════════════════════════════════════════════════════════════
+//  ÉTAT GLOBAL
+// ════════════════════════════════════════════════════════════
+let INGREDIENTS = [];
+let RECETTES    = [];
+let OBJECTIFS   = {};
+let filtreRepas    = '';
+let filtreProteine = '';
+let texteRecherche = '';
+let recetteEnCours = null; // recette affichée dans détail/optimiseur
+
+
+// ════════════════════════════════════════════════════════════
+//  DÉMARRAGE
+// ════════════════════════════════════════════════════════════
+async function demarrer() {
+  await initialiserDonnees();
+  INGREDIENTS = obtenirIngredients();
+  RECETTES    = obtenirRecettes();
+  OBJECTIFS   = obtenirObjectifs();
+  afficherAccueil();
+  afficherRecettes();
+  branchementsRecettes();
+  branchementsDetail();
+  branchementsOptimiseur();
+}
+
+
+// ════════════════════════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════════════════════════
+function allerVers(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  // Mettre à jour la nav seulement pour les pages principales
+  const pagesNav = ['accueil', 'recettes', 'planning', 'courses'];
+  if (pagesNav.includes(pageId)) {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('actif'));
+    const btn = document.querySelector(`.nav-btn[data-page="${pageId}"]`);
+    if (btn) btn.classList.add('actif');
+  }
+}
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => allerVers(btn.dataset.page));
+});
+
+
+// ════════════════════════════════════════════════════════════
+//  PAGE ACCUEIL
+// ════════════════════════════════════════════════════════════
+function afficherAccueil() {
+  const aujourd_hui  = new Date().toISOString().split('T')[0];
+  document.getElementById('date-du-jour').textContent =
+    new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  const planningJour = obtenirPlanning()[aujourd_hui]?.moi || {};
+  const journal      = obtenirJournalDuJour(aujourd_hui, 'moi');
+  const REPAS = [
+    { id: 'Petit-déjeuner', icone: '☀️' },
+    { id: 'Déjeuner',       icone: '🌤️' },
+    { id: 'Dîner',          icone: '🌙' },
+  ];
+
+  const listeEl = document.getElementById('liste-repas');
+  listeEl.innerHTML = '';
+
+  REPAS.forEach(repas => {
+    const recetteId     = planningJour[repas.id];
+    const recette       = recetteId ? RECETTES.find(r => r.id === recetteId) : null;
+    const entreeJournal = journal.find(e => e.typeRepas === repas.id);
+    const estMange      = entreeJournal?.mange === true;
+    const macros        = recette ? calculerMacrosRecette(recette, INGREDIENTS) : null;
+
+    const carte = document.createElement('div');
+    carte.className = 'carte-repas';
+    carte.innerHTML = `
+      <div class="repas-header">
+        <span class="repas-moment">${repas.icone} ${repas.id}</span>
+        ${recette
+          ? `<span class="badge ${estMange ? 'badge-vert' : 'badge-gris'}">${estMange ? 'Mangé ✓' : 'À manger'}</span>`
+          : '<span class="badge badge-gris">Non planifié</span>'}
+      </div>
+      ${recette
+        ? `<div class="repas-nom">${recette.nom}</div>
+           <div class="repas-macros">${macros.proteines}g P · ${macros.glucides}g G · ${macros.lipides}g L · ${macros.calories} kcal</div>
+           <div class="repas-actions">
+             <button class="btn btn-succes btn-manger" data-repas="${repas.id}" data-recette="${recette.id}" data-mange="${estMange}">
+               ${estMange ? '↩ Pas encore mangé' : '✓ Marquer comme mangé'}
+             </button>
+           </div>`
+        : `<div class="repas-vide">Aucune recette planifiée</div>
+           <div class="repas-actions"><button class="btn">+ Ajouter une recette</button></div>`}`;
+    listeEl.appendChild(carte);
+  });
+
+  document.querySelectorAll('.btn-manger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const today     = new Date().toISOString().split('T')[0];
+      const typeRepas = btn.dataset.repas;
+      const recetteId = parseInt(btn.dataset.recette);
+      const nouveau   = btn.dataset.mange !== 'true';
+      marquerRepasCommemange(today, 'moi', typeRepas, recetteId, nouveau);
+      btn.dataset.mange = nouveau;
+      btn.textContent   = nouveau ? '↩ Pas encore mangé' : '✓ Marquer comme mangé';
+      const badge = btn.closest('.carte-repas').querySelector('.badge');
+      badge.textContent = nouveau ? 'Mangé ✓' : 'À manger';
+      badge.className   = `badge ${nouveau ? 'badge-vert' : 'badge-gris'}`;
+      mettreAJourMacrosJour();
+    });
+  });
+
+  mettreAJourMacrosJour();
+}
+
+function mettreAJourMacrosJour() {
+  const today      = new Date().toISOString().split('T')[0];
+  const journal    = obtenirJournalDuJour(today, 'moi');
+  const obj        = OBJECTIFS.moi.quotidien;
+  const idsMangees = journal.filter(e => e.mange).map(e => e.recetteId);
+  const macros     = idsMangees.length > 0
+    ? calculerMacrosJour(idsMangees, RECETTES, INGREDIENTS)
+    : { proteines: 0, glucides: 0, lipides: 0, calories: 0 };
+
+  document.getElementById('macros-jour').innerHTML =
+    barreMacro('Protéines', macros.proteines, obj.proteines, 'proteines') +
+    barreMacro('Glucides',  macros.glucides,  obj.glucides,  'glucides') +
+    barreMacro('Lipides',   macros.lipides,   obj.lipides,   'lipides');
+
+  document.getElementById('totaux-jour').innerHTML = `
+    <div class="total-case"><div class="total-valeur" style="color:var(--couleur-proteines)">${macros.proteines}g</div><div class="total-label">Protéines</div></div>
+    <div class="total-case"><div class="total-valeur" style="color:var(--couleur-glucides)">${macros.glucides}g</div><div class="total-label">Glucides</div></div>
+    <div class="total-case"><div class="total-valeur" style="color:var(--couleur-lipides)">${macros.lipides}g</div><div class="total-label">Lipides</div></div>
+    <div class="total-case"><div class="total-valeur">${macros.calories}</div><div class="total-label">kcal</div></div>`;
+}
+
+function barreMacro(label, actuel, cible, classe) {
+  const pct = calculerPourcentage(actuel, cible);
+  return `
+    <div class="macro-ligne">
+      <div class="macro-etiquette"><span>${label}</span><span>${actuel}g / ${cible}g — ${pct}%</span></div>
+      <div class="macro-barre"><div class="macro-remplissage ${classe}" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
+
+// ════════════════════════════════════════════════════════════
+//  PAGE RECETTES
+// ════════════════════════════════════════════════════════════
+function afficherRecettes() {
+  let resultats = [...RECETTES];
+  if (filtreRepas === 'favori') resultats = resultats.filter(r => r.favori);
+  else if (filtreRepas) resultats = resultats.filter(r => r.typeRepas === filtreRepas);
+  if (filtreProteine) resultats = resultats.filter(r => r.typeProteine === filtreProteine);
+  if (texteRecherche) {
+    const q = texteRecherche.toLowerCase();
+    resultats = resultats.filter(r => r.nom.toLowerCase().includes(q));
+  }
+  resultats.sort((a, b) => (b.favori ? 1 : 0) - (a.favori ? 1 : 0));
+
+  const listeEl = document.getElementById('liste-recettes');
+  if (resultats.length === 0) {
+    listeEl.innerHTML = `<div class="etat-vide"><div class="etat-vide-icone">🔍</div><div class="etat-vide-titre">Aucune recette trouvée</div><div class="etat-vide-desc">Essaie un autre filtre.</div></div>`;
+    return;
+  }
+
+  const icones = { 'Petit-déjeuner': '☀️', 'Déjeuner': '🌤️', 'Dîner': '🌙' };
+  listeEl.innerHTML = resultats.map(recette => {
+    const macros     = calculerMacrosRecette(recette, INGREDIENTS);
+    const conformite = evaluerConformite(macros, recette.objectifsRepas);
+    return `
+      <div class="carte-recette">
+        <div class="recette-header">
+          <div>
+            <div class="recette-nom">${recette.favori ? '⭐ ' : ''}${recette.nom}</div>
+            <div class="recette-meta">${icones[recette.typeRepas] || '🍽️'} ${recette.typeRepas} · ${recette.tempsPreparation} min · ${recette.typeProteine}</div>
+          </div>
+          <span class="badge badge-${conformite.statut}">${conformite.statut === 'vert' ? 'Conforme' : conformite.message}</span>
+        </div>
+        <div class="recette-macros-ligne">
+          <span class="macro-pill proteines">${macros.proteines}g P</span>
+          <span class="macro-pill glucides">${macros.glucides}g G</span>
+          <span class="macro-pill lipides">${macros.lipides}g L</span>
+          <span class="macro-pill calories">${macros.calories} kcal</span>
+        </div>
+        <div class="recette-actions">
+          <button class="btn btn-voir" data-id="${recette.id}">Voir la recette</button>
+          <button class="btn btn-favori" data-id="${recette.id}">${recette.favori ? '★' : '☆'}</button>
+          ${conformite.statut !== 'vert' ? `<button class="btn btn-optimiser" data-id="${recette.id}" style="color:var(--violet);border-color:var(--violet)">⚡ Ajuster</button>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  document.querySelectorAll('.btn-voir').forEach(btn => {
+    btn.addEventListener('click', () => ouvrirDetail(parseInt(btn.dataset.id)));
+  });
+
+  document.querySelectorAll('.btn-favori').forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleFavoriRecette(parseInt(btn.dataset.id));
+      RECETTES = obtenirRecettes();
+      afficherRecettes();
+    });
+  });
+
+  document.querySelectorAll('.btn-optimiser').forEach(btn => {
+    btn.addEventListener('click', () => ouvrirOptimiseur(parseInt(btn.dataset.id)));
+  });
+}
+
+function branchementsRecettes() {
+  document.getElementById('recherche-recette').addEventListener('input', e => {
+    texteRecherche = e.target.value.trim();
+    afficherRecettes();
+  });
+  document.getElementById('filtres-repas').addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    document.querySelectorAll('#filtres-repas .chip').forEach(c => c.classList.remove('actif'));
+    chip.classList.add('actif');
+    filtreRepas = chip.dataset.filtre;
+    afficherRecettes();
+  });
+  document.getElementById('filtres-proteine').addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    document.querySelectorAll('#filtres-proteine .chip').forEach(c => c.classList.remove('actif'));
+    chip.classList.add('actif');
+    filtreProteine = chip.dataset.prot;
+    afficherRecettes();
+  });
+}
+
+
+// ════════════════════════════════════════════════════════════
+//  PAGE DÉTAIL RECETTE
+// ════════════════════════════════════════════════════════════
+function ouvrirDetail(recetteId) {
+  recetteEnCours = RECETTES.find(r => r.id === recetteId);
+  if (!recetteEnCours) return;
+
+  const macros     = calculerMacrosRecette(recetteEnCours, INGREDIENTS);
+  const conformite = evaluerConformite(macros, recetteEnCours.objectifsRepas);
+  const icones     = { 'Petit-déjeuner': '☀️', 'Déjeuner': '🌤️', 'Dîner': '🌙' };
+
+  document.getElementById('detail-titre').textContent = recetteEnCours.nom;
+  document.getElementById('btn-favori-detail').textContent = recetteEnCours.favori ? '★' : '☆';
+
+  // Lignes ingrédients
+  const lignesIng = recetteEnCours.ingredients.map(ligne => {
+    const ing = INGREDIENTS.find(i => i.id === ligne.ingredientId);
+    if (!ing) return '';
+    const m = calculerMacrosIngredient(ing, ligne.quantite);
+    return `
+      <div class="ligne">
+        <span class="ligne-nom">${ing.nom}</span>
+        <span class="ligne-val">${ligne.quantite}g</span>
+        <span class="ligne-val" style="min-width:110px;text-align:right">${m.proteines}P · ${m.glucides}G · ${m.lipides}L</span>
+      </div>`;
+  }).join('');
+
+  // Étapes
+  const etapes = recetteEnCours.etapesPreparation.map((etape, i) => `
+    <div class="etape">
+      <div class="etape-num">${i + 1}</div>
+      <div class="etape-texte">${etape}</div>
+    </div>`).join('');
+
+  document.getElementById('detail-contenu').innerHTML = `
+    <!-- En-tête -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <div style="font-size:12px;color:var(--texte-muted);margin-bottom:4px">
+            ${icones[recetteEnCours.typeRepas] || '🍽️'} ${recetteEnCours.typeRepas} · ⏱️ ${recetteEnCours.tempsPreparation} min
+          </div>
+          <span class="badge badge-${conformite.statut}">${conformite.statut === 'vert' ? 'Conforme aux objectifs' : conformite.message}</span>
+        </div>
+      </div>
+      <div class="totaux-grille">
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-proteines)">${macros.proteines}g</div><div class="total-label">Protéines</div></div>
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-glucides)">${macros.glucides}g</div><div class="total-label">Glucides</div></div>
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-lipides)">${macros.lipides}g</div><div class="total-label">Lipides</div></div>
+        <div class="total-case"><div class="total-valeur">${macros.calories}</div><div class="total-label">kcal</div></div>
+      </div>
+    </div>
+
+    <!-- Comparaison objectifs -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div class="carte-titre">Comparaison avec les objectifs</div>
+      ${barreComparaison('Protéines', macros.proteines, recetteEnCours.objectifsRepas.proteines, 'proteines')}
+      ${barreComparaison('Glucides',  macros.glucides,  recetteEnCours.objectifsRepas.glucides,  'glucides')}
+      ${barreComparaison('Lipides',   macros.lipides,   recetteEnCours.objectifsRepas.lipides,   'lipides')}
+    </div>
+
+    <!-- Ingrédients -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div class="carte-titre">Ingrédients (${recetteEnCours.ingredients.length})</div>
+      ${lignesIng}
+    </div>
+
+    <!-- Étapes -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div class="carte-titre">Préparation</div>
+      <div class="etapes-liste">${etapes}</div>
+    </div>
+
+    <!-- Bouton ajuster si non conforme -->
+    ${conformite.statut !== 'vert' ? `
+      <button class="btn btn-principal btn-plein" id="btn-vers-optimiseur">
+        ⚡ Ajuster les macros automatiquement
+      </button>` : ''}
+  `;
+
+  // Branchement bouton optimiseur depuis le détail
+  document.getElementById('btn-vers-optimiseur')?.addEventListener('click', () => {
+    ouvrirOptimiseur(recetteEnCours.id);
+  });
+
+  allerVers('detail');
+}
+
+function branchementsDetail() {
+  document.getElementById('btn-retour-detail').addEventListener('click', () => allerVers('recettes'));
+  document.getElementById('btn-favori-detail').addEventListener('click', () => {
+    if (!recetteEnCours) return;
+    toggleFavoriRecette(recetteEnCours.id);
+    RECETTES = obtenirRecettes();
+    recetteEnCours = RECETTES.find(r => r.id === recetteEnCours.id);
+    document.getElementById('btn-favori-detail').textContent = recetteEnCours.favori ? '★' : '☆';
+    afficherRecettes();
+  });
+}
+
+function barreComparaison(label, actuel, cible, classe) {
+  const pct    = calculerPourcentage(actuel, cible);
+  const ecart  = Math.round((actuel - cible) * 10) / 10;
+  const couleurEcart = ecart > 3 ? 'var(--rouge)' : ecart < -3 ? 'var(--orange)' : 'var(--vert)';
+  const texteEcart   = ecart > 0 ? `+${ecart}g` : `${ecart}g`;
+  return `
+    <div class="macro-ligne">
+      <div class="macro-etiquette">
+        <span>${label}</span>
+        <span>${actuel}g / ${cible}g
+          <span style="color:${couleurEcart};font-weight:500;margin-left:4px">${texteEcart}</span>
+        </span>
+      </div>
+      <div class="macro-barre"><div class="macro-remplissage ${classe}" style="width:${pct}%"></div></div>
+    </div>`;
+}
+
+
+// ════════════════════════════════════════════════════════════
+//  PAGE OPTIMISEUR
+// ════════════════════════════════════════════════════════════
+function ouvrirOptimiseur(recetteId) {
+  const recette = RECETTES.find(r => r.id === recetteId);
+  if (!recette) return;
+
+  const cibles      = OBJECTIFS.moi.parRepas[recette.typeRepas];
+  const macrosAvant = calculerMacrosRecette(recette, INGREDIENTS);
+  const resultat    = optimiserRecette(recette, cibles, INGREDIENTS);
+
+  document.getElementById('optimiseur-titre').textContent = recette.nom;
+
+  const lignesModifs = resultat.modifications.length > 0
+    ? resultat.modifications.map(m => {
+        const estAjoute = m.statut === 'ajouté';
+        const estHausse = m.apres > m.avant;
+        const fleche    = estAjoute ? '✨' : (estHausse ? '↑' : '↓');
+        const couleur   = (estAjoute || estHausse) ? 'var(--vert)' : 'var(--rouge)';
+        return `
+          <div class="ligne">
+            <span class="ligne-nom">${m.nom} ${estAjoute ? '<span class="badge badge-violet" style="font-size:10px">nouveau</span>' : ''}</span>
+            <span class="ligne-val" style="color:${couleur};font-weight:500">
+              ${fleche} ${estAjoute ? '' : m.avant + 'g → '}<strong>${m.apres}g</strong>
+            </span>
+          </div>`;
+      }).join('')
+    : '<p style="font-size:13px;color:var(--texte-muted);padding:8px 0">Aucune modification nécessaire.</p>';
+
+  document.getElementById('optimiseur-contenu').innerHTML = `
+    <!-- Avant / Après -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--espace-sm);margin-bottom:var(--espace-sm)">
+      <div class="carte">
+        <div class="carte-titre">Macros actuelles</div>
+        <div style="font-size:13px;color:var(--texte-muted);line-height:1.8">
+          ${macrosAvant.proteines}g P<br>
+          ${macrosAvant.glucides}g G<br>
+          ${macrosAvant.lipides}g L<br>
+          ${macrosAvant.calories} kcal
+        </div>
+      </div>
+      <div class="carte">
+        <div class="carte-titre">Objectifs ${recette.typeRepas}</div>
+        <div style="font-size:13px;color:var(--texte-muted);line-height:1.8">
+          ${cibles.proteines}g P<br>
+          ${cibles.glucides}g G<br>
+          ${cibles.lipides}g L<br>
+          ${cibles.calories} kcal
+        </div>
+      </div>
+    </div>
+
+    <!-- Modifications -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div class="carte-titre">Modifications proposées</div>
+      ${lignesModifs}
+    </div>
+
+    <!-- Nouvelles macros -->
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div class="carte-titre">Nouvelles macros</div>
+      <div class="totaux-grille" style="margin-bottom:var(--espace-sm)">
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-proteines)">${resultat.nouvellesMacros.proteines}g</div><div class="total-label">Protéines</div></div>
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-glucides)">${resultat.nouvellesMacros.glucides}g</div><div class="total-label">Glucides</div></div>
+        <div class="total-case"><div class="total-valeur" style="color:var(--couleur-lipides)">${resultat.nouvellesMacros.lipides}g</div><div class="total-label">Lipides</div></div>
+        <div class="total-case"><div class="total-valeur">${resultat.nouvellesMacros.calories}</div><div class="total-label">kcal</div></div>
+      </div>
+      <span class="badge badge-${resultat.conformite.statut}" style="font-size:13px;padding:6px 14px">
+        ${resultat.conformite.message}
+      </span>
+    </div>
+
+    <!-- Bouton sauvegarder -->
+    <button class="btn btn-principal btn-plein" id="btn-sauvegarder-optimiseur">
+      💾 Sauvegarder la recette ajustée
+    </button>
+    <button class="btn btn-plein" id="btn-annuler-optimiseur" style="margin-top:var(--espace-sm)">
+      Annuler
+    </button>
+  `;
+
+  document.getElementById('btn-sauvegarder-optimiseur').addEventListener('click', () => {
+    // Mettre à jour la recette avec les nouvelles quantités et macros
+    const recetteAjustee = resultat.recetteAjustee;
+    recetteAjustee.macrosCalculees = resultat.nouvellesMacros;
+    recetteAjustee.conformite = resultat.conformite.statut;
+    modifierRecette(recetteAjustee);
+    RECETTES = obtenirRecettes();
+    afficherRecettes();
+    allerVers('recettes');
+    // Petit message de confirmation
+    setTimeout(() => alert(`✅ "${recette.nom}" a été ajustée et sauvegardée !`), 100);
+  });
+
+  document.getElementById('btn-annuler-optimiseur').addEventListener('click', () => allerVers('recettes'));
+
+  allerVers('optimiseur');
+}
+
+function branchementsOptimiseur() {
+  document.getElementById('btn-retour-optimiseur').addEventListener('click', () => allerVers('recettes'));
+}
+
+
+demarrer();
+</script><script>
+let semaineCoursesOffset = 0; // 0 = cette semaine, 1 = semaine prochaine
+
+function afficherCourses() {
+  const lundi = getLundi(new Date());
+  lundi.setDate(lundi.getDate() + semaineCoursesOffset * 7);
+  const planning = obtenirPlanning();
+
+  // Collecter tous les ingrédients de la semaine
+  const quantites = {}; // { ingredientId: quantiteTotale }
+
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(lundi);
+    d.setDate(d.getDate() + i);
+    const iso = dateVersISO(d);
+    const repasJour = planning[iso]?.moi || {};
+    Object.values(repasJour).filter(Boolean).forEach(recetteId => {
+      const recette = RECETTES.find(r => r.id === recetteId);
+      if (!recette) return;
+      recette.ingredients.forEach(ligne => {
+        if (!quantites[ligne.ingredientId]) quantites[ligne.ingredientId] = 0;
+        quantites[ligne.ingredientId] += ligne.quantite;
+      });
+    });
+  }
+
+  const contenuEl = document.getElementById('courses-contenu');
+
+  if (Object.keys(quantites).length === 0) {
+    contenuEl.innerHTML = `
+      <div class="etat-vide">
+        <div class="etat-vide-icone">🛒</div>
+        <div class="etat-vide-titre">Aucune recette planifiée</div>
+        <div class="etat-vide-desc">Ajoute des recettes dans le planning pour générer ta liste de courses.</div>
+      </div>`;
+    return;
+  }
+
+  // Grouper par catégorie
+  const CATEGORIES = [
+    { id: 'Protéine Maigre',  icone: '🍗', label: 'Viandes maigres' },
+    { id: 'Protéine Grasse',  icone: '🥚', label: 'Œufs & poissons' },
+    { id: 'Féculent',         icone: '🌾', label: 'Féculents' },
+    { id: 'Légume',           icone: '🥬', label: 'Légumes' },
+    { id: 'Fruit',            icone: '🥑', label: 'Fruits' },
+    { id: 'Fromage',          icone: '🧀', label: 'Fromages' },
+    { id: 'Laitage',          icone: '🥛', label: 'Laitages' },
+    { id: 'Huile',            icone: '🫙', label: 'Huiles' },
+    { id: 'Sauce/Condiment',  icone: '🧂', label: 'Condiments' },
+  ];
+
+  // Récupérer les articles cochés depuis localStorage
+  const cochesCle = 'macrofit_courses_coches_' + dateVersISO(lundi);
+  const coches = JSON.parse(localStorage.getItem(cochesCle) || '[]');
+
+  let html = '';
+  let totalArticles = 0;
+
+  CATEGORIES.forEach(cat => {
+    const articles = [];
+    Object.entries(quantites).forEach(([idStr, quantite]) => {
+      const id  = parseInt(idStr);
+      const ing = INGREDIENTS.find(i => i.id === id);
+      if (!ing || ing.categorie !== cat.id) return;
+      articles.push({ ing, quantite: Math.round(quantite) });
+    });
+
+    if (articles.length === 0) return;
+    totalArticles += articles.length;
+
+    const lignes = articles.map(({ ing, quantite }) => {
+      const estCoche = coches.includes(ing.id);
+      return `
+        <div class="courses-item ${estCoche ? 'courses-item-coche' : ''}" data-id="${ing.id}">
+          <div class="courses-checkbox ${estCoche ? 'checked' : ''}"></div>
+          <span class="courses-nom">${ing.nom}</span>
+          <span class="courses-quantite">${quantite}g</span>
+        </div>`;
+    }).join('');
+
+    html += `
+      <div class="carte" style="margin-bottom:var(--espace-sm)">
+        <div class="carte-titre">${cat.icone} ${cat.label}</div>
+        ${lignes}
+      </div>`;
+  });
+
+  // Compter cochés
+  const nbCoches = coches.length;
+  const progression = totalArticles > 0 ? Math.round((nbCoches / totalArticles) * 100) : 0;
+
+  contenuEl.innerHTML = `
+    <div class="carte" style="margin-bottom:var(--espace-sm)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:13px;color:var(--texte-muted)">${nbCoches} / ${totalArticles} articles</span>
+        <span style="font-size:13px;font-weight:500;color:var(--violet)">${progression}%</span>
+      </div>
+      <div class="macro-barre">
+        <div class="macro-remplissage proteines" style="width:${progression}%"></div>
+      </div>
+    </div>
+    ${html}
+    <button class="btn btn-plein" id="btn-tout-decocher" style="margin-top:var(--espace-sm)">
+      Tout décocher
+    </button>`;
+
+  // Cocher/décocher
+  document.querySelectorAll('.courses-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const id = parseInt(item.dataset.id);
+      const coches = JSON.parse(localStorage.getItem(cochesCle) || '[]');
+      const index  = coches.indexOf(id);
+      if (index === -1) coches.push(id);
+      else coches.splice(index, 1);
+      localStorage.setItem(cochesCle, JSON.stringify(coches));
+      afficherCourses();
+    });
+  });
+
+  document.getElementById('btn-tout-decocher')?.addEventListener('click', () => {
+    localStorage.removeItem(cochesCle);
+    afficherCourses();
+  });
+}
+
+// Branchements courses
+document.getElementById('chip-cette-semaine').addEventListener('click', () => {
+  semaineCoursesOffset = 0;
+  document.getElementById('chip-cette-semaine').classList.add('actif');
+  document.getElementById('chip-semaine-prochaine').classList.remove('actif');
+  afficherCourses();
+});
+
+document.getElementById('chip-semaine-prochaine').addEventListener('click', () => {
+  semaineCoursesOffset = 1;
+  document.getElementById('chip-semaine-prochaine').classList.add('actif');
+  document.getElementById('chip-cette-semaine').classList.remove('actif');
+  afficherCourses();
+});
+
+// Afficher les courses quand on clique sur l'onglet
+document.querySelector('.nav-btn[data-page="courses"]').addEventListener('click', () => {
+  afficherCourses();
+});
+</script>
+</body>
+</html>

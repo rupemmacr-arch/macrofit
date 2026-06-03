@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/erup/Desktop/macrofit/data/seed.json'\\)\\); print\\(json.dumps\\(d['objectifsUtilisateurs'], indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(grep -v '^$')",
+      "Bash(python3 -c ':*)",
+      "Bash(python3 -c \" import sys, json lines = sys.stdin.readlines\\(\\) for line in lines[-20:]: try: d = json.loads\\(line\\) role = d.get\\('role', ''\\) content = d.get\\('content', ''\\) if isinstance\\(content, list\\): for c in content: if isinstance\\(c, dict\\) and c.get\\('type'\\) == 'text': print\\(f'[{role}]: {c[\\\\\"text\\\\\"][:200]}'\\) elif isinstance\\(content, str\\): print\\(f'[{role}]: {content[:200]}'\\) except: pass \")",
+      "Bash(python3)",
+      "Bash(grep -n \"evaluerConformite\\\\|conformite\" /Users/erup/Desktop/macrofit/*.js)",
+      "Bash(python3 -c \"import sys,json; lines=sys.stdin.readlines\\(\\); [print\\(json.loads\\(l\\).get\\('message',{}\\).get\\('content',''\\)[:500] if isinstance\\(json.loads\\(l\\).get\\('message',{}\\).get\\('content',''\\),str\\) else ''\\) for l in lines[-20:]]\")",
+      "Bash(python3 -c \"import sys; print\\(sys.stdin.read\\(\\)\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(node --input-type=module)"
+    ]
+  }
+}
