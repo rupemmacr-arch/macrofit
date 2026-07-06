@@ -169,7 +169,37 @@ async function sheetsPreparerLignesDetail() {
     { range: "'" + nomFeuille + "'!" + plage, values: labels },
   ]);
 
+  await _sheetsMettreEnGras(COACH_CRENEAUX_DETAIL.map(c => c.ligneDebut));
+
   return labels.length;
+}
+
+// Met en gras la colonne A des lignes indiquées (1-based), comme le titre
+// "Total journalier" existant.
+async function _sheetsMettreEnGras(lignes1based) {
+  const requests = lignes1based.map(ligne => ({
+    repeatCell: {
+      range: {
+        sheetId: COACH_SHEET_GID,
+        startRowIndex: ligne - 1,
+        endRowIndex: ligne,
+        startColumnIndex: 0,
+        endColumnIndex: 1,
+      },
+      cell: { userEnteredFormat: { textFormat: { bold: true } } },
+      fields: 'userEnteredFormat.textFormat.bold',
+    },
+  }));
+  const res = await fetch(
+    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + ':batchUpdate',
+    {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + _driveAccessToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ requests }),
+    }
+  );
+  if (!res.ok) throw new Error('Mise en forme (gras) échouée : ' + await _driveExtraireErreur(res));
+  return res.json();
 }
 
 // ------------------------------------------------------------
