@@ -70,10 +70,10 @@
         <button class="btn btn-principal" id="btn-nouvelle-recette" style="padding:7px 14px;font-size:13px;white-space:nowrap;">+ Nouvelle recette</button>
       </div>
     </div>
-    <div style="display:flex;flex:1;overflow:hidden;min-height:0;">
+    <div class="recettes-layout" style="display:flex;flex:1;overflow:hidden;min-height:0;">
 
       <!-- Colonne filtres 160px -->
-      <aside style="width:160px;flex-shrink:0;overflow-y:auto;padding:14px 10px;border-right:0.5px solid var(--bordure);background:var(--fond-carte);display:flex;flex-direction:column;gap:0;">
+      <aside class="recettes-filtres" style="width:160px;flex-shrink:0;overflow-y:auto;padding:14px 10px;border-right:0.5px solid var(--bordure);background:var(--fond-carte);display:flex;flex-direction:column;gap:0;">
 
         <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--texte-muted);margin-bottom:6px;padding:0 4px;">Type de repas</div>
         <div id="filtres-repas" style="display:flex;flex-direction:column;gap:2px;margin-bottom:18px;">
@@ -106,8 +106,8 @@
       </aside>
 
       <!-- Zone principale : grille 3 colonnes -->
-      <div style="flex:1;overflow-y:auto;padding:16px;">
-        <div id="liste-recettes" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-content:start;"></div>
+      <div class="recettes-grille-zone" style="flex:1;overflow-y:auto;padding:16px;">
+        <div id="liste-recettes" style="display:grid;gap:16px;align-content:start;"></div>
       </div>
 
     </div>

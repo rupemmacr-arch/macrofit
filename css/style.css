@@ -1487,6 +1487,10 @@ body {
 
 /* Zones tactiles et tailles de police adaptées au doigt (mobile uniquement,
    la densité desktop existante est conservée au-dessus de 768px). */
+#liste-recettes {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 @media (max-width: 768px) {
   .accueil-date-bloc { min-width: 100px; }
 
@@ -1532,6 +1536,33 @@ body {
   .topbar-titre {
     font-size: 17px;
   }
+
+  /* Écran Recettes : la colonne de filtres (160px fixes) passe au-dessus
+     de la grille au lieu de lui voler la largeur, et la grille passe de
+     3 à 2 colonnes pour laisser assez de place aux infos de chaque carte. */
+  .recettes-layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .recettes-filtres {
+    width: 100%;
+    max-height: 35vh;
+    border-right: none;
+    border-bottom: 0.5px solid var(--bordure);
+  }
+
+  .recettes-grille-zone {
+    overflow-y: visible;
+  }
+
+  #liste-recettes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 380px) {
+  #liste-recettes { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 360px) {
