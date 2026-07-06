@@ -24,6 +24,8 @@ const CLES = {
   TOLERANCE            : 'macrofit_tolerance',
   DISMISSED_OPTIMISEUR : 'macrofit_dismissed_optimiseur',
   CLE_API              : 'macrofit_cle_api',
+  GOOGLE_COMPTE        : 'macrofit_google_compte',
+  SYNC_DERNIER         : 'macrofit_sync_dernier',
 };
 
 // Valeurs par défaut des coefficients ×2 par catégorie d'ingrédient
@@ -769,6 +771,31 @@ function obtenirCleAPI() {
 
 function sauvegarderCleAPI(cle) {
   localStorage.setItem(CLES.CLE_API, cle);
+}
+
+
+// ------------------------------------------------------------
+//  COMPTE GOOGLE (synchronisation Drive)
+//  On ne stocke que l'email pour l'affichage — jamais le token,
+//  qui reste en mémoire et expire avec la session.
+// ------------------------------------------------------------
+
+function obtenirCompteGoogle() {
+  return localStorage.getItem(CLES.GOOGLE_COMPTE) || '';
+}
+
+function sauvegarderCompteGoogle(email) {
+  if (email) localStorage.setItem(CLES.GOOGLE_COMPTE, email);
+  else localStorage.removeItem(CLES.GOOGLE_COMPTE);
+}
+
+// Horodatage (ISO) de la dernière synchronisation Drive réussie
+function obtenirDernierSync() {
+  return localStorage.getItem(CLES.SYNC_DERNIER) || '';
+}
+
+function enregistrerDernierSync(dateISO) {
+  localStorage.setItem(CLES.SYNC_DERNIER, dateISO);
 }
 
 

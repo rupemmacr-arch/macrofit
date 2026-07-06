@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MacroFit</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer onload="initialiserGoogleAuth()" onerror="console.error('❌ Échec de chargement du script Google Identity Services (réseau/bloqueur ?)')"></script>
 </head>
 <body>
 <div id="app" style="width:100%;max-width:none;display:flex;height:100vh;padding-bottom:0;min-width:900px;">
@@ -504,6 +505,7 @@
 
 </div><script src="js/storage.js"></script>
 <script src="js/macros.js"></script>
+<script src="js/drive-sync.js"></script>
 <script>
 
 let INGREDIENTS   = [];
@@ -683,8 +685,27 @@ function rechercherIngredients(query, maxResults = 12) {
     .map(x => x.i);
 }
 
+// Appelé par drive-sync.js après application d'un snapshot téléchargé
+// (rechargement silencieux au démarrage ou juste après connexion).
+function _driveRafraichirUIApresRestauration() {
+  INGREDIENTS  = obtenirIngredients();
+  RECETTES     = obtenirRecettes();
+  OBJECTIFS    = obtenirObjectifs();
+  COEFFICIENTS = obtenirCoefficients();
+  TOLERANCE    = obtenirTolerance();
+  CLE_API      = obtenirCleAPI();
+  afficherAccueil();
+  afficherRecettes();
+  afficherPlanning();
+  afficherCourses();
+  if (document.getElementById('page-params')?.classList.contains('active')) afficherParams();
+}
+
 async function demarrer() {
   initialiserPhotoDirHandle(); // non-bloquant, pré-autorise silencieusement si possible
+  // initialiserGoogleAuth() est déclenché par l'attribut onload du script
+  // Google Identity Services (index.html <head>), pas ici : le script est
+  // chargé en async/defer et peut ne pas être prêt au moment de demarrer().
   await initialiserDonnees();
   INGREDIENTS  = obtenirIngredients();
   RECETTES     = obtenirRecettes();
@@ -3808,8 +3829,75 @@ function exporterFichier() {
   URL.revokeObjectURL(url);
 }
 
+// Formate un ISO en délai relatif ("il y a 3 minutes", "il y a 2 heures"...)
+function _formatDelaiDepuis(dateISO) {
+  const diffMs = Date.now() - new Date(dateISO).getTime();
+  const min = Math.floor(diffMs / 60000);
+  if (min < 1)  return "à l'instant";
+  if (min === 1) return 'il y a 1 minute';
+  if (min < 60) return 'il y a ' + min + ' minutes';
+  const h = Math.floor(min / 60);
+  if (h === 1) return 'il y a 1 heure';
+  if (h < 24) return 'il y a ' + h + ' heures';
+  const j = Math.floor(h / 24);
+  return 'il y a ' + j + ' jour' + (j > 1 ? 's' : '');
+}
+
+// Texte affiché sous le statut de connexion Google (Réglages → Données)
+function _texteStatutSyncDrive() {
+  if (typeof _driveSyncStatut !== 'undefined') {
+    if (_driveSyncStatut === 'en-cours') return '⏳ Synchronisation en cours...';
+    if (_driveSyncStatut === 'conflit') return '⚠️ Conflit détecté — choisis quoi garder';
+    if (_driveSyncStatut === 'erreur') {
+      return '❌ Échec de la synchronisation' + (_driveSyncDerniereErreur ? ' (' + _driveSyncDerniereErreur + ')' : '');
+    }
+  }
+  const dernier = obtenirDernierSync();
+  if (!dernier) return 'Jamais synchronisé';
+  return '✅ Dernière synchronisation : ' + _formatDelaiDepuis(dernier);
+}
+
+// Appelé par drive-sync.js à chaque changement de statut de synchronisation
+function _rafraichirIndicateurSyncDrive() {
+  const texteEl = document.getElementById('drive-sync-statut-texte');
+  if (texteEl) texteEl.textContent = _texteStatutSyncDrive();
+  const btnSync = document.getElementById('btn-google-sync-maintenant');
+  if (btnSync) btnSync.disabled = (typeof _driveSyncStatut !== 'undefined' && _driveSyncStatut === 'en-cours');
+}
+
+// Appelé par drive-sync.js quand un conflit est détecté (Drive a des données
+// plus récentes ET cet appareil a aussi des changements pas encore synchronisés).
+// Pas de fusion automatique : on demande explicitement quoi garder.
+function _driveGererConflit(distant) {
+  const garderLocal = confirm(
+    '⚠️ Conflit de synchronisation\n\n' +
+    "Un autre appareil a synchronisé des données plus récentes, et tu as aussi des changements sur celui-ci.\n\n" +
+    "OK → garder TES modifications ici (elles remplaceront celles de l'autre appareil)\n" +
+    "Annuler → récupérer les modifications de L'AUTRE appareil (tes changements récents ici seront perdus)"
+  );
+  if (garderLocal) {
+    driveSauvegarderDonnees({ forcerEcrasement: true });
+  } else {
+    _driveAppliquerSnapshot(distant);
+  }
+}
+
 function afficherParamsDonnees() {
+  const compteGoogle = obtenirCompteGoogle();
   document.getElementById('params-contenu').innerHTML =
+    '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
+    '<div class="carte-titre">🔗 Synchronisation Google Drive</div>' +
+    '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Connecte ton compte Google pour synchroniser tes données entre ton téléphone et ton ordinateur (stockage privé dans ton Drive, invisible dans tes fichiers).</p>' +
+    (compteGoogle
+      ? '<p style="font-size:13px;margin-bottom:6px">✅ Connecté : <strong>' + compteGoogle + '</strong></p>' +
+        '<p id="drive-sync-statut-texte" style="font-size:13px;color:var(--texte-muted);margin-bottom:10px">' + _texteStatutSyncDrive() + '</p>' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+        '<button class="btn" id="btn-google-sync-maintenant">🔄 Synchroniser maintenant</button>' +
+        '<button class="btn" id="btn-google-deconnecter">Se déconnecter</button>' +
+        '</div>'
+      : '<button class="btn btn-principal btn-plein" id="btn-google-connecter">🔗 Se connecter à Google</button>') +
+    '<p id="drive-sync-erreur" style="font-size:13px;color:var(--rouge, #c0392b);margin-top:10px;display:none"></p>' +
+    '</div>' +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
     '<div class="carte-titre">⬇ Exporter mes données</div>' +
     '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Télécharge une copie complète de toutes tes données (recettes, ingrédients, planning, objectifs, journal).</p>' +
@@ -3821,6 +3909,42 @@ function afficherParamsDonnees() {
     '<input type="file" id="input-import-donnees" accept=".json" style="display:none">' +
     '<button class="btn btn-plein" id="btn-importer-donnees">⬆ Choisir un fichier</button>' +
     '</div>';
+
+  const btnGoogleConnecter = document.getElementById('btn-google-connecter');
+  if (btnGoogleConnecter) {
+    btnGoogleConnecter.addEventListener('click', async () => {
+      const erreurEl = document.getElementById('drive-sync-erreur');
+      erreurEl.style.display = 'none';
+      btnGoogleConnecter.disabled = true;
+      btnGoogleConnecter.textContent = 'Connexion en cours...';
+      try {
+        await connecterGoogleDrive();
+        afficherParamsDonnees();
+        // On récupère d'abord ce qui existe déjà sur Drive (cas d'un 2e appareil) ;
+        // si rien n'existe encore, on pousse les données locales (1er appareil).
+        const recupere = await driveRecupererDonnees();
+        if (!recupere) driveSauvegarderDonnees();
+      } catch (e) {
+        erreurEl.textContent = '❌ Connexion échouée : ' + e.message;
+        erreurEl.style.display = '';
+        btnGoogleConnecter.disabled = false;
+        btnGoogleConnecter.textContent = '🔗 Se connecter à Google';
+      }
+    });
+  }
+
+  const btnGoogleDeconnecter = document.getElementById('btn-google-deconnecter');
+  if (btnGoogleDeconnecter) {
+    btnGoogleDeconnecter.addEventListener('click', () => {
+      deconnecterGoogleDrive();
+      afficherParamsDonnees();
+    });
+  }
+
+  const btnSyncMaintenant = document.getElementById('btn-google-sync-maintenant');
+  if (btnSyncMaintenant) {
+    btnSyncMaintenant.addEventListener('click', () => { driveSauvegarderDonnees(); });
+  }
 
   document.getElementById('btn-exporter-donnees').addEventListener('click', exporterFichier);
 
