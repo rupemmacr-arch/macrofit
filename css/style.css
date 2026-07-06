@@ -1491,6 +1491,40 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+#page-recettes {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.recettes-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.recettes-filtres {
+  width: 160px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 14px 10px;
+  border-right: 0.5px solid var(--bordure);
+  background: var(--fond-carte);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.recettes-grille-zone {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+#recherche-recette {
+  width: 220px;
+}
+
 .recettes-filtre-groupe {
   display: flex;
   flex-direction: column;
@@ -1587,9 +1621,15 @@ body {
   /* Écran Recettes : la colonne de filtres (160px fixes) passe au-dessus
      de la grille au lieu de lui voler la largeur, et la grille passe de
      3 à 2 colonnes pour laisser assez de place aux infos de chaque carte. */
+  #page-recettes {
+    height: auto;
+    overflow: visible;
+  }
+
   .recettes-layout {
     flex-direction: column;
-    overflow-y: auto;
+    overflow: visible;
+    min-height: auto;
   }
 
   .recettes-filtres {

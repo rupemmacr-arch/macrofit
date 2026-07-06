@@ -61,19 +61,19 @@
   </div>
 
   <!-- RECETTES -->
-  <div id="page-recettes" class="page" style="height:100vh;overflow:hidden;">
+  <div id="page-recettes" class="page">
     <div class="topbar">
       <div class="topbar-titre">📖 Mes recettes</div>
       <div class="recettes-topbar-actions" style="display:flex;align-items:center;gap:10px;">
-        <input class="recherche" id="recherche-recette" placeholder="🔍 Rechercher..." type="text" style="width:220px;margin:0;">
+        <input class="recherche" id="recherche-recette" placeholder="🔍 Rechercher..." type="text" style="margin:0;">
         <button class="btn" id="btn-importer-recette" style="padding:7px 14px;font-size:13px;white-space:nowrap;">✨ Importer</button>
         <button class="btn btn-principal" id="btn-nouvelle-recette" style="padding:7px 14px;font-size:13px;white-space:nowrap;">+ Nouvelle recette</button>
       </div>
     </div>
-    <div class="recettes-layout" style="display:flex;flex:1;overflow:hidden;min-height:0;">
+    <div class="recettes-layout">
 
       <!-- Colonne filtres 160px -->
-      <aside class="recettes-filtres" style="width:160px;flex-shrink:0;overflow-y:auto;padding:14px 10px;border-right:0.5px solid var(--bordure);background:var(--fond-carte);display:flex;flex-direction:column;gap:0;">
+      <aside class="recettes-filtres">
 
         <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--texte-muted);margin-bottom:6px;padding:0 4px;">Type de repas</div>
         <div id="filtres-repas" class="recettes-filtre-groupe">
@@ -106,7 +106,7 @@
       </aside>
 
       <!-- Zone principale : grille 3 colonnes -->
-      <div class="recettes-grille-zone" style="flex:1;overflow-y:auto;padding:16px;">
+      <div class="recettes-grille-zone">
         <div id="liste-recettes" style="display:grid;gap:16px;align-content:start;"></div>
       </div>
 
