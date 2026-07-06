@@ -174,10 +174,26 @@ async function sheetsPreparerLignesDetail() {
   return labels.length;
 }
 
+// Envoie une liste de requêtes de mise en forme (spreadsheets.batchUpdate,
+// distinct de values:batchUpdate qui ne gère que le contenu des cellules).
+async function _sheetsAppliquerFormat(requests) {
+  if (!requests.length) return null;
+  const res = await fetch(
+    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + ':batchUpdate',
+    {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + _driveAccessToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ requests }),
+    }
+  );
+  if (!res.ok) throw new Error('Mise en forme échouée : ' + await _driveExtraireErreur(res));
+  return res.json();
+}
+
 // Met en gras la colonne A des lignes indiquées (1-based), comme le titre
 // "Total journalier" existant.
-async function _sheetsMettreEnGras(lignes1based) {
-  const requests = lignes1based.map(ligne => ({
+function _sheetsMettreEnGras(lignes1based) {
+  return _sheetsAppliquerFormat(lignes1based.map(ligne => ({
     repeatCell: {
       range: {
         sheetId: COACH_SHEET_GID,
@@ -189,17 +205,49 @@ async function _sheetsMettreEnGras(lignes1based) {
       cell: { userEnteredFormat: { textFormat: { bold: true } } },
       fields: 'userEnteredFormat.textFormat.bold',
     },
-  }));
-  const res = await fetch(
-    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + ':batchUpdate',
-    {
-      method: 'POST',
-      headers: { Authorization: 'Bearer ' + _driveAccessToken, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ requests }),
-    }
-  );
-  if (!res.ok) throw new Error('Mise en forme (gras) échouée : ' + await _driveExtraireErreur(res));
-  return res.json();
+  })));
+}
+
+// ------------------------------------------------------------
+//  COLORATION SELON LA TOLÉRANCE MACROFIT
+//  Vert si l'écart (valeur réelle vs objectif) est dans la tolérance
+//  réglée dans MacroFit (Réglages), rouge sinon — même logique que
+//  evaluerConformite (js/macros.js), appliquée par macro (P/G/L
+//  uniquement, comme dans l'app ; Kcal/Fibres restent neutres).
+// ------------------------------------------------------------
+const COACH_COULEUR_VERT  = { red: 0.851, green: 0.918, blue: 0.827 };
+const COACH_COULEUR_ROUGE = { red: 0.957, green: 0.800, blue: 0.800 };
+
+function _sheetsRequeteCouleurCellule(colIndex0based, ligne1based, couleur) {
+  return {
+    repeatCell: {
+      range: {
+        sheetId: COACH_SHEET_GID,
+        startRowIndex: ligne1based - 1,
+        endRowIndex: ligne1based,
+        startColumnIndex: colIndex0based,
+        endColumnIndex: colIndex0based + 1,
+      },
+      cell: { userEnteredFormat: { backgroundColor: couleur } },
+      fields: 'userEnteredFormat.backgroundColor',
+    },
+  };
+}
+
+// Ajoute les requêtes de coloration Protéines/Glucides/Lipides pour un bloc
+// (ligneProteines = ligne de la première des 3 métriques : Protéines,
+// Glucides puis Lipides sur les 2 lignes suivantes).
+function _sheetsAjouterCouleursConformite(requests, colIndex0based, ligneProteines, valeurs, cible, tolerance) {
+  if (!cible) return;
+  [
+    { val: valeurs.proteines, cible: cible.proteines, ligne: ligneProteines },
+    { val: valeurs.glucides,  cible: cible.glucides,  ligne: ligneProteines + 1 },
+    { val: valeurs.lipides,   cible: cible.lipides,   ligne: ligneProteines + 2 },
+  ].forEach(m => {
+    if (m.cible === undefined) return;
+    const conforme = Math.abs(m.val - m.cible) <= tolerance;
+    requests.push(_sheetsRequeteCouleurCellule(colIndex0based, m.ligne, conforme ? COACH_COULEUR_VERT : COACH_COULEUR_ROUGE));
+  });
 }
 
 // ------------------------------------------------------------
@@ -250,7 +298,8 @@ async function sheetsEnvoyerAuCoach() {
   await _sheetsAssurerConnexion();
   const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
   const dateISO    = dateVersISO(new Date());
-  const { colLettre } = _sheetsColonneJour(dateISO);
+  const { colLettre, colIndex } = _sheetsColonneJour(dateISO);
+  const colIndex0 = colIndex - 1;
   const cellule = (ligne) => "'" + nomFeuille + "'!" + colLettre + ligne;
 
   const data = [];
@@ -273,15 +322,20 @@ async function sheetsEnvoyerAuCoach() {
     values: [[total.proteines], [total.glucides], [total.lipides], [total.calories], [total.fibres]],
   });
 
+  // Coloration Protéines/Glucides/Lipides selon la tolérance MacroFit
+  // (même logique que evaluerConformite, js/macros.js).
+  const tolerance    = obtenirTolerance();
+  const formatRequests = [];
+  _sheetsAjouterCouleursConformite(formatRequests, colIndex0, COACH_LIGNE_TOTAL_DEBUT, total, OBJECTIFS?.moi?.quotidien, tolerance);
+
   // Détail par créneau — 0 si le repas n'a pas été marqué mangé.
   // On réécrit tout le bloc (ligne titre + 5 métriques + ligne vide),
   // titre et ligne vide remis à '' à chaque envoi : ça évite qu'un résidu
   // d'un ancien format/emplacement traîne à côté des nouvelles valeurs.
   COACH_CRENEAUX_DETAIL.forEach((c, i) => {
     const { macros, mange } = detailParCreneau[c.id];
-    const vals = mange
-      ? [macros.proteines, macros.glucides, macros.lipides, macros.calories, macros.fibres ?? 0]
-      : [0, 0, 0, 0, 0];
+    const valeursReelles = mange ? macros : { proteines: 0, glucides: 0, lipides: 0, calories: 0, fibres: 0 };
+    const vals = [valeursReelles.proteines, valeursReelles.glucides, valeursReelles.lipides, valeursReelles.calories, valeursReelles.fibres ?? 0];
     const estDernier = i === COACH_CRENEAUX_DETAIL.length - 1;
     const ligneFin = c.ligneDebut + 1 + 4 + (estDernier ? 0 : 1);
     const valeursBloc = [[''], ...vals.map(v => [v])];
@@ -290,8 +344,10 @@ async function sheetsEnvoyerAuCoach() {
       range: "'" + nomFeuille + "'!" + colLettre + c.ligneDebut + ':' + colLettre + ligneFin,
       values: valeursBloc,
     });
+    _sheetsAjouterCouleursConformite(formatRequests, colIndex0, c.ligneDebut + 1, valeursReelles, OBJECTIFS?.moi?.parRepas?.[c.id], tolerance);
   });
 
   await _sheetsEcrireValeurs(data);
+  await _sheetsAppliquerFormat(formatRequests);
   _coachEnregistrerEnvoi(dateISO);
 }
