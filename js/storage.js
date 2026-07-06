@@ -182,13 +182,31 @@ function _ajouterCollationObjectifs() {
   if (modifie) localStorage.setItem(CLES.OBJECTIFS, JSON.stringify(objectifs));
 }
 
+// Ajoute le créneau Collation matin (post-training) aux objectifs si absent
+function _ajouterCollationMatinObjectifs() {
+  const objectifs = obtenirObjectifs();
+  if (!objectifs) return;
+  const defauts = {
+    moi    : { proteines: 15, glucides: 20, lipides: 8,  calories: 210, fibres: 5 },
+    copain : { proteines: 20, glucides: 25, lipides: 10, calories: 270, fibres: 5 },
+  };
+  let modifie = false;
+  for (const [user, def] of Object.entries(defauts)) {
+    if (objectifs[user] && !objectifs[user].parRepas?.['Collation matin']) {
+      objectifs[user].parRepas['Collation matin'] = def;
+      modifie = true;
+    }
+  }
+  if (modifie) localStorage.setItem(CLES.OBJECTIFS, JSON.stringify(objectifs));
+}
+
 // Ajoute les fibres aux objectifs de chaque utilisateur si elles manquent
 function _migrerFibresObjectifs() {
   const objectifs = obtenirObjectifs();
   if (!objectifs) return;
   const fibresDefaut = {
-    moi    : { 'Petit-déjeuner': 7, 'Déjeuner': 10, 'Collation': 5, 'Dîner': 10 },
-    copain : { 'Petit-déjeuner': 8, 'Déjeuner': 12, 'Collation': 5, 'Dîner': 12 },
+    moi    : { 'Petit-déjeuner': 7, 'Collation matin': 5, 'Déjeuner': 10, 'Collation': 5, 'Dîner': 10 },
+    copain : { 'Petit-déjeuner': 8, 'Collation matin': 5, 'Déjeuner': 12, 'Collation': 5, 'Dîner': 12 },
   };
   let modifie = false;
   for (const [user, repasDefauts] of Object.entries(fibresDefaut)) {
@@ -245,6 +263,7 @@ function _ajouterQuotidienObjectifs() {
 // une structure toujours complète quelle que soit sa provenance.
 function appliquerMigrationsObjectifs() {
   _ajouterCollationObjectifs();
+  _ajouterCollationMatinObjectifs();
   _migrerFibresObjectifs();
   _ajouterQuotidienObjectifs();
 }

@@ -6327,6 +6327,13 @@
           "calories": 410,
           "fibres": 7
         },
+        "Collation matin": {
+          "proteines": 15,
+          "glucides": 20,
+          "lipides": 8,
+          "calories": 210,
+          "fibres": 5
+        },
         "Déjeuner": {
           "proteines": 40,
           "glucides": 50,
@@ -6359,6 +6366,13 @@
           "lipides": 18,
           "calories": 490,
           "fibres": 8
+        },
+        "Collation matin": {
+          "proteines": 20,
+          "glucides": 25,
+          "lipides": 10,
+          "calories": 270,
+          "fibres": 5
         },
         "Déjeuner": {
           "proteines": 50,

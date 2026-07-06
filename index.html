@@ -79,6 +79,7 @@
         <div id="filtres-repas" class="recettes-filtre-groupe">
           <button class="recettes-filtre-btn" data-filtre=""          >Toutes</button>
           <button class="recettes-filtre-btn" data-filtre="Petit-déjeuner">☀️ Petit-déj</button>
+          <button class="recettes-filtre-btn" data-filtre="Collation matin">🥤 Collation matin</button>
           <button class="recettes-filtre-btn" data-filtre="Déjeuner"   >🌤️ Déjeuner</button>
           <button class="recettes-filtre-btn" data-filtre="Collation"  >🍎 Collation</button>
           <button class="recettes-filtre-btn" data-filtre="Dîner"      >🌙 Dîner</button>
@@ -229,6 +230,7 @@
         <div class="carte-titre">Type de repas</div>
         <div class="filtres" id="form-type-repas" style="margin-bottom:0">
           <button class="chip" data-repas="Petit-déjeuner">☀️ Petit-déj</button>
+          <button class="chip" data-repas="Collation matin">🥤 Collation matin</button>
           <button class="chip" data-repas="Déjeuner">🌤️ Déjeuner</button>
           <button class="chip" data-repas="Collation">🍎 Collation</button>
           <button class="chip" data-repas="Dîner">🌙 Dîner</button>
@@ -853,6 +855,7 @@ function afficherAccueil() {
   const repasLibres   = obtenirRepasLibreJour(aujourd_hui);
   const REPAS = [
     { id: 'Petit-déjeuner', icone: '☀️' },
+    { id: 'Collation matin', icone: '🥤' },
     { id: 'Déjeuner',       icone: '🌤️' },
     { id: 'Collation',      icone: '🍎' },
     { id: 'Dîner',          icone: '🌙' },
@@ -860,6 +863,7 @@ function afficherAccueil() {
 
   const fondsMeal = {
     'Petit-déjeuner': '#FEF3E2',
+    'Collation matin': '#FDEBEA',
     'Déjeuner':       '#E8F4FF',
     'Collation':      '#EEFAED',
     'Dîner':          '#F0EBF8',
@@ -1173,7 +1177,7 @@ function ouvrirRemplacementRepas(typeRepas) {
   _repasLibrePickerIngId  = null;
   _repasLibreOnglet       = 'ia';
 
-  const icones = { 'Petit-déjeuner':'☀️','Déjeuner':'🌤️','Collation':'🍎','Dîner':'🌙' };
+  const icones = { 'Petit-déjeuner':'☀️','Collation matin':'🥤','Déjeuner':'🌤️','Collation':'🍎','Dîner':'🌙' };
   document.getElementById('remplacement-titre').textContent =
     (icones[typeRepas] || '') + ' ' + typeRepas;
 
@@ -1589,8 +1593,8 @@ function afficherRecettes() {
     mettreAJourFiltresActifs();
     return;
   }
-  const icones      = { 'Petit-déjeuner': '☀️', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
-  const fondsPhoto  = { 'Petit-déjeuner': '#FFF8E7', 'Déjeuner': '#EDFAF4', 'Collation': '#F2FBF0', 'Dîner': '#EEEEFF' };
+  const icones      = { 'Petit-déjeuner': '☀️', 'Collation matin': '🥤', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
+  const fondsPhoto  = { 'Petit-déjeuner': '#FFF8E7', 'Collation matin': '#FDEBEA', 'Déjeuner': '#EDFAF4', 'Collation': '#F2FBF0', 'Dîner': '#EEEEFF' };
   const emojisPhoto = { 'Poulet': '🍗', 'Œuf': '🥚', 'Bœuf': '🥩', 'Légumineuses': '🫘', 'Poisson': '🐟' };
   listeEl.innerHTML = resultats.map(recette => {
     const macros     = calculerMacrosRecette(recette, INGREDIENTS);
@@ -1707,7 +1711,7 @@ function rendreDetailContenu() {
   const aDesObjectifs = objRepas && (objRepas.proteines > 0 || objRepas.glucides > 0 || objRepas.lipides > 0);
   const objScaled  = aDesObjectifs ? { ...objRepas } : null;
   const conformite = aDesObjectifs ? evaluerConformite(macros, objScaled, TOLERANCE) : { statut: 'vert', message: 'Conforme aux objectifs' };
-  const icones     = { 'Petit-déjeuner': '☀️', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
+  const icones     = { 'Petit-déjeuner': '☀️', 'Collation matin': '🥤', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
   document.getElementById('detail-titre').textContent = recetteEnCours.nom;
   document.getElementById('btn-favori-detail').textContent = recetteEnCours.favori ? '★' : '☆';
   const lignesIng = recetteEnCours.ingredients.map(ligne => {
@@ -1894,7 +1898,7 @@ function branchementsDetail() {
 function imprimerRecette(recette, portions) {
   if (!recette) return;
   const p       = portions || 1;
-  const icones  = { 'Petit-déjeuner': '☀', 'Déjeuner': '⬤', 'Collation': '◆', 'Dîner': '◑' };
+  const icones  = { 'Petit-déjeuner': '☀', 'Collation matin': '✦', 'Déjeuner': '⬤', 'Collation': '◆', 'Dîner': '◑' };
   const portionLabel = p === 1 ? '1 portion' : p + ' portions';
 
   const lignesIng = recette.ingredients.map(ligne => {
@@ -2236,6 +2240,7 @@ function afficherPlanning() {
     barreMacro('Lipides',   totalSemaine.lipides,   cibleSemaine.lipides,   'lipides');
   const REPAS = [
     { id: 'Petit-déjeuner', icone: '☀️', court: 'Petit-déj' },
+    { id: 'Collation matin', icone: '🥤', court: 'Col. matin' },
     { id: 'Déjeuner',       icone: '🌤️', court: 'Déjeuner'  },
     { id: 'Collation',      icone: '🍎', court: 'Collation'  },
     { id: 'Dîner',          icone: '🌙', court: 'Dîner'      },
@@ -2362,6 +2367,7 @@ function imprimerPlanning() {
   const planning = obtenirPlanning();
   const REPAS    = [
     { id: 'Petit-déjeuner', icone: '☀️' },
+    { id: 'Collation matin', icone: '🥤' },
     { id: 'Déjeuner',       icone: '🌤️' },
     { id: 'Collation',      icone: '🍎' },
     { id: 'Dîner',          icone: '🌙' },
@@ -2470,7 +2476,7 @@ function imprimerPlanning() {
 }
 
 function ouvrirModal() {
-  const icones = { 'Petit-déjeuner': '☀️', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
+  const icones = { 'Petit-déjeuner': '☀️', 'Collation matin': '🥤', 'Déjeuner': '🌤️', 'Collation': '🍎', 'Dîner': '🌙' };
   document.getElementById('modal-titre').textContent = (icones[modalTypeRepas]||'') + ' Choisir pour ' + modalTypeRepas;
   document.getElementById('modal-recherche').value = '';
   afficherListeModal('');
@@ -3422,6 +3428,7 @@ function afficherParamsObjectifs() {
   const obj = OBJECTIFS.moi;
   const REPAS = [
     { id: 'Petit-déjeuner', icone: '☀️', cle: 'pdej' },
+    { id: 'Collation matin', icone: '🥤', cle: 'colm' },
     { id: 'Déjeuner',       icone: '🌤️', cle: 'dej'  },
     { id: 'Collation',      icone: '🍎', cle: 'col'   },
     { id: 'Dîner',          icone: '🌙', cle: 'din'   },
@@ -3543,6 +3550,7 @@ function sauvegarderObjectifs() {
   };
   const REPAS = [
     { id: 'Petit-déjeuner', cle: 'pdej' },
+    { id: 'Collation matin', cle: 'colm' },
     { id: 'Déjeuner',       cle: 'dej'  },
     { id: 'Collation',      cle: 'col'  },
     { id: 'Dîner',          cle: 'din'  },
@@ -4203,7 +4211,7 @@ Retourne un objet JSON avec cette structure exacte :
 }
 
 Règles :
-- typeRepas : exactement l'un de "Petit-déjeuner", "Déjeuner", "Collation", "Dîner"
+- typeRepas : exactement l'un de "Petit-déjeuner", "Collation matin", "Déjeuner", "Collation", "Dîner"
 - typeProteine : exactement l'un de "Poulet", "Œuf", "Bœuf", "Légumineuses", "Poisson", "Autre"
 - Pour chaque ingrédient : si tu trouves un correspondant proche dans la liste, utilise son id. Sinon mets ingredientId à null et fournis nom, categorie et nutrition (valeurs estimées pour 100g).
 - categorie doit être l'une de : "Viandes, Oeufs & Poissons", "Céréales & Féculents", "Fruits & Légumes", "Produits Laitiers", "Matières Grasses", "Condiments & Épices", "Produits Sucrés", "Boissons"
