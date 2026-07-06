@@ -274,16 +274,21 @@ async function sheetsEnvoyerAuCoach() {
   });
 
   // Détail par créneau — 0 si le repas n'a pas été marqué mangé.
-  // ligneDebut = ligne du titre du créneau ; les métriques commencent à ligneDebut + 1.
-  COACH_CRENEAUX_DETAIL.forEach(c => {
+  // On réécrit tout le bloc (ligne titre + 5 métriques + ligne vide),
+  // titre et ligne vide remis à '' à chaque envoi : ça évite qu'un résidu
+  // d'un ancien format/emplacement traîne à côté des nouvelles valeurs.
+  COACH_CRENEAUX_DETAIL.forEach((c, i) => {
     const { macros, mange } = detailParCreneau[c.id];
     const vals = mange
       ? [macros.proteines, macros.glucides, macros.lipides, macros.calories, macros.fibres ?? 0]
       : [0, 0, 0, 0, 0];
-    const ligneMetriques = c.ligneDebut + 1;
+    const estDernier = i === COACH_CRENEAUX_DETAIL.length - 1;
+    const ligneFin = c.ligneDebut + 1 + 4 + (estDernier ? 0 : 1);
+    const valeursBloc = [[''], ...vals.map(v => [v])];
+    if (!estDernier) valeursBloc.push(['']);
     data.push({
-      range: "'" + nomFeuille + "'!" + colLettre + ligneMetriques + ':' + colLettre + (ligneMetriques + 4),
-      values: vals.map(v => [v]),
+      range: "'" + nomFeuille + "'!" + colLettre + c.ligneDebut + ':' + colLettre + ligneFin,
+      values: valeursBloc,
     });
   });
 
