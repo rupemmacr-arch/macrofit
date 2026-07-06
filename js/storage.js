@@ -157,9 +157,8 @@ async function _mettreAJourIngredients() {
   }));
   sauvegarderRecettes(recettesMigrees);
 
-  // Ajouter la Collation et les fibres aux objectifs si absents (migration sans reset des données)
-  _ajouterCollationObjectifs();
-  _migrerFibresObjectifs();
+  // Garantir une structure d'objectifs complète (Collation, fibres, quotidien) sans reset des données
+  appliquerMigrationsObjectifs();
 
   localStorage.setItem(CLES.SEED_VERSION, SEED_VERSION);
   console.log(`✅ Ingrédients et recettes migrés vers ${SEED_VERSION}`);
@@ -209,6 +208,47 @@ function _migrerFibresObjectifs() {
   if (modifie) localStorage.setItem(CLES.OBJECTIFS, JSON.stringify(objectifs));
 }
 
+// Additionne les repas d'un utilisateur pour obtenir des totaux quotidiens
+function _genererQuotidienDepuisParRepas(parRepas) {
+  const total = { proteines: 0, glucides: 0, lipides: 0, calories: 0, fibres: 0 };
+  Object.values(parRepas || {}).forEach(r => {
+    total.proteines += r.proteines || 0;
+    total.glucides  += r.glucides  || 0;
+    total.lipides   += r.lipides   || 0;
+    total.calories  += r.calories  || 0;
+    total.fibres    += r.fibres    || 0;
+  });
+  return total;
+}
+
+// Ajoute les objectifs quotidiens s'ils manquent. Le seed ne contient que
+// des objectifs par repas : le quotidien n'est normalement créé qu'au premier
+// enregistrement manuel du formulaire Réglages → Objectifs. Sans ce filet,
+// un tout premier lancement (ou une donnée reçue d'un autre appareil qui n'a
+// jamais visité cet écran) fait planter l'affichage du planning et des réglages.
+function _ajouterQuotidienObjectifs() {
+  const objectifs = obtenirObjectifs();
+  if (!objectifs) return;
+  let modifie = false;
+  for (const user of Object.keys(objectifs)) {
+    if (!objectifs[user].quotidien) {
+      objectifs[user].quotidien = _genererQuotidienDepuisParRepas(objectifs[user].parRepas);
+      modifie = true;
+    }
+  }
+  if (modifie) localStorage.setItem(CLES.OBJECTIFS, JSON.stringify(objectifs));
+}
+
+// Regroupe toutes les migrations de sécurité sur les objectifs. À appeler
+// après tout chargement de données — premier lancement, mise à jour de
+// version, ou application d'un snapshot reçu de Google Drive — pour garantir
+// une structure toujours complète quelle que soit sa provenance.
+function appliquerMigrationsObjectifs() {
+  _ajouterCollationObjectifs();
+  _migrerFibresObjectifs();
+  _ajouterQuotidienObjectifs();
+}
+
 
 // ------------------------------------------------------------
 //  INITIALISATION
@@ -224,6 +264,7 @@ async function initialiserDonnees() {
     console.log('🌱 Premier lancement : chargement des données initiales...');
     try {
       await _chargerSeedComplet();
+      appliquerMigrationsObjectifs(); // le seed ne contient pas les objectifs quotidiens
       console.log('✅ Données initiales chargées avec succès');
     } catch (erreur) {
       console.error('❌ Erreur lors du chargement de seed.json :', erreur);
@@ -239,9 +280,8 @@ async function initialiserDonnees() {
       console.error('❌ Erreur lors de la mise à jour des ingrédients :', erreur);
     }
   } else {
-    // Garantir la présence de la Collation et des fibres même sans changement de version
-    _ajouterCollationObjectifs();
-    _migrerFibresObjectifs();
+    // Garantir une structure d'objectifs complète même sans changement de version
+    appliquerMigrationsObjectifs();
     console.log('✅ Données à jour');
   }
 }

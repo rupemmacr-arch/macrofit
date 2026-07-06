@@ -343,6 +343,9 @@ function _driveAppliquerSnapshot(snapshot) {
     Object.entries(snapshot.donnees || {}).forEach(([cle, valeur]) => {
       localStorage.setItem(cle, valeur);
     });
+    // Filet de sécurité si l'appareil d'origine avait lui-même des objectifs
+    // incomplets (ex. jamais visité l'écran Réglages → Objectifs).
+    if (typeof appliquerMigrationsObjectifs === 'function') appliquerMigrationsObjectifs();
   } finally {
     _driveRestaurationEnCours = false;
   }
