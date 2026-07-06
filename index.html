@@ -64,7 +64,7 @@
   <div id="page-recettes" class="page" style="height:100vh;overflow:hidden;">
     <div class="topbar">
       <div class="topbar-titre">📖 Mes recettes</div>
-      <div style="display:flex;align-items:center;gap:10px;">
+      <div class="recettes-topbar-actions" style="display:flex;align-items:center;gap:10px;">
         <input class="recherche" id="recherche-recette" placeholder="🔍 Rechercher..." type="text" style="width:220px;margin:0;">
         <button class="btn" id="btn-importer-recette" style="padding:7px 14px;font-size:13px;white-space:nowrap;">✨ Importer</button>
         <button class="btn btn-principal" id="btn-nouvelle-recette" style="padding:7px 14px;font-size:13px;white-space:nowrap;">+ Nouvelle recette</button>
@@ -2291,24 +2291,34 @@ function afficherPlanning() {
     );
   }
 
-  // Rangée 1 : Lun–Mar–Mer (3 colonnes) — Rangée 2 : Jeu–Ven–Sam–Dim (4 colonnes)
+  // Desktop : tout tient à l'écran sans scroll (rangée 3 colonnes + rangée 4 colonnes).
+  // Mobile : chaque carte jour est illisible une fois comprimée à cette largeur ;
+  // on empile simplement les 7 jours en liste verticale, avec scroll normal.
+  const esMobile = window.innerWidth <= 768;
   const gap = 'var(--espace-sm)';
-  document.getElementById('planning-jours').innerHTML =
-    '<div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:' + gap + ';min-height:0;overflow:hidden;">' +
-    joursHtml.slice(0, 3).join('') +
-    '</div>' +
-    '<div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:' + gap + ';min-height:0;overflow:hidden;">' +
-    joursHtml.slice(3).join('') +
-    '</div>';
 
-  // Layout sans scroll : planning-jours remplit la hauteur restante en flex colonne
+  if (esMobile) {
+    document.getElementById('planning-jours').innerHTML = joursHtml.join('');
+  } else {
+    // Rangée 1 : Lun–Mar–Mer (3 colonnes) — Rangée 2 : Jeu–Ven–Sam–Dim (4 colonnes)
+    document.getElementById('planning-jours').innerHTML =
+      '<div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:' + gap + ';min-height:0;overflow:hidden;">' +
+      joursHtml.slice(0, 3).join('') +
+      '</div>' +
+      '<div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:' + gap + ';min-height:0;overflow:hidden;">' +
+      joursHtml.slice(3).join('') +
+      '</div>';
+  }
+
+  // Layout sans scroll sur desktop (planning-jours remplit la hauteur restante en
+  // flex colonne) ; scroll vertical normal sur mobile.
   const joursEl = document.getElementById('planning-jours');
-  joursEl.style.flex           = '1';
+  joursEl.style.flex           = esMobile ? '' : '1';
   joursEl.style.display        = 'flex';
   joursEl.style.flexDirection  = 'column';
   joursEl.style.gap            = '8px';
-  joursEl.style.overflow       = 'hidden';
-  joursEl.style.minHeight      = '0';
+  joursEl.style.overflow       = esMobile ? 'visible' : 'hidden';
+  joursEl.style.minHeight      = esMobile ? '' : '0';
 
   document.getElementById('planning-macros-semaine').style.flexShrink = '0';
 
@@ -2316,7 +2326,7 @@ function afficherPlanning() {
   if (contenu) {
     contenu.style.display       = 'flex';
     contenu.style.flexDirection = 'column';
-    contenu.style.overflowY     = 'hidden';
+    contenu.style.overflowY     = esMobile ? 'auto' : 'hidden';
   }
   document.querySelectorAll('.planning-btn-ajouter').forEach(btn => {
     btn.addEventListener('click', () => {

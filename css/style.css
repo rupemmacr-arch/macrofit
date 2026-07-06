@@ -1537,6 +1537,27 @@ body {
     font-size: 17px;
   }
 
+  /* Écran Recettes : titre sur sa propre ligne, recherche pleine largeur,
+     boutons Importer/Nouvelle recette côte à côte en dessous. */
+  #page-recettes .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recettes-topbar-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  #recherche-recette {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  #btn-importer-recette, #btn-nouvelle-recette {
+    flex: 1;
+  }
+
   /* Écran Recettes : la colonne de filtres (160px fixes) passe au-dessus
      de la grille au lieu de lui voler la largeur, et la grille passe de
      3 à 2 colonnes pour laisser assez de place aux infos de chaque carte. */
