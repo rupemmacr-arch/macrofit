@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MacroFit</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#F26C3A">
+  <!-- iOS : Safari ignore largement manifest.json pour l'écran d'accueil,
+       ces balises sont nécessaires pour un lancement standalone sur iPhone. -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MacroFit">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <script src="https://accounts.google.com/gsi/client" async defer onload="initialiserGoogleAuth()" onerror="console.error('❌ Échec de chargement du script Google Identity Services (réseau/bloqueur ?)')"></script>
 </head>
 <body>
@@ -4118,6 +4126,14 @@ function branchementsModal() {
 }
 
 demarrer();
+
+// Enregistrement du service worker (installation PWA + cache hors ligne)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('js/service-worker.js')
+      .catch(err => console.error('❌ Échec d\'enregistrement du service worker :', err));
+  });
+}
 
 
 // ============================================================
