@@ -2,12 +2,61 @@
 //  MacroFit — coach-sync.js
 //  Envoi des données du jour vers le Google Sheets "Fiche de suivi"
 //  partagé par le coach.
-//  Phase 1 : lecture seule (diagnostic de structure), rien n'est
-//  encore écrit dans le fichier.
+//  Phase 1 : lecture seule (diagnostic de structure).
+//  Phase 2 : calcul de colonne + préparation des 25 lignes de détail
+//  + écriture quotidienne (pas, repas respectés, macros).
 // ============================================================
 
 const COACH_SHEET_ID = '1HI8R8p5Loka7t_SCUoISELKM2qaXBFQb7qwVctli8Yc';
 const COACH_SHEET_GID = 1746939284; // onglet visé par l'URL fournie
+
+// Semaine 1 = lundi 15 juin 2026, colonnes B à H. Motif : 7 colonnes de jours
+// + 2 colonnes d'écart avant la semaine suivante (période de 9 colonnes).
+const COACH_LUNDI_REF = '2026-06-15';
+const COACH_COLONNE_DEBUT_S1 = 2; // colonne B (A=1)
+const COACH_PERIODE_COLONNES = 9;
+
+const COACH_LIGNE_PAS = 5;
+const COACH_LIGNES_REPAS = {
+  'Petit-déjeuner'  : 10,
+  'Collation matin' : 11, // "Post Workout" dans le Sheets du coach
+  'Déjeuner'        : 12,
+  'Collation'       : 13, // "Snack" dans le Sheets du coach
+  'Dîner'           : 14,
+};
+const COACH_LIGNE_TOTAL_DEBUT = 52; // 52=Protéines, 53=Glucides, 54=Lipides, 55=Kcal, 56=Fibres
+const COACH_CRENEAUX_DETAIL = [
+  { id: 'Petit-déjeuner',  ligneDebut: 57 },
+  { id: 'Collation matin', ligneDebut: 62 },
+  { id: 'Déjeuner',        ligneDebut: 67 },
+  { id: 'Collation',       ligneDebut: 72 },
+  { id: 'Dîner',           ligneDebut: 77 },
+];
+const COACH_METRIQUES = ['Protéines (g)', 'Glucides (g)', 'Lipides (g)', 'Kcal', 'Fibres (g)'];
+
+// Convertit un index de colonne 1-based (A=1) en lettre(s) A1
+function _sheetsIndexVersColonne(index) {
+  let lettre = '';
+  while (index > 0) {
+    const reste = (index - 1) % 26;
+    lettre = String.fromCharCode(65 + reste) + lettre;
+    index = Math.floor((index - 1) / 26);
+  }
+  return lettre;
+}
+
+// Calcule la colonne exacte (semaine + jour) correspondant à une date ISO,
+// à partir du lundi de référence (Semaine 1 = 2026-06-15).
+function _sheetsColonneJour(dateISO) {
+  const ref = new Date(COACH_LUNDI_REF + 'T00:00:00');
+  const cible = new Date(dateISO + 'T00:00:00');
+  const joursDepuisRef = Math.round((cible - ref) / 86400000);
+  if (joursDepuisRef < 0) throw new Error('Date antérieure à la semaine 1 du suivi (15 juin 2026)');
+  const semaine       = Math.floor(joursDepuisRef / 7) + 1;
+  const jourSemaine    = joursDepuisRef % 7; // 0=lundi … 6=dimanche
+  const colIndex = COACH_COLONNE_DEBUT_S1 + (semaine - 1) * COACH_PERIODE_COLONNES + jourSemaine;
+  return { semaine, jourSemaine, colIndex, colLettre: _sheetsIndexVersColonne(colIndex) };
+}
 
 // Récupère le nom de l'onglet correspondant à un gid donné
 async function _sheetsObtenirNomFeuille(gid) {
@@ -65,4 +114,141 @@ async function sheetsDiagnostiquerStructure() {
   ]);
 
   return { nomFeuille, valeurs, validationRepas };
+}
+
+async function _sheetsAssurerConnexion() {
+  if (!estConnecteGoogleDrive()) {
+    const reconnecte = await tenterReconnexionSilencieuseGoogle();
+    if (!reconnecte) throw new Error('Non connecté à Google (reconnecte-toi depuis Réglages)');
+  }
+}
+
+// Écrit plusieurs plages en une seule requête. `data` : [{ range, values }, ...]
+// (range déjà préfixé avec le nom de la feuille, ex. "'Suivi 2'!AC5")
+async function _sheetsEcrireValeurs(data) {
+  const res = await fetch(
+    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + '/values:batchUpdate',
+    {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + _driveAccessToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ valueInputOption: 'USER_ENTERED', data }),
+    }
+  );
+  if (!res.ok) throw new Error('Écriture Sheets échouée : ' + await _driveExtraireErreur(res));
+  return res.json();
+}
+
+// ------------------------------------------------------------
+//  PRÉPARATION DES 25 LIGNES DE DÉTAIL (une seule fois)
+//  N'écrit QUE des libellés en colonne A, lignes 57 à 81 — jamais
+//  au-dessus de la ligne 56 existante. Vérifie d'abord que ces
+//  lignes sont bien vides avant d'écrire quoi que ce soit.
+// ------------------------------------------------------------
+async function sheetsPreparerLignesDetail() {
+  await _sheetsAssurerConnexion();
+  const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
+
+  const [existant] = await _sheetsLireValeurs(nomFeuille, ['A57:A81']);
+  const dejaRempli = (existant.values || []).some(row => row.length > 0 && row[0] !== '');
+  if (dejaRempli) {
+    throw new Error('Les lignes 57 à 81 contiennent déjà des données — abandon par sécurité, aucune écriture effectuée.');
+  }
+
+  const labels = [];
+  COACH_CRENEAUX_DETAIL.forEach(c => {
+    COACH_METRIQUES.forEach(m => labels.push([c.id + ' — ' + m]));
+  });
+
+  await _sheetsEcrireValeurs([
+    { range: "'" + nomFeuille + "'!A57:A81", values: labels },
+  ]);
+
+  return labels.length;
+}
+
+// ------------------------------------------------------------
+//  MACROS D'UN REPAS PRÉCIS POUR UN JOUR DONNÉ
+//  Réutilise calculerMacrosRecette (js/macros.js) et les mêmes
+//  sources de données que l'écran Accueil — aucun nouveau calcul.
+// ------------------------------------------------------------
+function _macrosRepasDuJour(dateISO, typeRepas) {
+  const vide = { proteines: 0, glucides: 0, lipides: 0, calories: 0, fibres: 0 };
+  const planningJour = obtenirPlanning()[dateISO]?.moi || {};
+  const repasLibres   = obtenirRepasLibreJour(dateISO);
+  const journal       = obtenirJournalDuJour(dateISO, 'moi');
+
+  const libre = repasLibres[typeRepas];
+  if (libre) {
+    return { macros: libre.macros || vide, mange: libre.mange === true };
+  }
+  const recetteId = planningJour[typeRepas];
+  const recette   = recetteId ? RECETTES.find(r => r.id === recetteId) : null;
+  if (recette) {
+    const entree = journal.find(e => e.typeRepas === typeRepas);
+    return { macros: calculerMacrosRecette(recette, INGREDIENTS), mange: entree?.mange === true };
+  }
+  return { macros: vide, mange: false };
+}
+
+// ------------------------------------------------------------
+//  INDICATEUR "ENVOYÉ AUJOURD'HUI"
+// ------------------------------------------------------------
+function obtenirCoachDernierEnvoi() {
+  return localStorage.getItem('macrofit_coach_dernier_envoi') || '';
+}
+
+function _coachEnregistrerEnvoi(dateISO) {
+  localStorage.setItem('macrofit_coach_dernier_envoi', dateISO);
+}
+
+function coachEnvoyeAujourdHui() {
+  return obtenirCoachDernierEnvoi() === dateVersISO(new Date());
+}
+
+// ------------------------------------------------------------
+//  ENVOI QUOTIDIEN — bouton "Envoyer au coach"
+//  Ne touche QUE la colonne du jour même (calculée à partir de la
+//  date du jour), jamais les colonnes des jours précédents/suivants.
+// ------------------------------------------------------------
+async function sheetsEnvoyerAuCoach() {
+  await _sheetsAssurerConnexion();
+  const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
+  const dateISO    = dateVersISO(new Date());
+  const { colLettre } = _sheetsColonneJour(dateISO);
+  const cellule = (ligne) => "'" + nomFeuille + "'!" + colLettre + ligne;
+
+  const data = [];
+
+  // Pas quotidien
+  const pas = obtenirPasJour(dateISO);
+  data.push({ range: cellule(COACH_LIGNE_PAS), values: [[pas ?? '']] });
+
+  // Repas respectés (cases à cocher) + détail macros par créneau
+  const detailParCreneau = {};
+  for (const typeRepas of Object.keys(COACH_LIGNES_REPAS)) {
+    detailParCreneau[typeRepas] = _macrosRepasDuJour(dateISO, typeRepas);
+    data.push({ range: cellule(COACH_LIGNES_REPAS[typeRepas]), values: [[detailParCreneau[typeRepas].mange]] });
+  }
+
+  // Total journalier (52-56) — uniquement les repas marqués mangés
+  const total = _macrosJourValides(dateISO) || { proteines: 0, glucides: 0, lipides: 0, calories: 0, fibres: 0 };
+  data.push({
+    range: "'" + nomFeuille + "'!" + colLettre + COACH_LIGNE_TOTAL_DEBUT + ':' + colLettre + (COACH_LIGNE_TOTAL_DEBUT + 4),
+    values: [[total.proteines], [total.glucides], [total.lipides], [total.calories], [total.fibres]],
+  });
+
+  // Détail par créneau (25 lignes) — 0 si le repas n'a pas été marqué mangé
+  COACH_CRENEAUX_DETAIL.forEach(c => {
+    const { macros, mange } = detailParCreneau[c.id];
+    const vals = mange
+      ? [macros.proteines, macros.glucides, macros.lipides, macros.calories, macros.fibres ?? 0]
+      : [0, 0, 0, 0, 0];
+    data.push({
+      range: "'" + nomFeuille + "'!" + colLettre + c.ligneDebut + ':' + colLettre + (c.ligneDebut + 4),
+      values: vals.map(v => [v]),
+    });
+  });
+
+  await _sheetsEcrireValeurs(data);
+  _coachEnregistrerEnvoi(dateISO);
 }

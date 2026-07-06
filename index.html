@@ -61,6 +61,10 @@
         <span style="font-size:13px;color:var(--texte-muted);flex:1;">Pas aujourd'hui</span>
         <input type="number" id="input-pas-quotidien" min="0" step="1" placeholder="0" class="form-champ" style="width:100px;text-align:right;">
       </div>
+      <div class="carte" id="coach-envoi-bloc" style="margin-bottom:var(--espace-sm);display:none;align-items:center;gap:10px;">
+        <span id="coach-envoi-statut" style="font-size:13px;color:var(--texte-muted);flex:1;"></span>
+        <button class="btn btn-principal" id="btn-coach-envoyer" style="white-space:nowrap;">📤 Envoyer au coach</button>
+      </div>
       <div id="liste-repas"></div>
     </div>
   </div>
@@ -828,6 +832,15 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => allerVers(btn.dataset.page));
 });
 </script><script>
+// Met à jour le texte de statut "envoyé au coach aujourd'hui" ou non
+function _rafraichirStatutCoach() {
+  const el = document.getElementById('coach-envoi-statut');
+  if (!el) return;
+  el.textContent = coachEnvoyeAujourdHui()
+    ? '✅ Envoyé au coach aujourd\'hui'
+    : '⚠️ Pas encore envoyé au coach';
+}
+
 function afficherAccueil() {
   const aujourd_hui = dateAccueil;
   const vraiAujourdHui = dateVersISO(new Date());
@@ -845,6 +858,31 @@ function afficherAccueil() {
       const val = parseInt(inputPas.value, 10);
       sauvegarderPasJour(dateAccueil, isNaN(val) ? null : val);
     });
+  }
+
+  // Envoi au coach : uniquement visible quand on regarde le jour même
+  // (l'envoi cible toujours la date du jour, jamais la date affichée).
+  const coachBloc = document.getElementById('coach-envoi-bloc');
+  if (coachBloc) {
+    coachBloc.style.display = (aujourd_hui === vraiAujourdHui) ? 'flex' : 'none';
+    _rafraichirStatutCoach();
+    const btnCoach = document.getElementById('btn-coach-envoyer');
+    if (!btnCoach._bound) {
+      btnCoach._bound = true;
+      btnCoach.addEventListener('click', async () => {
+        btnCoach.disabled = true;
+        btnCoach.textContent = 'Envoi en cours...';
+        try {
+          await sheetsEnvoyerAuCoach();
+          _rafraichirStatutCoach();
+        } catch (e) {
+          document.getElementById('coach-envoi-statut').textContent = '❌ ' + e.message;
+        } finally {
+          btnCoach.disabled = false;
+          btnCoach.textContent = '📤 Envoyer au coach';
+        }
+      });
+    }
   }
 
   // Navigation
@@ -3930,6 +3968,12 @@ function afficherParamsDonnees() {
     '<pre id="sheets-debug-sortie" style="margin-top:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow:auto;background:var(--fond);padding:10px;border-radius:8px;display:none;user-select:all;"></pre>' +
     '</div>' +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
+    '<div class="carte-titre">🛠️ Préparer le Sheets coach (une seule fois)</div>' +
+    '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Ajoute les libellés des 25 lignes de détail (lignes 57 à 81, sous le "Total journalier"). À ne faire qu\'une fois — vérifie automatiquement que ces lignes sont vides avant d\'écrire.</p>' +
+    '<button class="btn btn-plein" id="btn-sheets-preparer">🛠️ Préparer les 25 lignes de détail</button>' +
+    '<p id="sheets-preparer-resultat" style="font-size:13px;margin-top:10px;display:none"></p>' +
+    '</div>' +
+    '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
     '<div class="carte-titre">⬇ Exporter mes données</div>' +
     '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Télécharge une copie complète de toutes tes données (recettes, ingrédients, planning, objectifs, journal).</p>' +
     '<button class="btn btn-principal btn-plein" id="btn-exporter-donnees">⬇ Télécharger le fichier de sauvegarde</button>' +
@@ -3992,6 +4036,26 @@ function afficherParamsDonnees() {
     } finally {
       btn.disabled = false;
       btn.textContent = '🔍 Lire structure Sheets (debug)';
+    }
+  });
+
+  document.getElementById('btn-sheets-preparer').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-sheets-preparer');
+    const resultatEl = document.getElementById('sheets-preparer-resultat');
+    if (!confirm('Ajouter les 25 libellés de détail sous la ligne 56 du Sheets ?\n\nCette action vérifie automatiquement que les lignes 57 à 81 sont vides avant d\'écrire, et ne touche à rien d\'autre.')) return;
+    btn.disabled = true;
+    btn.textContent = 'Écriture en cours...';
+    resultatEl.style.display = '';
+    try {
+      const nb = await sheetsPreparerLignesDetail();
+      resultatEl.textContent = '✅ ' + nb + ' libellés écrits (lignes 57 à 81).';
+      resultatEl.style.color = 'var(--vert)';
+    } catch (e) {
+      resultatEl.textContent = '❌ ' + e.message;
+      resultatEl.style.color = 'var(--rouge)';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🛠️ Préparer les 25 lignes de détail';
     }
   });
 
