@@ -82,6 +82,7 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -94,15 +95,96 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
+/* Coquille applicative : une colonne + barre d'onglets fixe en bas sur
+   mobile, sidebar fixe à gauche + contenu à droite à partir de 769px. */
 #app {
   width: 100%;
-  max-width: 430px;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--fond);
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar {
+  order: 2;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--nav-hauteur);
+  background: var(--fond-carte);
+  border-top: 0.5px solid var(--bordure);
+  display: flex;
+  z-index: 20;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.sidebar-header { display: none; }
+
+#sidebar nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0;
+  gap: 0;
+}
+
+#main-content {
+  flex: 1;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
   position: relative;
   padding-bottom: var(--nav-hauteur);
+}
+
+@media (min-width: 769px) {
+  #app { flex-direction: row; height: 100vh; }
+
+  #sidebar {
+    order: 0;
+    position: relative;
+    width: 220px;
+    flex-shrink: 0;
+    height: 100vh;
+    flex-direction: column;
+    border-top: none;
+    border-right: 0.5px solid var(--bordure);
+    padding-bottom: 0;
+  }
+
+  .sidebar-header {
+    display: block;
+    padding: 24px 20px 16px;
+    border-bottom: 0.5px solid var(--bordure);
+    flex-shrink: 0;
+  }
+
+  #sidebar nav {
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+    gap: 2px;
+    overflow-y: auto;
+  }
+
+  .nav-btn {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  #main-content { padding-bottom: 0; }
 }
 
 ::-webkit-scrollbar { width: 4px; }
@@ -174,7 +256,8 @@ body {
 }
 
 .nav-btn {
-  flex: 1;
+  flex: 0 1 20%; /* largeur cible égale (5 onglets), mais peut rétrécir si le libellé ne tient pas */
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,6 +272,13 @@ body {
   font-family: var(--police);
   font-weight: 400;
   transition: color 0.15s;
+}
+
+.nav-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav-btn.actif {
@@ -1392,8 +1482,60 @@ body {
 /* ------------------------------------------------------------
    RESPONSIVE
    ------------------------------------------------------------ */
+
+.accueil-date-bloc { min-width: 160px; }
+
+/* Zones tactiles et tailles de police adaptées au doigt (mobile uniquement,
+   la densité desktop existante est conservée au-dessus de 768px). */
+@media (max-width: 768px) {
+  .accueil-date-bloc { min-width: 100px; }
+
+  .btn {
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .form-champ,
+  select,
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="date"] {
+    min-height: 44px;
+    font-size: 16px; /* évite le zoom automatique au focus sur iOS Safari */
+  }
+
+  .chip {
+    min-height: 40px;
+    padding: 8px 14px;
+  }
+
+  .topbar-action {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .ligne-nom {
+    overflow-wrap: anywhere;
+  }
+
+  /* Filet de sécurité : si le contenu d'une topbar ne tient toujours pas
+     sur une ligne (petit téléphone), on passe à la ligne plutôt que de
+     déborder hors de l'écran. */
+  .topbar {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    padding: 12px var(--espace-md) 10px;
+  }
+
+  .topbar-titre {
+    font-size: 17px;
+  }
+}
+
 @media (max-width: 360px) {
-  .totaux-grille { grid-template-columns: repeat(2, 1fr); }
+  .totaux-grille, .libre-macros-grille { grid-template-columns: repeat(2, 1fr); }
   .total-valeur  { font-size: 14px; }
 }
 

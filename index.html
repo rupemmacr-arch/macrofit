@@ -8,39 +8,39 @@
   <script src="https://accounts.google.com/gsi/client" async defer onload="initialiserGoogleAuth()" onerror="console.error('❌ Échec de chargement du script Google Identity Services (réseau/bloqueur ?)')"></script>
 </head>
 <body>
-<div id="app" style="width:100%;max-width:none;display:flex;height:100vh;padding-bottom:0;min-width:900px;">
+<div id="app">
 
-  <!-- SIDEBAR -->
-  <aside id="sidebar" style="width:220px;flex-shrink:0;background:#FFFAF6;border-right:0.5px solid #EDE6DE;height:100vh;display:flex;flex-direction:column;">
-    <div style="padding:24px 20px 16px;border-bottom:0.5px solid #EDE6DE;flex-shrink:0;">
+  <!-- SIDEBAR (desktop) / BARRE D'ONGLETS (mobile) -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
       <div style="font-size:20px;font-weight:500;color:#2C2B28;">🍽️ MacroFit</div>
     </div>
-    <nav style="padding:10px 10px;flex:1;display:flex;flex-direction:column;gap:2px;overflow-y:auto;">
-      <button class="nav-btn actif" data-page="accueil" style="flex:none;width:100%;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;">
-        <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;flex-shrink:0;padding:0;background:none;border-radius:0;"><path d="M12 3L4 9v12h5v-6h6v6h5V9z"/></svg>
-        Accueil
+    <nav>
+      <button class="nav-btn actif" data-page="accueil">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L4 9v12h5v-6h6v6h5V9z"/></svg>
+        <span class="nav-label">Accueil</span>
       </button>
-      <button class="nav-btn" data-page="recettes" style="flex:none;width:100%;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;padding:0;background:none;border-radius:0;"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-        Recettes
+      <button class="nav-btn" data-page="recettes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <span class="nav-label">Recettes</span>
       </button>
-      <button class="nav-btn" data-page="planning" style="flex:none;width:100%;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;padding:0;background:none;border-radius:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Planning
+      <button class="nav-btn" data-page="planning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span class="nav-label">Planning</span>
       </button>
-      <button class="nav-btn" data-page="courses" style="flex:none;width:100%;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;padding:0;background:none;border-radius:0;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-        Courses
+      <button class="nav-btn" data-page="courses">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        <span class="nav-label">Courses</span>
       </button>
-      <button class="nav-btn" data-page="params" style="flex:none;width:100%;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;padding:0;background:none;border-radius:0;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        Réglages
+      <button class="nav-btn" data-page="params">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span class="nav-label">Réglages</span>
       </button>
     </nav>
   </aside>
 
   <!-- MAIN CONTENT -->
-  <div id="main-content" style="flex:1;height:100vh;overflow-y:auto;position:relative;">
+  <div id="main-content">
 
   <!-- ACCUEIL -->
   <div id="page-accueil" class="page active">
@@ -48,7 +48,7 @@
       <div class="topbar-titre">🍽️ MacroFit</div>
       <div style="display:flex;align-items:center;gap:6px;">
         <button id="accueil-prev-jour" style="background:none;border:0.5px solid var(--bordure);border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:16px;color:var(--texte-muted);display:flex;align-items:center;justify-content:center;">‹</button>
-        <div style="text-align:center;min-width:160px;">
+        <div class="accueil-date-bloc" style="text-align:center;">
           <div id="date-du-jour" style="font-size:13px;font-weight:500;color:var(--texte);text-transform:capitalize;"></div>
           <button id="accueil-btn-aujourd-hui" style="display:none;background:none;border:none;font-size:11px;color:var(--accent);cursor:pointer;padding:0;font-family:var(--police);">→ Aujourd'hui</button>
         </div>
