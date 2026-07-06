@@ -9,7 +9,7 @@
 // ============================================================
 
 const GOOGLE_CLIENT_ID    = '340408877285-l6uk3et5js8aivuqm37qbv6vrgggpkmc.apps.googleusercontent.com';
-const GOOGLE_DRIVE_SCOPE  = 'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.email';
+const GOOGLE_DRIVE_SCOPE  = 'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets';
 
 let _driveTokenClient  = null;
 let _driveAccessToken  = null;

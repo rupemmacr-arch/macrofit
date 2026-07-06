@@ -506,6 +506,7 @@
 </div><script src="js/storage.js"></script>
 <script src="js/macros.js"></script>
 <script src="js/drive-sync.js"></script>
+<script src="js/coach-sync.js"></script>
 <script>
 
 let INGREDIENTS   = [];
@@ -3900,6 +3901,12 @@ function afficherParamsDonnees() {
     '<p id="drive-sync-erreur" style="font-size:13px;color:var(--rouge, #c0392b);margin-top:10px;display:none"></p>' +
     '</div>' +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
+    '<div class="carte-titre">🔍 Debug — Structure Google Sheets coach</div>' +
+    '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Outil temporaire : lit la structure du Sheets (lignes 1-14 et 45-65) sans rien modifier, pour préparer l\'envoi automatique.</p>' +
+    '<button class="btn btn-plein" id="btn-sheets-debug">🔍 Lire structure Sheets (debug)</button>' +
+    '<pre id="sheets-debug-sortie" style="margin-top:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow:auto;background:var(--fond);padding:10px;border-radius:8px;display:none;user-select:all;"></pre>' +
+    '</div>' +
+    '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
     '<div class="carte-titre">⬇ Exporter mes données</div>' +
     '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Télécharge une copie complète de toutes tes données (recettes, ingrédients, planning, objectifs, journal).</p>' +
     '<button class="btn btn-principal btn-plein" id="btn-exporter-donnees">⬇ Télécharger le fichier de sauvegarde</button>' +
@@ -3946,6 +3953,24 @@ function afficherParamsDonnees() {
   if (btnSyncMaintenant) {
     btnSyncMaintenant.addEventListener('click', () => { driveSauvegarderDonnees(); });
   }
+
+  document.getElementById('btn-sheets-debug').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-sheets-debug');
+    const sortie = document.getElementById('sheets-debug-sortie');
+    btn.disabled = true;
+    btn.textContent = 'Lecture en cours...';
+    sortie.style.display = '';
+    sortie.textContent = '';
+    try {
+      const resultat = await sheetsDiagnostiquerStructure();
+      sortie.textContent = JSON.stringify(resultat, null, 2);
+    } catch (e) {
+      sortie.textContent = '❌ ' + e.message;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🔍 Lire structure Sheets (debug)';
+    }
+  });
 
   document.getElementById('btn-exporter-donnees').addEventListener('click', exporterFichier);
 
