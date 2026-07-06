@@ -947,6 +947,7 @@ function afficherAccueil() {
       const m         = libre.macros || { proteines: 0, glucides: 0, lipides: 0, calories: 0 };
       const photoWrap = '<div class="meal-photo-wrap" style="background:' + fond + ';position:relative;">' +
         '<span class="meal-photo-emoji">🥗</span>' +
+        '<span class="meal-check-indicateur' + (estMange ? ' mange' : '') + '" title="' + (estMange ? 'Mangé' : 'Pas encore mangé') + '">✓</span>' +
         '<button class="meal-btn-opts" data-repas="' + repas.id + '" style="position:absolute;top:8px;right:8px;" title="Modifier">⋯</button>' +
         '</div>';
       const desc = libre.description || (libre.ingredients?.length ? libre.ingredients.length + ' ingrédient(s)' : 'Repas libre');
@@ -975,6 +976,7 @@ function afficherAccueil() {
         (recette.photo
           ? '<img class="meal-photo" src="' + srcPhoto(recette.photo) + '" alt="">'
           : '<span class="meal-photo-emoji">' + repas.icone + '</span>') +
+        '<span class="meal-check-indicateur' + (estMange ? ' mange' : '') + '" title="' + (estMange ? 'Mangé' : 'Pas encore mangé') + '">✓</span>' +
         '<button class="meal-btn-opts" data-repas="' + repas.id + '" style="position:absolute;top:8px;right:8px;" title="Modifier">⋯</button>' +
         '</div>';
       return '<div class="meal-col" data-repas="' + repas.id + '" data-recette="' + recette.id + '" data-mange="' + estMange + '">' +

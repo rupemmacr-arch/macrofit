@@ -1698,6 +1698,28 @@ body {
   .courses-colonne {
     overflow-y: visible !important;
   }
+
+  /* Écran Accueil : 5 tuiles repas (avec Collation matin) dans une grille
+     conçue "tout tenir sans scroll" écrasaient les tuiles sur 3 rangées.
+     Passe en page qui grandit normalement et défile. */
+  #page-accueil {
+    height: auto;
+    overflow: visible;
+  }
+
+  .contenu-accueil {
+    overflow: visible;
+  }
+
+  .contenu-accueil #liste-repas {
+    flex: none;
+    min-height: auto;
+  }
+
+  .contenu-accueil .carte-jour {
+    flex: none;
+    overflow: visible;
+  }
 }
 
 @media (max-width: 380px) {
@@ -1735,6 +1757,33 @@ body {
   }
 }
 
+
+/* ------------------------------------------------------------
+   INDICATEUR "MANGÉ" SUR LA PHOTO DES TUILES REPAS (accueil)
+   Repère visuel rapide, en plus du badge texte dans le pied de tuile.
+   ------------------------------------------------------------ */
+.meal-check-indicateur {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.88);
+  color: transparent;
+  border: 1.5px solid rgba(255,255,255,0.9);
+}
+
+.meal-check-indicateur.mange {
+  background: var(--vert);
+  color: #fff;
+  border-color: var(--vert);
+}
 
 /* ------------------------------------------------------------
    BOUTON OPTIONS SUR LES TUILES REPAS (accueil)
