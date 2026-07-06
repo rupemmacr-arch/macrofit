@@ -25,13 +25,12 @@ const COACH_LIGNES_REPAS = {
   'Dîner'           : 14,
 };
 const COACH_LIGNE_TOTAL_DEBUT = 52; // 52=Protéines, 53=Glucides, 54=Lipides, 55=Kcal, 56=Fibres
-const COACH_CRENEAUX_DETAIL = [
-  { id: 'Petit-déjeuner',  ligneDebut: 57 },
-  { id: 'Collation matin', ligneDebut: 62 },
-  { id: 'Déjeuner',        ligneDebut: 67 },
-  { id: 'Collation',       ligneDebut: 72 },
-  { id: 'Dîner',           ligneDebut: 77 },
-];
+
+// Chaque créneau occupe 7 lignes : 1 ligne titre + 5 métriques + 1 ligne
+// vide de séparation avant le créneau suivant (ligneDebut = ligne du titre,
+// les 5 métriques commencent à ligneDebut + 1).
+const COACH_CRENEAUX_DETAIL = ['Petit-déjeuner', 'Collation matin', 'Déjeuner', 'Collation', 'Dîner']
+  .map((id, i) => ({ id, ligneDebut: 57 + i * 7 }));
 const COACH_METRIQUES = ['Protéines (g)', 'Glucides (g)', 'Lipides (g)', 'Kcal', 'Fibres (g)'];
 
 // Convertit un index de colonne 1-based (A=1) en lettre(s) A1
@@ -139,28 +138,35 @@ async function _sheetsEcrireValeurs(data) {
 }
 
 // ------------------------------------------------------------
-//  PRÉPARATION DES 25 LIGNES DE DÉTAIL (une seule fois)
-//  N'écrit QUE des libellés en colonne A, lignes 57 à 81 — jamais
+//  PRÉPARATION DES LIGNES DE DÉTAIL (une seule fois)
+//  N'écrit QUE des libellés en colonne A, lignes 57 à 90 — jamais
 //  au-dessus de la ligne 56 existante. Vérifie d'abord que ces
 //  lignes sont bien vides avant d'écrire quoi que ce soit.
+//  Disposition par créneau : 1 ligne titre + 5 métriques + 1 ligne
+//  vide de séparation (sauf après le dernier créneau).
 // ------------------------------------------------------------
+const COACH_LIGNE_DETAIL_FIN = COACH_CRENEAUX_DETAIL[COACH_CRENEAUX_DETAIL.length - 1].ligneDebut + COACH_METRIQUES.length;
+
 async function sheetsPreparerLignesDetail() {
   await _sheetsAssurerConnexion();
   const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
+  const plage = 'A57:A' + COACH_LIGNE_DETAIL_FIN;
 
-  const [existant] = await _sheetsLireValeurs(nomFeuille, ['A57:A81']);
+  const [existant] = await _sheetsLireValeurs(nomFeuille, [plage]);
   const dejaRempli = (existant.values || []).some(row => row.length > 0 && row[0] !== '');
   if (dejaRempli) {
-    throw new Error('Les lignes 57 à 81 contiennent déjà des données — abandon par sécurité, aucune écriture effectuée.');
+    throw new Error('Les lignes 57 à ' + COACH_LIGNE_DETAIL_FIN + ' contiennent déjà des données — abandon par sécurité, aucune écriture effectuée.');
   }
 
   const labels = [];
-  COACH_CRENEAUX_DETAIL.forEach(c => {
-    COACH_METRIQUES.forEach(m => labels.push([c.id + ' — ' + m]));
+  COACH_CRENEAUX_DETAIL.forEach((c, i) => {
+    labels.push([c.id]);
+    COACH_METRIQUES.forEach(m => labels.push([m]));
+    if (i < COACH_CRENEAUX_DETAIL.length - 1) labels.push(['']); // ligne vide de séparation
   });
 
   await _sheetsEcrireValeurs([
-    { range: "'" + nomFeuille + "'!A57:A81", values: labels },
+    { range: "'" + nomFeuille + "'!" + plage, values: labels },
   ]);
 
   return labels.length;
@@ -237,14 +243,16 @@ async function sheetsEnvoyerAuCoach() {
     values: [[total.proteines], [total.glucides], [total.lipides], [total.calories], [total.fibres]],
   });
 
-  // Détail par créneau (25 lignes) — 0 si le repas n'a pas été marqué mangé
+  // Détail par créneau — 0 si le repas n'a pas été marqué mangé.
+  // ligneDebut = ligne du titre du créneau ; les métriques commencent à ligneDebut + 1.
   COACH_CRENEAUX_DETAIL.forEach(c => {
     const { macros, mange } = detailParCreneau[c.id];
     const vals = mange
       ? [macros.proteines, macros.glucides, macros.lipides, macros.calories, macros.fibres ?? 0]
       : [0, 0, 0, 0, 0];
+    const ligneMetriques = c.ligneDebut + 1;
     data.push({
-      range: "'" + nomFeuille + "'!" + colLettre + c.ligneDebut + ':' + colLettre + (c.ligneDebut + 4),
+      range: "'" + nomFeuille + "'!" + colLettre + ligneMetriques + ':' + colLettre + (ligneMetriques + 4),
       values: vals.map(v => [v]),
     });
   });
