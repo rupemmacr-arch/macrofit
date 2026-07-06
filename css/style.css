@@ -1491,6 +1491,32 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.recettes-filtre-groupe {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 18px;
+}
+
+.recettes-filtre-btn {
+  background: none;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: left;
+  width: 100%;
+  font-family: var(--police);
+  color: var(--texte);
+}
+
+.recettes-filtre-btn.actif {
+  background: #FEF0E8;
+  color: #F26C3A;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .accueil-date-bloc { min-width: 100px; }
 
@@ -1579,6 +1605,58 @@ body {
 
   #liste-recettes {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Groupes de filtres (Type de repas / Protéine / Temps) : listes verticales
+     de boutons plein-largeur sur desktop → rangées de chips horizontales
+     scrollables sur mobile, cohérent avec le style des chips utilisées
+     ailleurs dans l'app (Réglages, etc.). */
+  #filtres-repas, #filtres-proteine, #filtres-temps {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 2px;
+  }
+
+  .recettes-filtre-btn {
+    flex-shrink: 0;
+    width: auto;
+    text-align: center;
+    white-space: nowrap;
+    border: 0.5px solid var(--bordure);
+    background: var(--fond-carte);
+    border-radius: var(--rayon-rond);
+    padding: 8px 14px;
+    font-size: 12px;
+    min-height: 40px;
+  }
+
+  .recettes-filtre-btn.actif {
+    background: var(--accent-clair);
+    color: var(--accent);
+    border-color: var(--accent-clair);
+  }
+
+  /* Écran Courses : 3 colonnes fixes → empilées verticalement, sinon les
+     noms/quantités n'ont pas assez de place pour être lisibles. */
+  #page-courses {
+    height: auto;
+    overflow: visible;
+  }
+
+  #courses-contenu {
+    overflow: visible;
+  }
+
+  .courses-colonnes {
+    flex-direction: column;
+    height: auto !important;
+  }
+
+  .courses-colonne {
+    overflow-y: visible !important;
   }
 }
 

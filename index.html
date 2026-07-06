@@ -76,31 +76,31 @@
       <aside class="recettes-filtres" style="width:160px;flex-shrink:0;overflow-y:auto;padding:14px 10px;border-right:0.5px solid var(--bordure);background:var(--fond-carte);display:flex;flex-direction:column;gap:0;">
 
         <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--texte-muted);margin-bottom:6px;padding:0 4px;">Type de repas</div>
-        <div id="filtres-repas" style="display:flex;flex-direction:column;gap:2px;margin-bottom:18px;">
-          <button class="recettes-filtre-btn" data-filtre=""            style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">Toutes</button>
-          <button class="recettes-filtre-btn" data-filtre="Petit-déjeuner" style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">☀️ Petit-déj</button>
-          <button class="recettes-filtre-btn" data-filtre="Déjeuner"    style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🌤️ Déjeuner</button>
-          <button class="recettes-filtre-btn" data-filtre="Collation"   style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🍎 Collation</button>
-          <button class="recettes-filtre-btn" data-filtre="Dîner"       style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🌙 Dîner</button>
-          <button class="recettes-filtre-btn" data-filtre="favori"      style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">⭐ Favoris</button>
+        <div id="filtres-repas" class="recettes-filtre-groupe">
+          <button class="recettes-filtre-btn" data-filtre=""          >Toutes</button>
+          <button class="recettes-filtre-btn" data-filtre="Petit-déjeuner">☀️ Petit-déj</button>
+          <button class="recettes-filtre-btn" data-filtre="Déjeuner"   >🌤️ Déjeuner</button>
+          <button class="recettes-filtre-btn" data-filtre="Collation"  >🍎 Collation</button>
+          <button class="recettes-filtre-btn" data-filtre="Dîner"      >🌙 Dîner</button>
+          <button class="recettes-filtre-btn" data-filtre="favori"     >⭐ Favoris</button>
         </div>
 
         <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--texte-muted);margin-bottom:6px;padding:0 4px;">Protéine</div>
-        <div id="filtres-proteine" style="display:flex;flex-direction:column;gap:2px;margin-bottom:18px;">
-          <button class="recettes-filtre-btn" data-prot=""              style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">Toutes</button>
-          <button class="recettes-filtre-btn" data-prot="Poulet"        style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🍗 Poulet</button>
-          <button class="recettes-filtre-btn" data-prot="Œuf"           style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🥚 Œuf</button>
-          <button class="recettes-filtre-btn" data-prot="Bœuf"          style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🥩 Bœuf</button>
-          <button class="recettes-filtre-btn" data-prot="Légumineuses"  style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🫘 Légum.</button>
-          <button class="recettes-filtre-btn" data-prot="Poisson"       style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🐟 Poisson</button>
+        <div id="filtres-proteine" class="recettes-filtre-groupe">
+          <button class="recettes-filtre-btn" data-prot=""             >Toutes</button>
+          <button class="recettes-filtre-btn" data-prot="Poulet"       >🍗 Poulet</button>
+          <button class="recettes-filtre-btn" data-prot="Œuf"          >🥚 Œuf</button>
+          <button class="recettes-filtre-btn" data-prot="Bœuf"         >🥩 Bœuf</button>
+          <button class="recettes-filtre-btn" data-prot="Légumineuses" >🫘 Légum.</button>
+          <button class="recettes-filtre-btn" data-prot="Poisson"      >🐟 Poisson</button>
         </div>
 
         <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--texte-muted);margin-bottom:6px;padding:0 4px;">Temps</div>
-        <div id="filtres-temps" style="display:flex;flex-direction:column;gap:2px;">
-          <button class="recettes-filtre-btn" data-temps=""    style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">Tous</button>
-          <button class="recettes-filtre-btn" data-temps="15"  style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">⚡ ≤ 15 min</button>
-          <button class="recettes-filtre-btn" data-temps="30"  style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">🕐 ≤ 30 min</button>
-          <button class="recettes-filtre-btn" data-temps="30+" style="background:none;border:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;width:100%;font-family:var(--police);color:var(--texte);">⏳ > 30 min</button>
+        <div id="filtres-temps" class="recettes-filtre-groupe" style="margin-bottom:0;">
+          <button class="recettes-filtre-btn" data-temps=""   >Tous</button>
+          <button class="recettes-filtre-btn" data-temps="15" >⚡ ≤ 15 min</button>
+          <button class="recettes-filtre-btn" data-temps="30" >🕐 ≤ 30 min</button>
+          <button class="recettes-filtre-btn" data-temps="30+">⏳ > 30 min</button>
         </div>
 
       </aside>
@@ -178,7 +178,7 @@
   </div>
 
   <!-- COURSES -->
-  <div id="page-courses" class="page" style="height:100vh;overflow:hidden;">
+  <div id="page-courses" class="page">
     <div class="topbar">
       <div class="topbar-titre">🛒 Courses</div>
       <div style="display:flex;align-items:center;gap:6px;">
@@ -203,7 +203,7 @@
     </div>
 
     <!-- Contenu 3 colonnes -->
-    <div id="courses-contenu" style="flex:1;overflow:hidden;padding:12px;min-height:0;"></div>
+    <div id="courses-contenu" style="padding:12px;"></div>
   </div>
 
   <!-- FORMULAIRE RECETTE -->
@@ -1559,22 +1559,13 @@ function renderBilanMacros(macros, objRepas, aDesObjectifs) {
 </script><script>
 function mettreAJourFiltresActifs() {
   document.querySelectorAll('#filtres-repas .recettes-filtre-btn').forEach(b => {
-    const actif = b.dataset.filtre === filtreRepas;
-    b.style.background = actif ? '#FEF0E8' : '';
-    b.style.color      = actif ? '#F26C3A' : '';
-    b.style.fontWeight = actif ? '500'     : '';
+    b.classList.toggle('actif', b.dataset.filtre === filtreRepas);
   });
   document.querySelectorAll('#filtres-proteine .recettes-filtre-btn').forEach(b => {
-    const actif = b.dataset.prot === filtreProteine;
-    b.style.background = actif ? '#FEF0E8' : '';
-    b.style.color      = actif ? '#F26C3A' : '';
-    b.style.fontWeight = actif ? '500'     : '';
+    b.classList.toggle('actif', b.dataset.prot === filtreProteine);
   });
   document.querySelectorAll('#filtres-temps .recettes-filtre-btn').forEach(b => {
-    const actif = b.dataset.temps === filtreTemps;
-    b.style.background = actif ? '#FEF0E8' : '';
-    b.style.color      = actif ? '#F26C3A' : '';
-    b.style.fontWeight = actif ? '500'     : '';
+    b.classList.toggle('actif', b.dataset.temps === filtreTemps);
   });
 }
 
@@ -3243,9 +3234,9 @@ function afficherCourses() {
   }).join('');
 
   document.getElementById('courses-contenu').innerHTML =
-    '<div style="display:flex;height:100%;gap:10px;">' +
+    '<div class="courses-colonnes" style="display:flex;height:100%;gap:10px;">' +
     colonnesCats.map(cats =>
-      '<div style="flex:1;overflow-y:auto;background:var(--fond-carte);border-radius:12px;border:0.5px solid var(--bordure);padding:14px;">' +
+      '<div class="courses-colonne" style="flex:1;overflow-y:auto;background:var(--fond-carte);border-radius:12px;border:0.5px solid var(--bordure);padding:14px;">' +
       renderColonne(cats) +
       '</div>'
     ).join('') +
