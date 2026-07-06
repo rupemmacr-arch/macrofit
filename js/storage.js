@@ -930,3 +930,24 @@ function reinitialiserBatchFacteur(recetteId, composantIdx) {
     localStorage.setItem(_CLE_BATCH_FACTEURS, JSON.stringify(all));
   }
 }
+
+
+// ------------------------------------------------------------
+//  PAS QUOTIDIEN
+//  Structure : { "2025-04-11": 8500 }
+// ------------------------------------------------------------
+
+const _CLE_PAS_QUOTIDIEN = 'macrofit_pas_quotidien';
+
+function obtenirPasJour(dateISO) {
+  const d = localStorage.getItem(_CLE_PAS_QUOTIDIEN);
+  const all = d ? JSON.parse(d) : {};
+  return all[dateISO] ?? null;
+}
+
+function sauvegarderPasJour(dateISO, valeur) {
+  const d = localStorage.getItem(_CLE_PAS_QUOTIDIEN);
+  const all = d ? JSON.parse(d) : {};
+  all[dateISO] = valeur;
+  localStorage.setItem(_CLE_PAS_QUOTIDIEN, JSON.stringify(all));
+}

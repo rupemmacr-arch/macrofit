@@ -56,6 +56,11 @@
       </div>
     </div>
     <div class="contenu contenu-accueil">
+      <div class="carte" style="margin-bottom:var(--espace-sm);display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">👣</span>
+        <span style="font-size:13px;color:var(--texte-muted);flex:1;">Pas aujourd'hui</span>
+        <input type="number" id="input-pas-quotidien" min="0" step="1" placeholder="0" class="form-champ" style="width:100px;text-align:right;">
+      </div>
       <div id="liste-repas"></div>
     </div>
   </div>
@@ -831,6 +836,16 @@ function afficherAccueil() {
     dateObj.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
   const btnAujourdHui = document.getElementById('accueil-btn-aujourd-hui');
   if (btnAujourdHui) btnAujourdHui.style.display = aujourd_hui !== vraiAujourdHui ? '' : 'none';
+
+  const inputPas = document.getElementById('input-pas-quotidien');
+  inputPas.value = obtenirPasJour(aujourd_hui) ?? '';
+  if (!inputPas._bound) {
+    inputPas._bound = true;
+    inputPas.addEventListener('change', () => {
+      const val = parseInt(inputPas.value, 10);
+      sauvegarderPasJour(dateAccueil, isNaN(val) ? null : val);
+    });
+  }
 
   // Navigation
   const btnPrev = document.getElementById('accueil-prev-jour');
