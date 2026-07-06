@@ -1032,6 +1032,11 @@ function afficherAccueil() {
       const badge = col.querySelector('.meal-badge');
       badge.textContent = nouveau ? 'Mangé ✓' : 'À manger';
       badge.className   = 'meal-badge ' + (nouveau ? 'badge-vert' : 'badge-gris');
+      const indicateur = col.querySelector('.meal-check-indicateur');
+      if (indicateur) {
+        indicateur.classList.toggle('mange', nouveau);
+        indicateur.title = nouveau ? 'Mangé' : 'Pas encore mangé';
+      }
       mettreAJourMacrosJour();
     });
   });
@@ -1046,6 +1051,11 @@ function afficherAccueil() {
       const badge = col.querySelector('.meal-badge');
       badge.textContent = nouveau ? 'Mangé ✓' : 'À manger';
       badge.className   = 'meal-badge ' + (nouveau ? 'badge-vert' : 'badge-gris');
+      const indicateur = col.querySelector('.meal-check-indicateur');
+      if (indicateur) {
+        indicateur.classList.toggle('mange', nouveau);
+        indicateur.title = nouveau ? 'Mangé' : 'Pas encore mangé';
+      }
       mettreAJourMacrosJour();
     });
   });
