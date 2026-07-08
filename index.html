@@ -840,12 +840,12 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => allerVers(btn.dataset.page));
 });
 </script><script>
-// Met à jour le texte de statut "envoyé au coach aujourd'hui" ou non
-function _rafraichirStatutCoach() {
+// Met à jour le texte de statut "envoyé au coach" ou non, pour le jour affiché
+function _rafraichirStatutCoach(dateISO) {
   const el = document.getElementById('coach-envoi-statut');
   if (!el) return;
-  el.textContent = coachEnvoyeAujourdHui()
-    ? '✅ Envoyé au coach aujourd\'hui'
+  el.textContent = coachEnvoyePourDate(dateISO)
+    ? '✅ Envoyé au coach'
     : '⚠️ Pas encore envoyé au coach';
 }
 
@@ -868,12 +868,12 @@ function afficherAccueil() {
     });
   }
 
-  // Envoi au coach : uniquement visible quand on regarde le jour même
-  // (l'envoi cible toujours la date du jour, jamais la date affichée).
+  // Envoi au coach : disponible pour n'importe quel jour consulté (navigation
+  // prev/next incluse), toujours ciblé sur la colonne de CE jour précis.
   const coachBloc = document.getElementById('coach-envoi-bloc');
   if (coachBloc) {
-    coachBloc.style.display = (aujourd_hui === vraiAujourdHui) ? 'flex' : 'none';
-    _rafraichirStatutCoach();
+    coachBloc.style.display = 'flex';
+    _rafraichirStatutCoach(aujourd_hui);
     const btnCoach = document.getElementById('btn-coach-envoyer');
     if (!btnCoach._bound) {
       btnCoach._bound = true;
@@ -881,8 +881,8 @@ function afficherAccueil() {
         btnCoach.disabled = true;
         btnCoach.textContent = 'Envoi en cours...';
         try {
-          await sheetsEnvoyerAuCoach();
-          _rafraichirStatutCoach();
+          await sheetsEnvoyerAuCoach(dateAccueil);
+          _rafraichirStatutCoach(dateAccueil);
         } catch (e) {
           document.getElementById('coach-envoi-statut').textContent = '❌ ' + e.message;
         } finally {

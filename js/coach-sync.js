@@ -275,29 +275,34 @@ function _macrosRepasDuJour(dateISO, typeRepas) {
 }
 
 // ------------------------------------------------------------
-//  INDICATEUR "ENVOYÉ AUJOURD'HUI"
+//  INDICATEUR "ENVOYÉ" — par date (pas seulement aujourd'hui, pour
+//  pouvoir aussi suivre l'état d'envoi d'un jour passé consulté).
 // ------------------------------------------------------------
-function obtenirCoachDernierEnvoi() {
-  return localStorage.getItem('macrofit_coach_dernier_envoi') || '';
+function obtenirCoachEnvois() {
+  try { return JSON.parse(localStorage.getItem('macrofit_coach_envois')) || {}; }
+  catch { return {}; }
 }
 
 function _coachEnregistrerEnvoi(dateISO) {
-  localStorage.setItem('macrofit_coach_dernier_envoi', dateISO);
+  const envois = obtenirCoachEnvois();
+  envois[dateISO] = new Date().toISOString();
+  localStorage.setItem('macrofit_coach_envois', JSON.stringify(envois));
 }
 
-function coachEnvoyeAujourdHui() {
-  return obtenirCoachDernierEnvoi() === dateVersISO(new Date());
+function coachEnvoyePourDate(dateISO) {
+  return !!obtenirCoachEnvois()[dateISO];
 }
 
 // ------------------------------------------------------------
-//  ENVOI QUOTIDIEN — bouton "Envoyer au coach"
-//  Ne touche QUE la colonne du jour même (calculée à partir de la
-//  date du jour), jamais les colonnes des jours précédents/suivants.
+//  ENVOI — bouton "Envoyer au coach"
+//  dateISO : jour à envoyer (par défaut aujourd'hui). Ne touche QUE la
+//  colonne calculée pour cette date précise, jamais les autres colonnes —
+//  ce qui permet aussi de renvoyer un jour passé en toute sécurité.
 // ------------------------------------------------------------
-async function sheetsEnvoyerAuCoach() {
+async function sheetsEnvoyerAuCoach(dateISO) {
+  dateISO = dateISO || dateVersISO(new Date());
   await _sheetsAssurerConnexion();
   const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
-  const dateISO    = dateVersISO(new Date());
   const { colLettre, colIndex } = _sheetsColonneJour(dateISO);
   const colIndex0 = colIndex - 1;
   const cellule = (ligne) => "'" + nomFeuille + "'!" + colLettre + ligne;
