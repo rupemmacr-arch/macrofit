@@ -551,6 +551,7 @@ let modalTypeRepas       = '';
 let ongletParams             = 'objectifs';
 let filtreIngParams          = '';
 let rechercheIngParams       = '';
+let filtreSansFibresIngParams = false;
 let grignotageIngSelectedId  = null;
 let portionDetail            = 1;
 let TOLERANCE                = 3;
@@ -3674,6 +3675,7 @@ function afficherParamsIngredients() {
   function renderListeIngredients() {
     let resultats = [...INGREDIENTS];
     if (filtreIngParams) resultats = resultats.filter(i => i.categorie === filtreIngParams);
+    if (filtreSansFibresIngParams) resultats = resultats.filter(i => !i.pour100g.fibres);
     if (rechercheIngParams) {
       resultats = resultats
         .map(i => ({ i, s: scoreRecherche(i.nom, rechercheIngParams) }))
@@ -3737,7 +3739,9 @@ function afficherParamsIngredients() {
       '</div>' +
       '<input class="recherche" id="params-ing-recherche" placeholder="🔍 Rechercher..." type="text" value="' + rechercheIngParams + '">' +
       '<div class="filtres" id="params-ing-filtres">' +
-      '<button class="chip' + (!filtreIngParams ? ' actif' : '') + '" data-cat="">Toutes</button>' + chips + '</div>' +
+      '<button class="chip' + (!filtreIngParams ? ' actif' : '') + '" data-cat="">Toutes</button>' + chips +
+      '<button class="chip' + (filtreSansFibresIngParams ? ' actif' : '') + '" id="chip-sans-fibres">🌾❌ Sans fibres</button>' +
+      '</div>' +
       '<div id="params-ing-liste"></div>';
     document.getElementById('params-contenu').innerHTML = html;
 
@@ -3785,8 +3789,14 @@ function afficherParamsIngredients() {
     document.getElementById('params-ing-filtres').addEventListener('click', e => {
       const chip = e.target.closest('.chip');
       if (!chip) return;
+      if (chip.id === 'chip-sans-fibres') {
+        filtreSansFibresIngParams = !filtreSansFibresIngParams;
+        chip.classList.toggle('actif', filtreSansFibresIngParams);
+        renderListeIngredients();
+        return;
+      }
       filtreIngParams = chip.dataset.cat;
-      document.querySelectorAll('#params-ing-filtres .chip').forEach(c => c.classList.toggle('actif', c.dataset.cat === filtreIngParams));
+      document.querySelectorAll('#params-ing-filtres .chip[data-cat]').forEach(c => c.classList.toggle('actif', c.dataset.cat === filtreIngParams));
       renderListeIngredients();
     });
   }
