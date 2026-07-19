@@ -390,3 +390,114 @@ async function driveRecupererDonnees() {
     return false;
   }
 }
+
+
+// ------------------------------------------------------------
+//  PHOTOS DE RECETTES — stockées dans appDataFolder (même espace
+//  privé que le fichier de sync), au lieu d'un dossier local. Une
+//  photo Drive est référencée dans la recette sous la forme
+//  'drive:<fileId>', reconnue par srcPhoto() (js/storage.js).
+// ------------------------------------------------------------
+
+const _drivePhotoCache = new Map(); // fileId -> URL objet (blob) déjà résolue
+const _drivePhotoEnCours = new Map(); // fileId -> Promise en cours (évite les doubles téléchargements)
+
+// Image neutre (gris clair) affichée pendant le chargement depuis Drive
+const DRIVE_PHOTO_PLACEHOLDER =
+  'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23EDE6DE"/></svg>'
+  );
+
+// Envoie un fichier image vers appDataFolder, retourne son fileId
+async function driveUploaderPhoto(file) {
+  if (!estConnecteGoogleDrive()) {
+    const reconnecte = await tenterReconnexionSilencieuseGoogle();
+    if (!reconnecte) throw new Error('Non connecté à Google (connecte-toi depuis Réglages)');
+  }
+  const metadata = { name: 'photo-' + Date.now(), parents: ['appDataFolder'] };
+  const delimiter = '\r\n--' + DRIVE_SYNC_BOUNDARY + '\r\n';
+  const closeDelim = '\r\n--' + DRIVE_SYNC_BOUNDARY + '--';
+  const base64Data = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+  const corps =
+    delimiter +
+    'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
+    JSON.stringify(metadata) +
+    delimiter +
+    'Content-Type: ' + (file.type || 'image/jpeg') + '\r\n' +
+    'Content-Transfer-Encoding: base64\r\n\r\n' +
+    base64Data +
+    closeDelim;
+
+  const res = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+    method  : 'POST',
+    headers : {
+      Authorization  : 'Bearer ' + _driveAccessToken,
+      'Content-Type' : 'multipart/related; boundary=' + DRIVE_SYNC_BOUNDARY,
+    },
+    body: corps,
+  });
+  if (!res.ok) throw new Error('Envoi de la photo vers Drive échoué : ' + await _driveExtraireErreur(res));
+  const data = await res.json();
+  return data.id;
+}
+
+// Supprime une photo Drive (ex. remplacée par une nouvelle)
+async function driveSupprimerPhoto(fileId) {
+  if (!fileId || !estConnecteGoogleDrive()) return;
+  try {
+    await fetch('https://www.googleapis.com/drive/v3/files/' + fileId, {
+      method: 'DELETE',
+      headers: { Authorization: 'Bearer ' + _driveAccessToken },
+    });
+  } catch (_) { /* pas bloquant si la suppression échoue */ }
+  _drivePhotoCache.delete(fileId);
+}
+
+// Télécharge (ou sert depuis le cache) une photo Drive, retourne une URL
+// blob utilisable directement comme src d'image.
+async function driveChargerPhoto(fileId) {
+  if (_drivePhotoCache.has(fileId)) return _drivePhotoCache.get(fileId);
+  if (_drivePhotoEnCours.has(fileId)) return _drivePhotoEnCours.get(fileId);
+
+  const promesse = (async () => {
+    if (!estConnecteGoogleDrive()) {
+      const reconnecte = await tenterReconnexionSilencieuseGoogle();
+      if (!reconnecte) throw new Error('Non connecté à Google');
+    }
+    const res = await fetch('https://www.googleapis.com/drive/v3/files/' + fileId + '?alt=media', {
+      headers: { Authorization: 'Bearer ' + _driveAccessToken },
+    });
+    if (!res.ok) throw new Error('Téléchargement de la photo échoué : ' + await _driveExtraireErreur(res));
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    _drivePhotoCache.set(fileId, url);
+    return url;
+  })();
+
+  _drivePhotoEnCours.set(fileId, promesse);
+  try {
+    return await promesse;
+  } finally {
+    _drivePhotoEnCours.delete(fileId);
+  }
+}
+
+// Après avoir injecté du HTML contenant des <img data-photo-ref="drive:...">,
+// appeler cette fonction pour résoudre ces images vers leur vraie photo Drive
+// (affiche le placeholder neutre entre-temps, remplace src une fois prêt).
+function hydraterPhotosDrive(racine) {
+  const scope = racine || document;
+  scope.querySelectorAll('img[data-photo-ref^="drive:"]').forEach(img => {
+    const fileId = img.dataset.photoRef.slice(6);
+    driveChargerPhoto(fileId)
+      .then(url => {
+        document.querySelectorAll('img[data-photo-ref="drive:' + fileId + '"]').forEach(i => { i.src = url; });
+      })
+      .catch(err => console.error('❌ Photo Drive introuvable :', err));
+  });
+}

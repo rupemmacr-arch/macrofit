@@ -974,7 +974,7 @@ function afficherAccueil() {
       const badgeTxt = estMange ? 'Mangé ✓' : 'À manger';
       const photoWrap = '<div class="meal-photo-wrap" style="background:' + fond + ';position:relative;">' +
         (recette.photo
-          ? '<img class="meal-photo" src="' + srcPhoto(recette.photo) + '" alt="">'
+          ? '<img class="meal-photo" src="' + srcPhoto(recette.photo) + '" data-photo-ref="' + recette.photo + '" alt="">'
           : '<span class="meal-photo-emoji">' + repas.icone + '</span>') +
         '<span class="meal-check-indicateur' + (estMange ? ' mange' : '') + '" title="' + (estMange ? 'Mangé' : 'Pas encore mangé') + '">✓</span>' +
         '<button class="meal-btn-opts" data-repas="' + repas.id + '" style="position:absolute;top:8px;right:8px;" title="Modifier">⋯</button>' +
@@ -1012,6 +1012,7 @@ function afficherAccueil() {
       '</div>' +
       '<div class="repas-tuiles">' + colsHtml + '</div>' +
     '</div>';
+  if (typeof hydraterPhotosDrive === 'function') hydraterPhotosDrive(listeEl);
 
   const griSection = document.createElement('div');
   griSection.id = 'section-grignotage';
@@ -1680,7 +1681,7 @@ function afficherRecettes() {
       '<div class="recette-card-grid" data-id="' + recette.id + '" style="background:var(--fond-carte);border-radius:16px;border:0.5px solid var(--bordure);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;">' +
         '<div style="aspect-ratio:4/3;background:' + fondPhoto + ';display:flex;align-items:center;justify-content:center;position:relative;border-radius:12px 12px 0 0;overflow:hidden;flex-shrink:0;">' +
           (recette.photo
-            ? '<img src="' + srcPhoto(recette.photo) + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">'
+            ? '<img src="' + srcPhoto(recette.photo) + '" data-photo-ref="' + recette.photo + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">'
             : '<span style="font-size:52px;user-select:none;pointer-events:none;">' + emojiPhoto + '</span>') +
           '<button class="btn-favori-grid" data-id="' + recette.id + '" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:' + (recette.favori ? 'var(--accent)' : '#aaa') + ';">' + (recette.favori ? '★' : '☆') + '</button>' +
           (conformite.statut !== 'vert' && !_isOptimiseurDismisse(recette.id, objRepas)
@@ -1698,6 +1699,7 @@ function afficherRecettes() {
       '</div>'
     );
   }).join('');
+  if (typeof hydraterPhotosDrive === 'function') hydraterPhotosDrive(listeEl);
   document.querySelectorAll('.recette-card-grid').forEach(card => {
     card.addEventListener('click', () => ouvrirDetail(parseInt(card.dataset.id)));
   });
@@ -1807,7 +1809,7 @@ function rendreDetailContenu() {
   document.getElementById('detail-contenu').innerHTML =
     (recetteEnCours.photo
       ? '<div style="height:220px;overflow:hidden;border-radius:14px;margin-bottom:var(--espace-sm);flex-shrink:0;">' +
-          '<img src="' + srcPhoto(recetteEnCours.photo) + '" style="width:100%;height:100%;object-fit:cover;">' +
+          '<img src="' + srcPhoto(recetteEnCours.photo) + '" data-photo-ref="' + recetteEnCours.photo + '" style="width:100%;height:100%;object-fit:cover;">' +
         '</div>'
       : '') +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
@@ -1839,6 +1841,7 @@ function rendreDetailContenu() {
         '</div>'
       : '') +
     '<button id="btn-supprimer-recette" style="width:100%;padding:10px;border:1px solid var(--rouge,#e53935);border-radius:10px;background:none;color:var(--rouge,#e53935);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--police);margin-bottom:var(--espace-md);">Supprimer la recette</button>';
+  if (typeof hydraterPhotosDrive === 'function') hydraterPhotosDrive(document.getElementById('detail-contenu'));
   document.getElementById('btn-vers-optimiseur')?.addEventListener('click', () => ouvrirOptimiseur(recetteEnCours.id));
   document.getElementById('btn-dismiss-optimiseur')?.addEventListener('click', () => {
     _dismisserOptimiseur(recetteEnCours.id, objRepas);
@@ -2624,45 +2627,47 @@ function renderPhotoZone() {
   if (recetteEnEdition.photo) {
     el.innerHTML =
       '<div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/7;background:#f0f0f0;">' +
-        '<img src="' + srcPhoto(recetteEnEdition.photo) + '" style="width:100%;height:100%;object-fit:cover;">' +
+        '<img src="' + srcPhoto(recetteEnEdition.photo) + '" data-photo-ref="' + recetteEnEdition.photo + '" style="width:100%;height:100%;object-fit:cover;">' +
         '<button id="btn-suppr-photo" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.55);border:none;border-radius:50%;width:28px;height:28px;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>' +
       '</div>';
+    if (typeof hydraterPhotosDrive === 'function') hydraterPhotosDrive(el);
     document.getElementById('btn-suppr-photo').addEventListener('click', () => {
+      const ancienne = recetteEnEdition.photo;
       recetteEnEdition.photo = null;
       renderPhotoZone();
+      if (ancienne && ancienne.startsWith('drive:') && typeof driveSupprimerPhoto === 'function') {
+        driveSupprimerPhoto(ancienne.slice(6));
+      }
     });
-  } else if (_photoDirHandle) {
-    // Dossier déjà autorisé → file input classique
+  } else if (typeof obtenirCompteGoogle === 'function' && !obtenirCompteGoogle()) {
+    // Jamais connecté à Google : pas de moyen d'envoyer une photo (stockée sur Drive)
+    el.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;gap:6px;border:1.5px dashed var(--bordure);border-radius:10px;padding:18px 20px;color:var(--texte-muted);text-align:center;">' +
+        '<span style="font-size:24px;">📷</span>' +
+        '<span style="font-size:13px;">Connecte-toi à Google (Réglages → Données) pour ajouter des photos — elles sont stockées sur ton Drive.</span>' +
+      '</div>';
+  } else {
+    // Photo envoyée directement vers Google Drive (appDataFolder)
     el.innerHTML =
       '<label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1.5px dashed var(--bordure);border-radius:10px;padding:20px;cursor:pointer;color:var(--texte-muted);">' +
         '<span style="font-size:28px;">📷</span>' +
-        '<span style="font-size:13px;">Choisir une photo</span>' +
+        '<span id="photo-zone-label" style="font-size:13px;">Choisir une photo</span>' +
         '<input type="file" accept="image/*" id="input-photo" style="display:none;">' +
       '</label>';
     document.getElementById('input-photo').addEventListener('change', async e => {
       const file = e.target.files[0];
       if (!file) return;
       const ancienne = recetteEnEdition.photo;
-      const nom = await sauvegarderPhotoFichier(file);
-      if (ancienne) await supprimerPhotoFichier(ancienne);
-      recetteEnEdition.photo = nom;
-      renderPhotoZone();
-    });
-  } else {
-    // Dossier pas encore autorisé → bouton dédié (user gesture direct requis)
-    el.innerHTML =
-      '<div style="display:flex;flex-direction:column;align-items:center;gap:6px;">' +
-        '<button id="btn-autoriser-photos" style="display:flex;align-items:center;gap:8px;border:1.5px dashed var(--bordure);border-radius:10px;padding:16px 20px;cursor:pointer;color:var(--texte-muted);background:none;font-family:var(--police);font-size:13px;">' +
-          '<span style="font-size:24px;">📁</span> Autoriser l\'accès au dossier photos' +
-        '</button>' +
-        '<span style="font-size:11px;color:var(--texte-muted);">Sélectionnez le dossier <em>macrofit/photos/</em></span>' +
-      '</div>';
-    document.getElementById('btn-autoriser-photos').addEventListener('click', async () => {
+      const label = document.getElementById('photo-zone-label');
+      if (label) label.textContent = 'Envoi en cours...';
       try {
-        await obtenirDossierPhotos();
+        const fileId = await driveUploaderPhoto(file);
+        recetteEnEdition.photo = 'drive:' + fileId;
+        if (ancienne && ancienne.startsWith('drive:')) driveSupprimerPhoto(ancienne.slice(6));
         renderPhotoZone();
       } catch (err) {
-        if (err.name !== 'AbortError') alert('Erreur : ' + err.message);
+        alert('Envoi de la photo échoué : ' + err.message);
+        renderPhotoZone();
       }
     });
   }

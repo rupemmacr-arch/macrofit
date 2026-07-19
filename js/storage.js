@@ -453,6 +453,12 @@ async function supprimerPhotoFichier(nomFichier) {
 function srcPhoto(photo) {
   if (!photo) return '';
   if (photo.startsWith('data:')) return photo;
+  if (photo.startsWith('drive:')) {
+    const fileId = photo.slice(6);
+    return (typeof _drivePhotoCache !== 'undefined' && _drivePhotoCache.has(fileId))
+      ? _drivePhotoCache.get(fileId)
+      : (typeof DRIVE_PHOTO_PLACEHOLDER !== 'undefined' ? DRIVE_PHOTO_PLACEHOLDER : '');
+  }
   return 'photos/' + photo;
 }
 
