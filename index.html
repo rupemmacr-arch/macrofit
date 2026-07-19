@@ -313,6 +313,8 @@
         <div id="form-etapes"></div>
       </div>
 
+      <button id="btn-supprimer-form" style="display:none;width:100%;padding:10px;border:1px solid var(--rouge,#e53935);border-radius:10px;background:none;color:var(--rouge,#e53935);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--police);margin-bottom:var(--espace-md);">Supprimer la recette</button>
+
     </div>
   </div>
 
@@ -2611,6 +2613,7 @@ function ouvrirFormulaireRecette(recetteId) {
     c.classList.toggle('actif', c.dataset.repas === recetteEnEdition.typeRepas));
   document.querySelectorAll('#form-type-proteine .chip').forEach(c =>
     c.classList.toggle('actif', c.dataset.prot === recetteEnEdition.typeProteine));
+  document.getElementById('btn-supprimer-form').style.display = recetteEnEdition.id !== undefined ? '' : 'none';
   document.getElementById('toggle-composants').checked = _composantsActifs;
   document.getElementById('form-ings-flat').style.display        = _composantsActifs ? 'none' : '';
   document.getElementById('form-ings-composants').style.display  = _composantsActifs ? '' : 'none';
@@ -3179,6 +3182,13 @@ function renderComposants() {
 function branchementsFormulaireRecette() {
   document.getElementById('btn-retour-form').addEventListener('click', () => allerVers('recettes'));
   document.getElementById('btn-sauvegarder-form').addEventListener('click', sauvegarderFormulaireRecette);
+  document.getElementById('btn-supprimer-form').addEventListener('click', () => {
+    if (!confirm('Supprimer "' + recetteEnEdition.nom + '" ? Cette action est irréversible.')) return;
+    supprimerRecette(recetteEnEdition.id);
+    RECETTES = obtenirRecettes();
+    afficherRecettes();
+    allerVers('recettes');
+  });
   document.getElementById('form-type-repas').addEventListener('click', e => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
