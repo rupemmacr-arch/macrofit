@@ -4238,9 +4238,10 @@ function _rendreImportApercu() {
         '<select id="imp-cat-' + idx + '" style="width:100%;padding:5px 8px;border:1px solid var(--bordure);border-radius:6px;font-size:12px;font-family:var(--police);">' + catsOptions + '</select></div>';
       html += '</div>';
       html += '<div style="font-size:11px;font-weight:600;margin-bottom:4px;">Valeurs pour 100g (estimées par l\'IA — à vérifier)</div>';
-      html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;">';
+      html += '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px;">';
       [['imp-prot-' + idx, 'Protéines', n.proteines ?? ''], ['imp-gluc-' + idx, 'Glucides', n.glucides ?? ''],
-       ['imp-lip-' + idx, 'Lipides', n.lipides ?? ''], ['imp-cal-' + idx, 'Calories', n.calories ?? '']
+       ['imp-lip-' + idx, 'Lipides', n.lipides ?? ''], ['imp-cal-' + idx, 'Calories', n.calories ?? ''],
+       ['imp-fib-' + idx, 'Fibres', n.fibres ?? '']
       ].forEach(([id, label, val]) => {
         html += '<div><label style="font-size:10px;font-weight:600;display:block;margin-bottom:2px;">' + label + '</label>' +
           '<input type="number" min="0" id="' + id + '" value="' + val + '" style="width:100%;padding:4px 6px;border:1px solid var(--bordure);border-radius:6px;font-size:13px;"></div>';
@@ -4273,12 +4274,13 @@ function _creerIngredientImport(idx) {
   const gluc = parseFloat(document.getElementById('imp-gluc-' + idx).value) || 0;
   const lip  = parseFloat(document.getElementById('imp-lip-'  + idx).value) || 0;
   const cal  = parseFloat(document.getElementById('imp-cal-'  + idx).value) || 0;
+  const fib  = parseFloat(document.getElementById('imp-fib-'  + idx).value) || 0;
 
   if (!nom) { alert('Le nom est obligatoire.'); return; }
 
   const nouvel = ajouterIngredient({
     nom, categorie: cat,
-    pour100g: { proteines: prot, glucides: gluc, lipides: lip, calories: cal },
+    pour100g: { proteines: prot, glucides: gluc, lipides: lip, calories: cal, fibres: fib },
     cuisson: { ratio_cru_vers_cuit: RATIO_CUISSON_DEFAUT?.[cat] ?? 1.0 },
   });
   INGREDIENTS = obtenirIngredients();
@@ -4327,7 +4329,7 @@ Retourne un objet JSON avec cette structure exacte :
   "tempsPreparation": 30,
   "ingredients": [
     { "ingredientId": 5, "quantite": 150 },
-    { "ingredientId": null, "quantite": 100, "nom": "Farine d'épeautre", "categorie": "Céréales & Féculents", "nutrition": { "proteines": 13, "glucides": 67, "lipides": 2.5, "calories": 339 } }
+    { "ingredientId": null, "quantite": 100, "nom": "Farine d'épeautre", "categorie": "Céréales & Féculents", "nutrition": { "proteines": 13, "glucides": 67, "lipides": 2.5, "calories": 339, "fibres": 8.5 } }
   ],
   "etapesPreparation": ["Étape 1…", "Étape 2…"]
 }
@@ -4335,7 +4337,7 @@ Retourne un objet JSON avec cette structure exacte :
 Règles :
 - typeRepas : exactement l'un de "Petit-déjeuner", "Collation matin", "Déjeuner", "Collation", "Dîner"
 - typeProteine : exactement l'un de "Poulet", "Œuf", "Bœuf", "Légumineuses", "Poisson", "Autre"
-- Pour chaque ingrédient : si tu trouves un correspondant proche dans la liste, utilise son id. Sinon mets ingredientId à null et fournis nom, categorie et nutrition (valeurs estimées pour 100g).
+- Pour chaque ingrédient : si tu trouves un correspondant proche dans la liste, utilise son id. Sinon mets ingredientId à null et fournis nom, categorie et nutrition (proteines, glucides, lipides, calories, fibres — valeurs estimées pour 100g, fibres à 0 si non pertinent).
 - categorie doit être l'une de : "Viandes, Oeufs & Poissons", "Céréales & Féculents", "Fruits & Légumes", "Produits Laitiers", "Matières Grasses", "Condiments & Épices", "Produits Sucrés", "Boissons"
 - Les quantités sont en grammes entiers. Pour les liquides 1ml = 1g.
 - Les étapes en français à l'infinitif.`;
