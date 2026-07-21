@@ -3,8 +3,8 @@
 //  Envoi des données du jour vers le Google Sheets "Fiche de suivi"
 //  partagé par le coach.
 //  Phase 1 : lecture seule (diagnostic de structure).
-//  Phase 2 : calcul de colonne + préparation des 25 lignes de détail
-//  + écriture quotidienne (pas, repas respectés, macros).
+//  Phase 2 : écriture quotidienne (pas, repas respectés, total
+//  journalier) — pas de détail par créneau, juste les données globales.
 // ============================================================
 
 const COACH_SHEET_ID = '1HI8R8p5Loka7t_SCUoISELKM2qaXBFQb7qwVctli8Yc';
@@ -25,13 +25,6 @@ const COACH_LIGNES_REPAS = {
   'Dîner'           : 14,
 };
 const COACH_LIGNE_TOTAL_DEBUT = 52; // 52=Protéines, 53=Glucides, 54=Lipides, 55=Kcal, 56=Fibres
-
-// Chaque créneau occupe 7 lignes : 1 ligne titre + 5 métriques + 1 ligne
-// vide de séparation avant le créneau suivant (ligneDebut = ligne du titre,
-// les 5 métriques commencent à ligneDebut + 1).
-const COACH_CRENEAUX_DETAIL = ['Petit-déjeuner', 'Collation matin', 'Déjeuner', 'Collation', 'Dîner']
-  .map((id, i) => ({ id, ligneDebut: 57 + i * 7 }));
-const COACH_METRIQUES = ['Protéines (g)', 'Glucides (g)', 'Lipides (g)', 'Kcal', 'Fibres (g)'];
 
 // Convertit un index de colonne 1-based (A=1) en lettre(s) A1
 function _sheetsIndexVersColonne(index) {
@@ -137,43 +130,6 @@ async function _sheetsEcrireValeurs(data) {
   return res.json();
 }
 
-// ------------------------------------------------------------
-//  PRÉPARATION DES LIGNES DE DÉTAIL (une seule fois)
-//  N'écrit QUE des libellés en colonne A, lignes 57 à 90 — jamais
-//  au-dessus de la ligne 56 existante. Vérifie d'abord que ces
-//  lignes sont bien vides avant d'écrire quoi que ce soit.
-//  Disposition par créneau : 1 ligne titre + 5 métriques + 1 ligne
-//  vide de séparation (sauf après le dernier créneau).
-// ------------------------------------------------------------
-const COACH_LIGNE_DETAIL_FIN = COACH_CRENEAUX_DETAIL[COACH_CRENEAUX_DETAIL.length - 1].ligneDebut + COACH_METRIQUES.length;
-
-async function sheetsPreparerLignesDetail() {
-  await _sheetsAssurerConnexion();
-  const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
-  const plage = 'A57:A' + COACH_LIGNE_DETAIL_FIN;
-
-  const [existant] = await _sheetsLireValeurs(nomFeuille, [plage]);
-  const dejaRempli = (existant.values || []).some(row => row.length > 0 && row[0] !== '');
-  if (dejaRempli) {
-    throw new Error('Les lignes 57 à ' + COACH_LIGNE_DETAIL_FIN + ' contiennent déjà des données — abandon par sécurité, aucune écriture effectuée.');
-  }
-
-  const labels = [];
-  COACH_CRENEAUX_DETAIL.forEach((c, i) => {
-    labels.push([c.id]);
-    COACH_METRIQUES.forEach(m => labels.push([m]));
-    if (i < COACH_CRENEAUX_DETAIL.length - 1) labels.push(['']); // ligne vide de séparation
-  });
-
-  await _sheetsEcrireValeurs([
-    { range: "'" + nomFeuille + "'!" + plage, values: labels },
-  ]);
-
-  await _sheetsMettreEnGras(COACH_CRENEAUX_DETAIL.map(c => c.ligneDebut));
-
-  return labels.length;
-}
-
 // Envoie une liste de requêtes de mise en forme (spreadsheets.batchUpdate,
 // distinct de values:batchUpdate qui ne gère que le contenu des cellules).
 async function _sheetsAppliquerFormat(requests) {
@@ -188,24 +144,6 @@ async function _sheetsAppliquerFormat(requests) {
   );
   if (!res.ok) throw new Error('Mise en forme échouée : ' + await _driveExtraireErreur(res));
   return res.json();
-}
-
-// Met en gras la colonne A des lignes indiquées (1-based), comme le titre
-// "Total journalier" existant.
-function _sheetsMettreEnGras(lignes1based) {
-  return _sheetsAppliquerFormat(lignes1based.map(ligne => ({
-    repeatCell: {
-      range: {
-        sheetId: COACH_SHEET_GID,
-        startRowIndex: ligne - 1,
-        endRowIndex: ligne,
-        startColumnIndex: 0,
-        endColumnIndex: 1,
-      },
-      cell: { userEnteredFormat: { textFormat: { bold: true } } },
-      fields: 'userEnteredFormat.textFormat.bold',
-    },
-  })));
 }
 
 // ------------------------------------------------------------
@@ -313,11 +251,10 @@ async function sheetsEnvoyerAuCoach(dateISO) {
   const pas = obtenirPasJour(dateISO);
   data.push({ range: cellule(COACH_LIGNE_PAS), values: [[pas ?? '']] });
 
-  // Repas respectés (cases à cocher) + détail macros par créneau
-  const detailParCreneau = {};
+  // Repas respectés (cases à cocher)
   for (const typeRepas of Object.keys(COACH_LIGNES_REPAS)) {
-    detailParCreneau[typeRepas] = _macrosRepasDuJour(dateISO, typeRepas);
-    data.push({ range: cellule(COACH_LIGNES_REPAS[typeRepas]), values: [[detailParCreneau[typeRepas].mange]] });
+    const { mange } = _macrosRepasDuJour(dateISO, typeRepas);
+    data.push({ range: cellule(COACH_LIGNES_REPAS[typeRepas]), values: [[mange]] });
   }
 
   // Total journalier (52-56) — uniquement les repas marqués mangés
@@ -327,30 +264,11 @@ async function sheetsEnvoyerAuCoach(dateISO) {
     values: [[total.proteines], [total.glucides], [total.lipides], [total.calories], [total.fibres]],
   });
 
-  // Coloration Protéines/Glucides/Lipides selon la tolérance MacroFit
+  // Coloration Protéines/Glucides/Lipides du total selon la tolérance MacroFit
   // (même logique que evaluerConformite, js/macros.js).
   const tolerance    = obtenirTolerance();
   const formatRequests = [];
   _sheetsAjouterCouleursConformite(formatRequests, colIndex0, COACH_LIGNE_TOTAL_DEBUT, total, OBJECTIFS?.moi?.quotidien, tolerance);
-
-  // Détail par créneau — 0 si le repas n'a pas été marqué mangé.
-  // On réécrit tout le bloc (ligne titre + 5 métriques + ligne vide),
-  // titre et ligne vide remis à '' à chaque envoi : ça évite qu'un résidu
-  // d'un ancien format/emplacement traîne à côté des nouvelles valeurs.
-  COACH_CRENEAUX_DETAIL.forEach((c, i) => {
-    const { macros, mange } = detailParCreneau[c.id];
-    const valeursReelles = mange ? macros : { proteines: 0, glucides: 0, lipides: 0, calories: 0, fibres: 0 };
-    const vals = [valeursReelles.proteines, valeursReelles.glucides, valeursReelles.lipides, valeursReelles.calories, valeursReelles.fibres ?? 0];
-    const estDernier = i === COACH_CRENEAUX_DETAIL.length - 1;
-    const ligneFin = c.ligneDebut + 1 + 4 + (estDernier ? 0 : 1);
-    const valeursBloc = [[''], ...vals.map(v => [v])];
-    if (!estDernier) valeursBloc.push(['']);
-    data.push({
-      range: "'" + nomFeuille + "'!" + colLettre + c.ligneDebut + ':' + colLettre + ligneFin,
-      values: valeursBloc,
-    });
-    _sheetsAjouterCouleursConformite(formatRequests, colIndex0, c.ligneDebut + 1, valeursReelles, OBJECTIFS?.moi?.parRepas?.[c.id], tolerance);
-  });
 
   await _sheetsEcrireValeurs(data);
   await _sheetsAppliquerFormat(formatRequests);

@@ -4013,12 +4013,6 @@ function afficherParamsDonnees() {
     '<pre id="sheets-debug-sortie" style="margin-top:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow:auto;background:var(--fond);padding:10px;border-radius:8px;display:none;user-select:all;"></pre>' +
     '</div>' +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
-    '<div class="carte-titre">🛠️ Préparer le Sheets coach (une seule fois)</div>' +
-    '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Ajoute les libellés de détail par créneau (titre + 5 métriques + ligne vide de séparation, lignes 57 à 90, sous le "Total journalier"). À ne faire qu\'une fois — vérifie automatiquement que ces lignes sont vides avant d\'écrire.</p>' +
-    '<button class="btn btn-plein" id="btn-sheets-preparer">🛠️ Préparer les lignes de détail</button>' +
-    '<p id="sheets-preparer-resultat" style="font-size:13px;margin-top:10px;display:none"></p>' +
-    '</div>' +
-    '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
     '<div class="carte-titre">⬇ Exporter mes données</div>' +
     '<p style="font-size:13px;color:var(--texte-muted);margin-bottom:12px">Télécharge une copie complète de toutes tes données (recettes, ingrédients, planning, objectifs, journal).</p>' +
     '<button class="btn btn-principal btn-plein" id="btn-exporter-donnees">⬇ Télécharger le fichier de sauvegarde</button>' +
@@ -4081,26 +4075,6 @@ function afficherParamsDonnees() {
     } finally {
       btn.disabled = false;
       btn.textContent = '🔍 Lire structure Sheets (debug)';
-    }
-  });
-
-  document.getElementById('btn-sheets-preparer').addEventListener('click', async () => {
-    const btn = document.getElementById('btn-sheets-preparer');
-    const resultatEl = document.getElementById('sheets-preparer-resultat');
-    if (!confirm('Ajouter les libellés de détail sous la ligne 56 du Sheets (titre par créneau + 5 métriques + ligne vide, lignes 57 à 90) ?\n\nCette action vérifie automatiquement que ces lignes sont vides avant d\'écrire, et ne touche à rien d\'autre.')) return;
-    btn.disabled = true;
-    btn.textContent = 'Écriture en cours...';
-    resultatEl.style.display = '';
-    try {
-      const nb = await sheetsPreparerLignesDetail();
-      resultatEl.textContent = '✅ ' + nb + ' lignes écrites (57 à 90).';
-      resultatEl.style.color = 'var(--vert)';
-    } catch (e) {
-      resultatEl.textContent = '❌ ' + e.message;
-      resultatEl.style.color = 'var(--rouge)';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = '🛠️ Préparer les lignes de détail';
     }
   });
 
