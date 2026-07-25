@@ -4,7 +4,7 @@
 //  et un minimum de fonctionnement hors ligne.
 // ============================================================
 
-const CACHE_NAME = 'macrofit-v1';
+const CACHE_NAME = 'macrofit-v2';
 
 const FICHIERS_ESSENTIELS = [
   './',
@@ -36,25 +36,23 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Cache d'abord, réseau ensuite (et met en cache ce qui est récupéré),
-// avec repli sur index.html si totalement hors ligne. Ne touche qu'aux
-// requêtes GET de même origine — les appels vers les API Google (Drive,
-// Sheets, Identity) passent sans interception.
+// Réseau d'abord (pour toujours servir le code le plus récent quand on est
+// en ligne), repli sur le cache seulement si la requête réseau échoue
+// (vraiment hors ligne) — sur index.html en dernier recours. Ne touche
+// qu'aux requêtes GET de même origine — les appels vers les API Google
+// (Drive, Sheets, Identity) passent sans interception.
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) return;
 
   event.respondWith(
-    caches.match(event.request).then((reponseCache) => {
-      if (reponseCache) return reponseCache;
-      return fetch(event.request)
-        .then((reponseReseau) => {
-          if (reponseReseau && reponseReseau.ok) {
-            const clone = reponseReseau.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return reponseReseau;
-        })
-        .catch(() => caches.match('index.html'));
-    })
+    fetch(event.request)
+      .then((reponseReseau) => {
+        if (reponseReseau && reponseReseau.ok) {
+          const clone = reponseReseau.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return reponseReseau;
+      })
+      .catch(() => caches.match(event.request).then((r) => r || caches.match('index.html')))
   );
 });
