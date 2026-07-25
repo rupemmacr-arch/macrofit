@@ -108,6 +108,42 @@ async function sheetsDiagnostiquerStructure() {
   return { nomFeuille, valeurs, validationRepas };
 }
 
+// Diagnostic ciblé : lit la vraie valeur ET la vraie couleur de fond
+// stockées dans la cellule Protéines du Total journalier pour une date
+// donnée, plus l'objectif utilisé au moment du diagnostic — pour couper
+// court à toute ambiguïté sur ce qui est réellement dans le Sheets.
+async function sheetsDiagnostiquerCouleurProteines(dateISO) {
+  dateISO = dateISO || dateVersISO(new Date());
+  await _sheetsAssurerConnexion();
+  const nomFeuille = await _sheetsObtenirNomFeuille(COACH_SHEET_GID);
+  const { colLettre, colIndex } = _sheetsColonneJour(dateISO);
+  const cellule = colLettre + COACH_LIGNE_TOTAL_DEBUT;
+
+  const params = new URLSearchParams({
+    ranges: nomFeuille + '!' + cellule,
+    fields: 'sheets(data(rowData(values(userEnteredValue,effectiveValue,userEnteredFormat.backgroundColor,effectiveFormat.backgroundColor))))',
+  });
+  const res = await fetch(
+    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + '?' + params.toString(),
+    { headers: { Authorization: 'Bearer ' + _driveAccessToken } }
+  );
+  if (!res.ok) throw new Error('Lecture échouée : ' + await _driveExtraireErreur(res));
+  const data = await res.json();
+  const cell = data.sheets?.[0]?.data?.[0]?.rowData?.[0]?.values?.[0] || {};
+
+  return {
+    dateISO, colLettre, colIndex, cellule,
+    valeurCellule: cell.effectiveValue,
+    couleurEffective: cell.effectiveFormat?.backgroundColor,
+    couleurSaisie: cell.userEnteredFormat?.backgroundColor,
+    objectifProteinesActuel: OBJECTIFS?.moi?.quotidien?.proteines,
+    couleursConnues: {
+      vert: COACH_COULEUR_VERT, vertFonce: COACH_COULEUR_VERT_FONCE,
+      orange: COACH_COULEUR_ORANGE, rouge: COACH_COULEUR_ROUGE,
+    },
+  };
+}
+
 async function _sheetsAssurerConnexion() {
   if (!estConnecteGoogleDrive()) {
     const reconnecte = await tenterReconnexionSilencieuseGoogle();
