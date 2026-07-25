@@ -172,18 +172,25 @@ function _sheetsRequeteCouleurCellule(colIndex0based, ligne1based, couleur) {
   };
 }
 
-// Ajoute les requêtes de coloration Protéines/Glucides/Lipides pour un bloc
-// (ligneProteines = ligne de la première des 3 métriques : Protéines,
-// Glucides puis Lipides sur les 2 lignes suivantes).
-function _sheetsAjouterCouleursConformite(requests, colIndex0based, ligneProteines, valeurs, cible, tolerance) {
+// Tolérances de coloration du Sheets coach — fixes, indépendantes du
+// réglage de tolérance de MacroFit (celui-ci reste utilisé ailleurs dans
+// l'app pour l'écran Accueil / le badge de conformité des recettes).
+const COACH_TOLERANCE_MACRO    = 10;  // ± 10 g pour Protéines / Glucides / Lipides
+const COACH_TOLERANCE_CALORIES = 100; // ± 100 kcal
+
+// Ajoute les requêtes de coloration Protéines/Glucides/Lipides/Kcal pour un
+// bloc (ligneProteines = ligne de Protéines ; Glucides, Lipides puis Kcal
+// sur les 3 lignes suivantes).
+function _sheetsAjouterCouleursConformite(requests, colIndex0based, ligneProteines, valeurs, cible) {
   if (!cible) return;
   [
-    { val: valeurs.proteines, cible: cible.proteines, ligne: ligneProteines },
-    { val: valeurs.glucides,  cible: cible.glucides,  ligne: ligneProteines + 1 },
-    { val: valeurs.lipides,   cible: cible.lipides,   ligne: ligneProteines + 2 },
+    { val: valeurs.proteines, cible: cible.proteines, ligne: ligneProteines,     tolerance: COACH_TOLERANCE_MACRO },
+    { val: valeurs.glucides,  cible: cible.glucides,  ligne: ligneProteines + 1, tolerance: COACH_TOLERANCE_MACRO },
+    { val: valeurs.lipides,   cible: cible.lipides,   ligne: ligneProteines + 2, tolerance: COACH_TOLERANCE_MACRO },
+    { val: valeurs.calories,  cible: cible.calories,  ligne: ligneProteines + 3, tolerance: COACH_TOLERANCE_CALORIES },
   ].forEach(m => {
     if (m.cible === undefined) return;
-    const conforme = Math.abs(m.val - m.cible) <= tolerance;
+    const conforme = Math.abs(m.val - m.cible) <= m.tolerance;
     requests.push(_sheetsRequeteCouleurCellule(colIndex0based, m.ligne, conforme ? COACH_COULEUR_VERT : COACH_COULEUR_ROUGE));
   });
 }
@@ -264,11 +271,9 @@ async function sheetsEnvoyerAuCoach(dateISO) {
     values: [[total.proteines], [total.glucides], [total.lipides], [total.calories], [total.fibres]],
   });
 
-  // Coloration Protéines/Glucides/Lipides du total selon la tolérance MacroFit
-  // (même logique que evaluerConformite, js/macros.js).
-  const tolerance    = obtenirTolerance();
+  // Coloration Protéines/Glucides/Lipides/Kcal du total (± 10g macros, ± 100 kcal)
   const formatRequests = [];
-  _sheetsAjouterCouleursConformite(formatRequests, colIndex0, COACH_LIGNE_TOTAL_DEBUT, total, OBJECTIFS?.moi?.quotidien, tolerance);
+  _sheetsAjouterCouleursConformite(formatRequests, colIndex0, COACH_LIGNE_TOTAL_DEBUT, total, OBJECTIFS?.moi?.quotidien);
 
   await _sheetsEcrireValeurs(data);
   await _sheetsAppliquerFormat(formatRequests);
