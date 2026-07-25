@@ -152,9 +152,10 @@ async function _sheetsAppliquerFormat(requests) {
 //  Rouge : au-delà. Tolérances fixes, indépendantes du réglage
 //  MacroFit (celui-ci reste utilisé ailleurs dans l'app).
 // ------------------------------------------------------------
-const COACH_COULEUR_VERT   = { red: 0.851, green: 0.918, blue: 0.827 };
-const COACH_COULEUR_ORANGE = { red: 0.996, green: 0.898, blue: 0.804 };
-const COACH_COULEUR_ROUGE  = { red: 0.957, green: 0.800, blue: 0.800 };
+const COACH_COULEUR_VERT       = { red: 0.851, green: 0.918, blue: 0.827 };
+const COACH_COULEUR_VERT_FONCE = { red: 0.416, green: 0.659, blue: 0.310 };
+const COACH_COULEUR_ORANGE     = { red: 0.996, green: 0.898, blue: 0.804 };
+const COACH_COULEUR_ROUGE      = { red: 0.957, green: 0.800, blue: 0.800 };
 
 function _sheetsRequeteCouleurCellule(colIndex0based, ligne1based, couleur) {
   return {
@@ -184,16 +185,22 @@ const COACH_TOLERANCE_CALORIES = 100; // ± 100 kcal
 function _sheetsAjouterCouleursConformite(requests, colIndex0based, ligneProteines, valeurs, cible) {
   if (!cible) return;
   [
-    { val: valeurs.proteines, cible: cible.proteines, ligne: ligneProteines,     tolerance: COACH_TOLERANCE_MACRO },
+    { val: valeurs.proteines, cible: cible.proteines, ligne: ligneProteines,     tolerance: COACH_TOLERANCE_MACRO,    depassementFavorable: true },
     { val: valeurs.glucides,  cible: cible.glucides,  ligne: ligneProteines + 1, tolerance: COACH_TOLERANCE_MACRO },
     { val: valeurs.lipides,   cible: cible.lipides,   ligne: ligneProteines + 2, tolerance: COACH_TOLERANCE_MACRO },
     { val: valeurs.calories,  cible: cible.calories,  ligne: ligneProteines + 3, tolerance: COACH_TOLERANCE_CALORIES },
   ].forEach(m => {
     if (m.cible === undefined) return;
-    const ecart   = Math.abs(m.val - m.cible);
-    const couleur = ecart <= m.tolerance ? COACH_COULEUR_VERT
-                  : ecart <= m.tolerance * 2 ? COACH_COULEUR_ORANGE
-                  : COACH_COULEUR_ROUGE;
+    let couleur;
+    if (m.depassementFavorable && m.val > m.cible) {
+      // Dépasser l'objectif de protéines n'est jamais pénalisé, quel que soit l'écart.
+      couleur = COACH_COULEUR_VERT_FONCE;
+    } else {
+      const ecart = Math.abs(m.val - m.cible);
+      couleur = ecart <= m.tolerance ? COACH_COULEUR_VERT
+              : ecart <= m.tolerance * 2 ? COACH_COULEUR_ORANGE
+              : COACH_COULEUR_ROUGE;
+    }
     requests.push(_sheetsRequeteCouleurCellule(colIndex0based, m.ligne, couleur));
   });
 }
