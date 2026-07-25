@@ -793,6 +793,20 @@ function _macrosJourValides(iso) {
     aDesValides = true;
   });
 
+  // Grignotage (ingrédients libres du jour) — comptabilisé sans condition
+  // "mangé", comme sur la jauge journalière de l'écran Accueil.
+  obtenirGrignotage(iso).forEach(item => {
+    const ing = INGREDIENTS.find(i => i.id === item.ingredientId);
+    if (!ing) return;
+    const m = calculerMacrosIngredient(ing, item.quantite);
+    macros.proteines += m.proteines;
+    macros.glucides  += m.glucides;
+    macros.lipides   += m.lipides;
+    macros.calories  += m.calories;
+    macros.fibres    += m.fibres ?? 0;
+    aDesValides = true;
+  });
+
   if (!aDesValides) return null;
   return {
     proteines: Math.round(macros.proteines * 10) / 10,
