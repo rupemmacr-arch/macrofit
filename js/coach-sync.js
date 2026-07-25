@@ -147,14 +147,14 @@ async function _sheetsAppliquerFormat(requests) {
 }
 
 // ------------------------------------------------------------
-//  COLORATION SELON LA TOLÉRANCE MACROFIT
-//  Vert si l'écart (valeur réelle vs objectif) est dans la tolérance
-//  réglée dans MacroFit (Réglages), rouge sinon — même logique que
-//  evaluerConformite (js/macros.js), appliquée par macro (P/G/L
-//  uniquement, comme dans l'app ; Kcal/Fibres restent neutres).
+//  COLORATION À 3 PALIERS (Total journalier du Sheets coach)
+//  Vert : écart ≤ tolérance. Orange : écart ≤ 2× la tolérance.
+//  Rouge : au-delà. Tolérances fixes, indépendantes du réglage
+//  MacroFit (celui-ci reste utilisé ailleurs dans l'app).
 // ------------------------------------------------------------
-const COACH_COULEUR_VERT  = { red: 0.851, green: 0.918, blue: 0.827 };
-const COACH_COULEUR_ROUGE = { red: 0.957, green: 0.800, blue: 0.800 };
+const COACH_COULEUR_VERT   = { red: 0.851, green: 0.918, blue: 0.827 };
+const COACH_COULEUR_ORANGE = { red: 0.996, green: 0.898, blue: 0.804 };
+const COACH_COULEUR_ROUGE  = { red: 0.957, green: 0.800, blue: 0.800 };
 
 function _sheetsRequeteCouleurCellule(colIndex0based, ligne1based, couleur) {
   return {
@@ -190,8 +190,11 @@ function _sheetsAjouterCouleursConformite(requests, colIndex0based, ligneProtein
     { val: valeurs.calories,  cible: cible.calories,  ligne: ligneProteines + 3, tolerance: COACH_TOLERANCE_CALORIES },
   ].forEach(m => {
     if (m.cible === undefined) return;
-    const conforme = Math.abs(m.val - m.cible) <= m.tolerance;
-    requests.push(_sheetsRequeteCouleurCellule(colIndex0based, m.ligne, conforme ? COACH_COULEUR_VERT : COACH_COULEUR_ROUGE));
+    const ecart   = Math.abs(m.val - m.cible);
+    const couleur = ecart <= m.tolerance ? COACH_COULEUR_VERT
+                  : ecart <= m.tolerance * 2 ? COACH_COULEUR_ORANGE
+                  : COACH_COULEUR_ROUGE;
+    requests.push(_sheetsRequeteCouleurCellule(colIndex0based, m.ligne, couleur));
   });
 }
 
