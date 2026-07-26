@@ -144,6 +144,48 @@ async function sheetsDiagnostiquerCouleurProteines(dateISO) {
   };
 }
 
+// Diagnostic : liste les bandes de couleurs alternées et les règles de
+// format conditionnel qui touchent la cellule Protéines du Total journalier
+// pour une date donnée — pour vérifier si l'une d'elles écrase notre couleur
+// (couleurEffective ≠ couleurSaisie observé sur AW52 le 22/07).
+async function sheetsDiagnostiquerFormatage(dateISO) {
+  dateISO = dateISO || dateVersISO(new Date());
+  await _sheetsAssurerConnexion();
+  const { colLettre, colIndex } = _sheetsColonneJour(dateISO);
+  const colIndex0 = colIndex - 1;
+  const ligne0 = COACH_LIGNE_TOTAL_DEBUT - 1; // ligne Protéines, 0-based
+
+  const params = new URLSearchParams({
+    fields: 'sheets(properties(sheetId,title),bandedRanges,conditionalFormats)',
+  });
+  const res = await fetch(
+    'https://sheets.googleapis.com/v4/spreadsheets/' + COACH_SHEET_ID + '?' + params.toString(),
+    { headers: { Authorization: 'Bearer ' + _driveAccessToken } }
+  );
+  if (!res.ok) throw new Error('Lecture échouée : ' + await _driveExtraireErreur(res));
+  const data = await res.json();
+  const feuille = data.sheets.find(s => s.properties.sheetId === COACH_SHEET_GID);
+
+  const dansPlage = (r) =>
+    (r.startRowIndex ?? -Infinity) <= ligne0 && ligne0 < (r.endRowIndex ?? Infinity) &&
+    (r.startColumnIndex ?? -Infinity) <= colIndex0 && colIndex0 < (r.endColumnIndex ?? Infinity);
+
+  const bandesConcernees = (feuille.bandedRanges || [])
+    .filter(b => dansPlage(b.range))
+    .map(b => ({ bandedRangeId: b.bandedRangeId, range: b.range, rowProperties: b.rowProperties, columnProperties: b.columnProperties }));
+
+  const reglesConcernees = (feuille.conditionalFormats || [])
+    .filter(cf => (cf.ranges || []).some(dansPlage))
+    .map(cf => ({ ranges: cf.ranges, booleanRule: cf.booleanRule, gradientRule: cf.gradientRule }));
+
+  return {
+    dateISO, colLettre, colIndex, cellule: colLettre + COACH_LIGNE_TOTAL_DEBUT,
+    bandesConcernees, reglesConcernees,
+    totalBandesSurFeuille: (feuille.bandedRanges || []).length,
+    totalReglesSurFeuille: (feuille.conditionalFormats || []).length,
+  };
+}
+
 async function _sheetsAssurerConnexion() {
   if (!estConnecteGoogleDrive()) {
     const reconnecte = await tenterReconnexionSilencieuseGoogle();

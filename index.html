@@ -4030,6 +4030,10 @@ function afficherParamsDonnees() {
     '<button class="btn" id="btn-sheets-debug-couleur">🎨 Vérifier couleur Protéines</button>' +
     '</div>' +
     '<pre id="sheets-debug-couleur-sortie" style="margin-top:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;background:var(--fond);padding:10px;border-radius:8px;display:none;user-select:all;"></pre>' +
+    '<div style="margin-top:10px">' +
+    '<button class="btn" id="btn-sheets-debug-formatage">🔍 Vérifier bandes / format conditionnel</button>' +
+    '</div>' +
+    '<pre id="sheets-debug-formatage-sortie" style="margin-top:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;background:var(--fond);padding:10px;border-radius:8px;display:none;user-select:all;"></pre>' +
     '</div>' +
     '<div class="carte" style="margin-bottom:var(--espace-sm)">' +
     '<div class="carte-titre">⬇ Exporter mes données</div>' +
@@ -4114,6 +4118,25 @@ function afficherParamsDonnees() {
     } finally {
       btn.disabled = false;
       btn.textContent = '🎨 Vérifier couleur Protéines';
+    }
+  });
+
+  document.getElementById('btn-sheets-debug-formatage').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-sheets-debug-formatage');
+    const sortie = document.getElementById('sheets-debug-formatage-sortie');
+    const dateISO = document.getElementById('input-debug-couleur-date').value;
+    btn.disabled = true;
+    btn.textContent = 'Lecture en cours...';
+    sortie.style.display = '';
+    sortie.textContent = '';
+    try {
+      const resultat = await sheetsDiagnostiquerFormatage(dateISO);
+      sortie.textContent = JSON.stringify(resultat, null, 2);
+    } catch (e) {
+      sortie.textContent = '❌ ' + e.message;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🔍 Vérifier bandes / format conditionnel';
     }
   });
 
